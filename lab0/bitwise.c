@@ -22,6 +22,29 @@ char *byte2bin(uint8_t n, char *binstr)
 	return binstr;
 }
 
+int high(unsigned long n,int bit, char bin[9]){
+    #define h BIT(bit)
+    uint8_t test = h&n;
+    printf("%s\n", byte2bin(test, bin));
+    if(test > 0){
+        return 1;
+    }
+    return 0;
+}
+
+char *switc(unsigned long n, int bit, char bin[9]){
+    #define l BIT(bit)
+    uint8_t s = l|n;
+    return byte2bin(s,bin);
+}
+
+char *reset(unsigned long n, int bit, char bin[9]){
+    #define o BIT(bit)
+    uint8_t r = (~o)&n;
+    return byte2bin(r,bin);
+}
+
+
 void print_usage(char *name) {
 	printf("Usage: %s <action> <byte> <bit no>\n", name);
 	printf("\tWhere: <action> one of 'h'|'l'|'r'|'s'|'t'\n"
@@ -49,14 +72,12 @@ int main(int argc, char *argv[])
 
 	
 	// Do what the user asked and print the result
-    #define i BIT(bit)
     switch (a)
     {
     case 'h':
         printf("%s\n", byte2bin(n,binary));
-        uint8_t test = i&n;
-        printf("%s\n", byte2bin(test, binary));
-        if(test > 0){
+        int flag = high(n,bit,binary);
+        if(flag == 1){
             printf("The bit %d of the given 8-bit integer (%lu) is high\n", bit, n);
         } else {
             printf("The bit %d of the given 8-bit integer (%lu) is not high\n", bit, n);
@@ -65,9 +86,8 @@ int main(int argc, char *argv[])
     
     case 'l':
         printf("%s\n", byte2bin(n,binary));
-        uint8_t t = i&n;
-        printf("%s\n", byte2bin(t, binary));
-        if(t == 0){
+        int fla = high(n,bit,binary);
+        if(fla == 0){
             printf("The bit %d of the given 8-bit integer (%lu) is low\n", bit, n);
         } else {
             printf("The bit %d of the given 8-bit integer (%lu) is not low\n", bit, n);
@@ -76,8 +96,21 @@ int main(int argc, char *argv[])
 
     case 's':
         printf("%s\n", byte2bin(n,binary));
-        uint8_t s = i|n;
-        printf("%s\n", byte2bin(s,binary));
+        printf("%s\n", switc(n,bit,binary));
+        break;
+    
+    case 'r':
+        printf("%s\n", byte2bin(n,binary));
+        printf("%s\n", reset(n,bit,binary));
+        break;
+    case 't':
+        printf("%s\n", byte2bin(n,binary));
+        int f = high(n,bit, binary);
+        if(f == 1){
+            printf("%s\n",reset(n,bit,binary));
+        } else{
+            printf("%s\n", switc(n,bit,binary));
+        }
         break;
     
     default:
