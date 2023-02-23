@@ -40,8 +40,8 @@ int (timer_get_conf)(uint8_t timer, uint8_t *st) {
   if(out_flag == 1){
     return 1;
   }
-  int in_flag = util_sys_inb(TIMER_CTRL, st);
-  return in_flag;
+
+  return util_sys_inb(TIMER_CTRL, st);
 
 }
 
@@ -53,18 +53,35 @@ int (timer_display_conf)(uint8_t timer, uint8_t st,
       val.byte = st;
       break;
     case tsf_initial:
+      enum timer_init init;
+      st = st << 2;
+      st = st >> 6;
+      if(st == 1){
+        init.LSB_only = 1;
+      } else if (st == 2){
+        init.MSB_only = 1;
+      } else if (st == 3){
+        init.MSB_after_LSB = 1;
+      } else {
+        init.INVAL_val = 1;
+      }
+      val.in_mode = init;
       break;
     case tsf_mode:
+      st = st << 4;
+      st = st >> 5;
+      val.count_mode = st;
       break;
     case tsf_base:
+      uint8_t mask = 1;
+      st = st & mask;
+      val.bcd = st;
       break;
     default:
       return 1;
 
   }
-  timer_print_config(timer, field,val);
+  
+  return timer_print_config(timer, field, val);
 
-
-
-  return 1;
 }
