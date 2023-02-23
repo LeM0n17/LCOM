@@ -66,6 +66,26 @@ int (timer_display_conf)(uint8_t timer, uint8_t st,
     break;
 
   case tsf_initial:
+    st>>5;
+    uint8_t mask = 0x03;
+    st &= mask;
+    switch (st)
+    {
+    case 1:
+      val.in_mode = LSB_only;
+      break;
+
+    case 2:
+      val.in_mode = MSB_only;
+      break;
+
+    case 3:
+      val.in_mode = MSB_after_LSB;
+      break;
+    
+    default: val.in_mode = INVAL_val;
+      break;
+    }
     break;
 
   case tsf_mode:
