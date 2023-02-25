@@ -9,21 +9,24 @@ int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
   uint16_t f = (uint16_t) freq;
   uint8_t cw = 0;
   switch(timer){
-    case 0:
+    case 0: {
       cw = cw | TIMER_SEL0;
       break;
-    case 1:
+    }
+    case 1: {
       cw = cw | TIMER_SEL1;
       break;
-    case 2:
+    }
+    case 2: {
       cw = cw | TIMER_SEL2;
       break;
+    }
     default:
       return 1;
   }
   cw = cw | TIMER_LSB_MSB;
   uint8_t status;
-  if(timer_get_conf(timer, status)){
+  if(timer_get_conf(timer, &status)){
     return 1;
   }
   uint8_t mask = BIT(3)|BIT(2)|BIT(1)|BIT(0);
@@ -36,10 +39,10 @@ int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
   if(util_get_LSB(f, &lsb)  || util_get_MSB(f,&msb)){
     return 1;
   }
-  if(sys_outb(timer, &msb)){
+  if(sys_outb(0x40 + timer, msb)){
     return 1;
   }
-  if(sys_outb(timer, &lsb)){
+  if(sys_outb(0x40 + timer, lsb)){
     return 1;
   }
   return 0;
@@ -82,10 +85,11 @@ int (timer_display_conf)(uint8_t timer, uint8_t st,
                         enum timer_status_field field) {
   union timer_status_field_val val;
   switch(field){
-    case tsf_all:
+    case tsf_all: {
       val.byte = st;
       break;
-    case tsf_initial:
+    }
+    case tsf_initial: {
       enum timer_init init;
       st = st << 2;
       st = st >> 6;
@@ -100,16 +104,20 @@ int (timer_display_conf)(uint8_t timer, uint8_t st,
       }
       val.in_mode = init;
       break;
-    case tsf_mode:
+    }
+    case tsf_mode: {
       st = st << 4;
       st = st >> 5;
       val.count_mode = st;
       break;
-    case tsf_base:
+    }
+      
+    case tsf_base: {
       uint8_t mask = 1;
       st = st & mask;
       val.bcd = st;
       break;
+    }
     default:
       return 1;
 
