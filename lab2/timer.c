@@ -6,10 +6,46 @@
 #include "i8254.h"
 
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
-  /* To be implemented by the students */
-  printf("%s is not yet implemented!\n", __func__);
+  uint8_t cw;
+  timer_get_conf(timer, &cw);
+  cw &= 0x0F;
+  cw |= TIMER_LSB_MSB;
+  switch (timer)
+  {
+  case 0:{
+    cw |= TIMER_SEL0;
+    break;}
 
-  return 1;
+  case 1:{
+    cw |= TIMER_SEL1;
+    break;}
+
+  case 2:{
+    cw |= TIMER_SEL2;
+    break;}
+  
+  default:{
+    return 1;
+    break;}
+  }
+
+  sys_outb(TIMER_CTRL, cw);
+
+  uint16_t new_clk = TIMER_FREQ/freq;
+  uint8_t lsb = 0;
+  uint8_t msb = 0;
+
+  util_get_LSB(new_clk, &lsb);
+  util_get_MSB(new_clk, &msb);
+
+  switch (timer) {
+    case 0: sys_outb(TIMER_0, lsb); sys_outb(TIMER_0, msb); break;
+    case 1: sys_outb(TIMER_1, lsb); sys_outb(TIMER_1, msb); break;
+    case 2: sys_outb(TIMER_2, lsb); sys_outb(TIMER_2, msb); break;
+    default: return 1;
+  }
+
+  return 0;
 }
 
 int (timer_subscribe_int)(uint8_t *bit_no) {
@@ -35,7 +71,7 @@ int (timer_get_conf)(uint8_t timer, uint8_t *st) {
   if(timer > 2){
     return 1;
   }
-  uint32_t rb = (uint32_t)TIMER_RB_CMD|TIMER_RB_COUNT_|TIMER_RB_SEL(timer);
+  uint32_t rb = (uint32_t)TIMER_RB_CMD | TIMER_RB_COUNT_ | TIMER_RB_SEL(timer);
   int out_flag = sys_outb(TIMER_CTRL, rb);
   if(out_flag == 1){
     return 1;

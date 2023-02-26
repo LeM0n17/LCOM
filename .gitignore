@@ -1,4 +1,7 @@
 
 .vscode/launch.json
 *.json
-*.o
+lab2/*.o
+lab2/.gdbinit
+lab2/lab2
+lab2/*.txt
