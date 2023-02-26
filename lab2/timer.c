@@ -6,7 +6,7 @@
 #include "i8254.h"
 
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
-  uint16_t f = (uint16_t) freq;
+  uint16_t f = (uint16_t) (TIMER_FREQ / freq);
   uint8_t cw = 0;
   switch(timer){
     case 0: {
