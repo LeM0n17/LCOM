@@ -32,72 +32,73 @@ void (timer_int_handler)() {
 }
 
 int (timer_get_conf)(uint8_t timer, uint8_t *st) {
-  if(timer < 0 || timer > 2) return 1;
-  st = TIMER_RB_CMD | TIMER_RB_COUNT_ | TIMER_RB_SEL(timer);
-  switch (timer)
-  {
-  case 0:
-    util_sys_inb(TIMER_0, st);
-    break;
-
-  case 1:
-    util_sys_inb(TIMER_1, st);
-    break;
-
-  case 2:
-    util_sys_inb(TIMER_2, st);
-    break;
-  
-  default:
+  if(timer > 2){
     return 1;
-    break;
   }
-  return 0;
+  uint32_t rb = (uint32_t)TIMER_RB_CMD|TIMER_RB_COUNT_|TIMER_RB_SEL(timer);
+  int out_flag = sys_outb(TIMER_CTRL, rb);
+  if(out_flag == 1){
+    return 1;
+  }
+
+  return util_sys_inb(0x40 + timer, st);
+
 }
+
 
 int (timer_display_conf)(uint8_t timer, uint8_t st,
                         enum timer_status_field field) {
-  if(timer < 0 || timer > 2) return 1;
   union timer_status_field_val val;
-  switch (field)
-  {
-  case tsf_all:
-    val.byte = st;
-    break;
-
-  case tsf_initial:
-    st>>5;
-    uint8_t mask = 0x03;
-    st &= mask;
-    switch (st)
-    {
-    case 1:
-      val.in_mode = LSB_only;
-      break;
-
-    case 2:
-      val.in_mode = MSB_only;
-      break;
-
-    case 3:
-      val.in_mode = MSB_after_LSB;
-      break;
-    
-    default: val.in_mode = INVAL_val;
+  switch(field){
+    case tsf_all: {
+      val.byte = st;
       break;
     }
-    break;
+    case tsf_initial: {
+      enum timer_init init;
+      st = st << 2;
+      st = st >> 6;
+      switch (st)
+      {
+      case 1:{
+        init = LSB_only;
+        break;}
 
-  case tsf_mode:
-    val.count_mode = st;
-    break;
+      case 2:{
+        init = MSB_only;
+        break;}
 
-  case tsf_base:
-    val.bcd = st;
-    break;
-  
-  default:
-    break;
+      case 3:{
+        init = MSB_after_LSB;
+        break;}
+      
+      default:{
+        init = INVAL_val;
+        break;}
+      }
+      val.in_mode = init;
+      break;
+    }
+    case tsf_mode: {
+      uint8_t mask = BIT(1) | BIT(2) | BIT(3);
+      st &= mask;
+      st = st >> 1;
+      val.count_mode = st;
+      break;
+    }
+      
+    case tsf_base: {
+      uint8_t mask = 1;
+      st &= mask;
+      val.bcd = st;
+      break;
+    }
+    default:
+      return 1;
+
   }
-  timer_print_config(timer, field, val);
+  
+  return timer_print_config(timer, field, val);
+
 }
+
