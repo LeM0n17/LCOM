@@ -77,7 +77,7 @@ int (timer_get_conf)(uint8_t timer, uint8_t *st) {
     return 1;
   }
 
-  return util_sys_inb(TIMER_CTRL, st);
+  return util_sys_inb(0x40 + timer, st);
 
 }
 
