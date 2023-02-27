@@ -4,45 +4,29 @@
 #include <stdint.h>
 
 #include "i8254.h"
+#define TIMER_SEL(timer) (timer << 6)
 
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
-  uint16_t f = (uint16_t) (TIMER_FREQ / freq);
-  uint8_t cw = 0;
-  switch(timer){
-    case 0: {
-      cw = cw | TIMER_SEL0;
-      break;
-    }
-    case 1: {
-      cw = cw | TIMER_SEL1;
-      break;
-    }
-    case 2: {
-      cw = cw | TIMER_SEL2;
-      break;
-    }
-    default:
-      return 1;
-  }
-  cw = cw | TIMER_LSB_MSB;
-  uint8_t status;
+  uint16_t f = (uint16_t)(TIMER_FREQ / freq);
+  uint8_t status = 0;
   if(timer_get_conf(timer, &status)){
     return 1;
   }
-  uint8_t mask = BIT(3)|BIT(2)|BIT(1)|BIT(0);
-  cw  = cw | (status & mask);
+  status &= 0x0F;
+  uint8_t cw = TIMER_SEL(timer) | status;
+  cw |= TIMER_LSB_MSB;
   if(sys_outb(TIMER_CTRL, cw)){
     return 1;
   }
-  uint8_t lsb;
-  uint8_t msb;
+  uint8_t lsb = 0;
+  uint8_t msb = 0;
   if(util_get_LSB(f, &lsb)  || util_get_MSB(f,&msb)){
     return 1;
   }
-  if(sys_outb(0x40 + timer, msb)){
+  if(sys_outb(0x40 + timer, lsb)){
     return 1;
   }
-  if(sys_outb(0x40 + timer, lsb)){
+  if(sys_outb(0x40 + timer, msb)){
     return 1;
   }
   return 0;
