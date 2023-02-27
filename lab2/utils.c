@@ -14,7 +14,7 @@ int(util_get_MSB)(uint16_t val, uint8_t *msb) {
   if(msb == NULL){
     return 1;
   }
-  *msb = (uint8_t) val >> 8;
+  *msb = (uint8_t) (val >> 8);
   return OK;
 }
 
