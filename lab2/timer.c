@@ -6,10 +6,9 @@
 #include "i8254.h"
 
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
-  uint8_t cw;
-  timer_get_conf(timer, &cw);
+  uint8_t cw = 0;
+  if(timer_get_conf(timer, &cw)) return 1;
   cw &= 0x0F;
-  cw |= TIMER_LSB_MSB;
   switch (timer)
   {
   case 0:{
@@ -27,23 +26,25 @@ int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
   default:{
     return 1;
     break;}
-  }
+  };
+
+  cw |= TIMER_LSB_MSB;
 
   sys_outb(TIMER_CTRL, cw);
 
-  uint16_t new_clk = TIMER_FREQ/freq;
+  uint16_t new_clk = (uint16_t)(TIMER_FREQ / freq);
   uint8_t lsb = 0;
   uint8_t msb = 0;
 
   util_get_LSB(new_clk, &lsb);
   util_get_MSB(new_clk, &msb);
 
-  switch (timer) {
-    case 0: sys_outb(TIMER_0, lsb); sys_outb(TIMER_0, msb); break;
-    case 1: sys_outb(TIMER_1, lsb); sys_outb(TIMER_1, msb); break;
-    case 2: sys_outb(TIMER_2, lsb); sys_outb(TIMER_2, msb); break;
-    default: return 1;
-  }
+  int flag = sys_outb(0x40 + timer, lsb);
+  if (flag) return flag;
+
+  flag = sys_outb(0x40 + timer, msb);
+  if (flag) return flag;
+
 
   return 0;
 }
