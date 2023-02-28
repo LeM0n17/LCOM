@@ -90,8 +90,12 @@ int (timer_display_conf)(uint8_t timer, uint8_t st,
       break;
     }
     case tsf_mode: {
+      uint8_t mask = ~BIT(2);
       st = st << 4;
       st = st >> 5;
+      if(st == 6 || st == 7){
+        st &= mask;
+      }
       val.count_mode = st;
       break;
     }
