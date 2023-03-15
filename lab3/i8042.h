@@ -3,7 +3,6 @@
 
 #include <lcom/lcf.h>
 
-#define BIT(n) (1<<n)
 #define DELAY_US 20000
 #define KBD_ESC 0x81
 #define KBD_CMD_REG 0x64
@@ -20,3 +19,14 @@
 
 #define TWO_BYTE 0xE0
 #define MAKE 0x80
+
+#define OUT_BUF 0x60
+#define IN_BUF 0x64
+#define IN_BUF_ARGS 0x60
+#define STAT_REG 0x64
+
+#define READ_CMD_BYTE 0x20
+#define WRITE_CMD_BYTE 0x60
+#define KBD_REENABLE_INT BIT(0)
+
+#endif
