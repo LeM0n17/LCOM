@@ -1,0 +1,11 @@
+.vscode
+.gdbinit
+.clang-format
+lab2
+lab2.o
+Makefile
+output.txt
+timer.o
+timer.o
+trace.txt
+utils.o
