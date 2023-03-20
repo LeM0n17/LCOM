@@ -79,7 +79,7 @@ void(mouse_ih)(){
         return;
     }
 
-    if(!found){
+    if(found){
         ++count;
         if(count > 2){
             parse_packets();
@@ -94,6 +94,7 @@ void(mouse_ih)(){
         mouse_print_ready = false;
         if(packets[count] & MOUSE_FIRST_BYTE){
             packets[0] = packets[count];
+            count = 1;
             found = true;
             return;
         }
