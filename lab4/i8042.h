@@ -17,6 +17,16 @@
 
 #define MOUSE_FIRST_BYTE BIT(3)
 
+#define MOUSE_LMB_PRESSED BIT(0)
+#define MOUSE_RMB_PRESSED BIT(1)
+#define MOUSE_MMB_PRESSED BIT(2)
+#define MOUSE_DELTA_X_MSB BIT(4)
+#define MOUSE_DELTA_Y_MSB BIT(5)
+#define MOUSE_X_OVL BIT(6)
+#define MOUSE_Y_OVL BIT(7)
+
+#define EXTEND 0xFF00
+
 
 
 #endif

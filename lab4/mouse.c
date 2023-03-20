@@ -5,10 +5,10 @@
 
 int mouse_hook_id = MOUSE_IRQ_LINE;
 int count = 0;
-static bool mouse_ih_error = false;
+bool mouse_ih_error = false, mouse_print_ready = false;
 struct packet parsed_packets;
+
 uint8_t packets[3];
-bool packet_complete = false;
 bool found = false;
 
 
@@ -22,7 +22,7 @@ int(mouse_unsubscribe_int)(){
 }
 
 int(mouse_get_status)(uint8_t *st){
-    return util_sys_inb(MOUSE_ST_REG, &st);
+    return util_sys_inb(MOUSE_ST_REG, st);
 }
 
 int(check_status)(uint8_t st){
@@ -35,8 +35,29 @@ int(mouse_read_packet)(){
 
 void(parse_packets)(){
     parsed_packets.bytes[0] = packets[0];
-    parsed_packets.bytes[1] = packets[1]
-    parsed_packets.bytes[2] = packets[2]
+    parsed_packets.bytes[1] = packets[1];
+    parsed_packets.bytes[2] = packets[2];
+
+    parsed_packets.rb = packets[0] & MOUSE_RMB_PRESSED;
+    parsed_packets.lb = packets[0] & MOUSE_LMB_PRESSED;
+    parsed_packets.mb = packets[0] & MOUSE_MMB_PRESSED;
+
+    parsed_packets.x_ov = packets[0] & MOUSE_X_OVL;
+    parsed_packets.y_ov = packets[0] & MOUSE_Y_OVL;
+
+    parsed_packets.delta_x = (uint16_t) packets[1];
+    parsed_packets.delta_y = (uint16_t) packets[2];
+
+    if(packets[0] & MOUSE_DELTA_X_MSB){
+        parsed_packets.delta_x |= EXTEND;
+    }
+
+    if(packets[0] & MOUSE_DELTA_Y_MSB){
+        parsed_packets.delta_y |= EXTEND;
+    }
+
+    return;
+
 }
 
 void(mouse_ih)(){
@@ -53,24 +74,26 @@ void(mouse_ih)(){
         util_sys_inb(MOUSE_OUT_BUF, &stub);
         return;
     }
-    if(mouse_read_packet){
+    if(mouse_read_packet()){
         mouse_ih_error = true;
         return;
     }
 
-    if(found){
+    if(!found){
         ++count;
         if(count > 2){
             parse_packets();
-            mouse_print_packet(&parsed_packets);
+            count = 0;
+            mouse_print_ready = true;
             return;
         } else {
+            mouse_print_ready = false;
             return;
         }
     } else {
-        if(packets[count] == MOUSE_FIRST_BYTE){
+        mouse_print_ready = false;
+        if(packets[count] & MOUSE_FIRST_BYTE){
             packets[0] = packets[count];
-            count = 1;
             found = true;
             return;
         }
