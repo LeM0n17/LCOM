@@ -7,7 +7,7 @@
 #define TIMER_SEL(timer) (timer << 6)
 
 int hook_id = 0;
-int timer_counter = 0;
+extern int timer_counter;
 
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
   uint16_t f = (uint16_t)(TIMER_FREQ / freq);
