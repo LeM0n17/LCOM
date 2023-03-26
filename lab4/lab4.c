@@ -9,6 +9,7 @@
 #include "mouse.h"
 extern bool ready;
 extern struct packet pp;
+extern int count;
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -37,6 +38,7 @@ int main(int argc, char *argv[]) {
 
 int (mouse_test_packet)(uint32_t cnt) {
     uint8_t bit_no;
+    mouse_enable_data_reporting();
     if(mouse_subscribe_int(&bit_no)) return 1;
     uint32_t irq_set = BIT(bit_no);
 
@@ -46,7 +48,7 @@ int (mouse_test_packet)(uint32_t cnt) {
      while (cnt != 0) {
 
     int r;
-    if ((r = driver_receive(ANY, &msg, &ipc_status)) != OK) {
+    if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0) {
       printf("driver_receive failed with: %d", r);
     }
 
@@ -79,9 +81,54 @@ int (mouse_test_packet)(uint32_t cnt) {
 }
 
 int (mouse_test_async)(uint8_t idle_time) {
-    /* To be completed */
-    printf("%s(%u): under construction\n", __func__, idle_time);
-    return 1;
+  uint8_t mouse_bit_no;
+  uint8_t timer_bit_no;
+  mouse_enable_data_reporting();
+  if(mouse_subscribe_int(&mouse_bit_no)) return 1;
+  if(timer_subscribe_int(&timer_bit_no)) return 1;
+  uint32_t mouse_irq_set = BIT(mouse_bit_no);
+  uint32_t timer_irq_set = BIT(timer_bit_no);
+
+  int ipc_status;
+  message msg;
+
+  while (count < (idle_time * 60)) {
+
+    int r;
+    if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0) {
+      printf("driver_receive failed with: %d", r);
+    }
+
+    if (is_ipc_notify(ipc_status)) {
+      switch (_ENDPOINT_P(msg.m_source)) {
+
+        case HARDWARE: {
+          if(msg.m_notify.interrupts & timer_irq_set){
+            timer_int_handler();
+          }
+          
+          if (msg.m_notify.interrupts & mouse_irq_set) {
+
+            mouse_ih();
+            count = 0;
+            if (ready) {
+              ready = false;
+              mouse_print_packet(&pp);
+            }
+          }
+
+          
+
+          break;
+        }
+
+        default: break;
+      }
+    }
+  }
+  mouse_unsubscribe_int();
+  timer_unsubscribe_int();
+  return 0;
 }
 
 int (mouse_test_gesture)(uint8_t x_len, uint8_t tolerance) {

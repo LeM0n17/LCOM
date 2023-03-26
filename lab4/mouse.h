@@ -9,5 +9,6 @@ int (mouse_unsubscribe_int)();
 void (mouse_ih)();
 int (mouse_get_status)(uint8_t *st);
 int (mouse_read_buffer)(uint8_t port, uint8_t *out);
+int (mouse_issue_command)(uint8_t command);
 
 #endif
