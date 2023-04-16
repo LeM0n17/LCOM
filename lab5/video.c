@@ -57,3 +57,34 @@ void*(vg_init)(uint16_t mode){
     }
     return buffer_base;
 }
+
+void (vg_draw_hlin)(uint16_t x, uint16_t y, uint16_t len, uint32_t color){
+    uint8_t bytes = (vg_info.BitsPerPixel + 7) >> 3;
+    uint8_t* base = (uint8_t*) buffer_base + (y*vg_info.YResolution+x) * bytes;
+    for(uint16_t i = 0; i < len; ++i){
+        for(uint8_t j = 0; j < bytes;++j){
+            *base = color >> (j*8);
+            ++base;
+        }
+    }
+    return;
+}
+
+
+int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t len, uint16_t height, uint32_t color){
+    if(x > vg_info.XResolution || y > vg_info.YResolution){
+        return 1;
+    }
+
+    if(x + len > vg_info.XResolution){
+        len = vg_info.XResolution - x;
+    }
+    if(y + height > vg_info.YResolution){
+        height = vg_info.YResolution - y;
+    }
+    for(uint16_t i = y; i < y + height; ++i){
+        vg_draw_hlin(x,i,len,color);
+    }
+
+    return 0;
+}
