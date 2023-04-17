@@ -60,7 +60,7 @@ void*(vg_init)(uint16_t mode){
 
 void (vg_draw_hlin)(uint16_t x, uint16_t y, uint16_t len, uint32_t color){
     uint8_t bytes = (vg_info.BitsPerPixel + 7) >> 3;
-    uint8_t* base = (uint8_t*) buffer_base + (y*vg_info.YResolution+x) * bytes;
+    uint8_t* base = (uint8_t*) buffer_base + (y*vg_info.XResolution+x) * bytes;
     for(uint16_t i = 0; i < len; ++i){
         for(uint8_t j = 0; j < bytes;++j){
             *base = color >> (j*8);

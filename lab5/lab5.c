@@ -13,6 +13,7 @@
 #include "i8042.h"
 
 extern uint8_t data;
+extern vbe_mode_info_t vg_info;
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -109,11 +110,59 @@ int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y,
 }
 
 int(video_test_pattern)(uint16_t mode, uint8_t no_rectangles, uint32_t first, uint8_t step) {
-  /* To be completed */
-  printf("%s(0x%03x, %u, 0x%08x, %d): under construction\n", __func__,
-         mode, no_rectangles, first, step);
+  if(vg_init(mode) == NULL){
+    vg_exit();
+    return 1;
+  }
+  uint32_t width = vg_info.XResolution / no_rectangles;
+  uint32_t height = vg_info.YResolution / no_rectangles;
+  uint32_t color = 0;
 
-  return 1;
+  if(vg_info.MemoryModel == VBE_MODE_INDEXED){
+    for(uint16_t i = 0; i < no_rectangles;i++){
+      for(uint16_t j = 0; j <no_rectangles;j++){
+        color = (first + (i * no_rectangles + j) * step) % BIT(vg_info.BitsPerPixel);
+        if(vg_draw_rectangle(j*width,i*height,width,height,color)){
+          vg_exit();
+          return 1;
+        }
+      }
+    }
+  } else if(vg_info.MemoryModel == VBE_MODE_DIRECT){
+    uint16_t red, green, blue;
+    uint16_t red_mask = 0, green_mask = 0, blue_mask = 0;
+    for(uint32_t i = vg_info.RedFieldPosition; i < vg_info.RedFieldPosition + vg_info.RedMaskSize;++i){
+      red_mask |= BIT(i);
+    }
+    for(uint32_t i = vg_info.BlueFieldPosition; i < vg_info.BlueFieldPosition + vg_info.BlueMaskSize;++i){
+      blue_mask |= BIT(i);
+    }
+    for(uint32_t i = vg_info.GreenFieldPosition; i < vg_info.GreenFieldPosition + vg_info.GreenMaskSize;++i){
+      green_mask |= BIT(i);
+    }
+    uint16_t rf = ((first & red_mask) >> vg_info.RedFieldPosition);
+    uint16_t bf = ((first & blue_mask) >> vg_info.BlueFieldPosition);
+    uint16_t gf = ((first & green_mask) >> vg_info.GreenFieldPosition);
+    for(uint16_t i = 0; i < no_rectangles; i++){
+      for(uint16_t j = 0; j < no_rectangles; j++){
+        red = (rf + j * step) % BIT(vg_info.RedMaskSize);
+        green = (gf + i * step) % BIT(vg_info.GreenMaskSize);
+        blue = (bf + (j + i) * step) % BIT(vg_info.BlueMaskSize);
+        color = 0 |(red << vg_info.RedFieldPosition) | (green << vg_info.GreenFieldPosition) | (blue << vg_info.BlueFieldPosition);
+        if(vg_draw_rectangle(j*width,i*height,width,height,color)){
+          vg_exit();
+          return 1;
+        }
+      }
+    }
+  }
+
+  if(kbd_loop()){
+    vg_exit();
+    return 1;
+  }
+  vg_exit();
+  return 0;
 }
 
 int(video_test_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y) {
