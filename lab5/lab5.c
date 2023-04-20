@@ -130,21 +130,21 @@ int(video_test_pattern)(uint16_t mode, uint8_t no_rectangles, uint32_t first, ui
     }
   } else if(vg_info.MemoryModel == VBE_MODE_DIRECT){
     uint16_t red, green, blue;
-    uint16_t red_mask = 0, green_mask = 0, blue_mask = 0;
-    for(uint32_t i = vg_info.RedFieldPosition; i < vg_info.RedFieldPosition + vg_info.RedMaskSize;++i){
-      red_mask |= BIT(i);
+    uint32_t red_mask = 0, green_mask = 0, blue_mask = 0;
+    for(uint32_t r = vg_info.RedFieldPosition; r < vg_info.RedFieldPosition + vg_info.RedMaskSize;++r){
+      red_mask |= BIT(r);
     }
-    for(uint32_t i = vg_info.BlueFieldPosition; i < vg_info.BlueFieldPosition + vg_info.BlueMaskSize;++i){
-      blue_mask |= BIT(i);
+    for(uint32_t b = vg_info.BlueFieldPosition; b < vg_info.BlueFieldPosition + vg_info.BlueMaskSize;++b){
+      blue_mask |= BIT(b);
     }
-    for(uint32_t i = vg_info.GreenFieldPosition; i < vg_info.GreenFieldPosition + vg_info.GreenMaskSize;++i){
-      green_mask |= BIT(i);
+    for(uint32_t g = vg_info.GreenFieldPosition; g < vg_info.GreenFieldPosition + vg_info.GreenMaskSize;++g){
+      green_mask |= BIT(g);
     }
     uint16_t rf = ((first & red_mask) >> vg_info.RedFieldPosition);
     uint16_t bf = ((first & blue_mask) >> vg_info.BlueFieldPosition);
     uint16_t gf = ((first & green_mask) >> vg_info.GreenFieldPosition);
-    for(uint16_t i = 0; i < no_rectangles; i++){
-      for(uint16_t j = 0; j < no_rectangles; j++){
+    for(uint16_t i = 0; i < no_rectangles; ++i){
+      for(uint16_t j = 0; j < no_rectangles; ++j){
         red = (rf + j * step) % BIT(vg_info.RedMaskSize);
         green = (gf + i * step) % BIT(vg_info.GreenMaskSize);
         blue = (bf + (j + i) * step) % BIT(vg_info.BlueMaskSize);
