@@ -71,6 +71,17 @@ void (vg_draw_hlin)(uint16_t x, uint16_t y, uint16_t len, uint32_t color){
 }
 
 
+void (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color){
+    uint8_t bytes = (vg_info.BitsPerPixel + 7) >> 3;
+    uint8_t* base = (uint8_t*) buffer_base + (y*vg_info.XResolution+x) * bytes;
+    for(uint8_t i = 0; i < bytes; i++){
+        *base = color >> (i*8);
+        base++;
+    }
+    return;
+}
+
+
 int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t len, uint16_t height, uint32_t color){
     if(x > vg_info.XResolution || y > vg_info.YResolution){
         return 1;
@@ -84,6 +95,44 @@ int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t len, uint16_t height, u
     }
     for(uint16_t i = y; i < y + height; ++i){
         vg_draw_hlin(x,i,len,color);
+    }
+
+    return 0;
+}
+
+
+int(vg_draw_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y){
+    if(x > vg_info.XResolution || y > vg_info.YResolution){
+        return 1;
+    }
+    xpm_image_t image;
+    uint8_t* map;
+
+    map = xpm_load(xpm, XPM_INDEXED, &image);
+
+    uint32_t counter = 0;
+    uint32_t extra_x = 0;
+
+    uint32_t width, height;
+    if(x+image.width <= vg_info.XResolution){
+        width = x+image.width;
+    } else {
+        width = vg_info.XResolution;
+        extra_x = x+image.width - width;
+    }
+
+    if(y + image.height <= vg_info.YResolution){
+        height = y+image.height;
+    } else {
+        height = vg_info.YResolution;
+    }
+
+    for(uint16_t i = y; i < height; i++){
+        for(uint16_t j = x; j < width; j++){
+            vg_draw_pixel(j,i,map[counter]);
+            counter++;
+        }
+        counter += extra_x;
     }
 
     return 0;
