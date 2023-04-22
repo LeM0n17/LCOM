@@ -3,7 +3,9 @@
 
 #include <lcom/lab5.h>
 
+
 #include <stdint.h>
+#include <stdbool.h>
 #include <stdio.h>
 
 // Any header files included below this line should have been created by you
@@ -13,6 +15,7 @@
 #include "i8042.h"
 
 extern uint8_t data;
+extern int count;
 extern vbe_mode_info_t vg_info;
 
 int main(int argc, char *argv[]) {
@@ -187,11 +190,109 @@ int(video_test_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y) {
 
 int(video_test_move)(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t xf, uint16_t yf,
                      int16_t speed, uint8_t fr_rate) {
-  /* To be completed */
-  printf("%s(%8p, %u, %u, %u, %u, %d, %u): under construction\n",
-         __func__, xpm, xi, yi, xf, yf, speed, fr_rate);
+  uint8_t frame_period = 60/fr_rate;
+  int16_t delta_x = 0, delta_y = 0;
+  uint16_t old_x, old_y;
+  bool animation_ongoing = true;
+  if(speed > 0){
+    if(xi == xf){
+      delta_y = speed;
+    } else {
+      delta_x = speed;
+    }
+  } else {
+    frame_period *= -speed;
+    if(xi == xf){
+      delta_y = 1;
+    } else {
+      delta_x = 1;
+    }
+  }
+  if(xf < xi){
+    delta_x *= -1;
+  }
 
-  return 1;
+  if(yf < yi){
+    delta_y *= -1;
+  }
+
+  if(vg_init(0x105) == NULL){
+    vg_exit();
+    return 1;
+  }
+
+  if(vg_draw_xpm(xpm, xi, yi)) {
+		vg_exit();
+		return 1;
+	}
+
+  uint8_t k, t;
+  if(timer_subscribe_int(&t)){
+    vg_exit();
+    return 1;
+  }
+  if(kbc_subscribe_int(&k)){
+    timer_unsubscribe_int();
+    vg_exit();
+    return 1;
+  }
+
+  uint32_t kbd_int = BIT(k), timer_int = BIT(t);
+
+
+  int r, ipc_status;
+  message msg;
+  while(data != KBD_ESC) {
+    /* Get a request message. */
+    if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
+        printf("driver_receive failed with: %d", r);
+        continue;
+    }
+    if (is_ipc_notify(ipc_status)) { /* received notification */
+        switch (_ENDPOINT_P(msg.m_source)) {
+            case HARDWARE: /* hardware interrupt notification */				
+                if (msg.m_notify.interrupts & kbd_int) { /* subscribed interrupt */
+                    if(kbc_read_out_buffer(&data)) return 1;
+                    kbc_ih();
+                }
+                if(msg.m_notify.interrupts & timer_int){
+                  timer_int_handler();
+                  if(animation_ongoing){
+                    if(count >= frame_period){
+                      old_x = xi;
+                      old_y = yi;
+                      xi = xi + delta_x;
+                      yi = yi + delta_y;
+                      if((xi >= xf && delta_x > 0) || (yi >= yf && delta_y > 0) || (xi <= xf && delta_x < 0) || (yi<=yf && delta_y < 0)){
+                        vg_update(xpm, old_x, old_y, xf, yf);
+                        animation_ongoing = false;
+                      } else {
+                        vg_update(xpm, old_x, old_y, xi, yi);
+                      }
+                      count = 0;
+                    }
+                  }
+                }
+                break;
+            default:
+                break; /* no other notifications expected: do nothing */	
+        }
+    } else { /* received a standard message, not a notification */
+        /* no standard messages expected: do nothing */
+    }
+  }
+  if(kbc_unsubscribe_int()){
+    timer_unsubscribe_int();
+    vg_exit();
+    return 1;
+  }
+
+  if(timer_unsubscribe_int()){
+    vg_exit();
+    return 1;
+  }
+  vg_exit();
+  return 0;
 }
 
 int(video_test_controller)() {

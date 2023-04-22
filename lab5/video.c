@@ -137,3 +137,20 @@ int(vg_draw_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y){
 
     return 0;
 }
+
+
+int (vg_update)(xpm_map_t xpm, uint16_t old_x, uint16_t old_y, uint16_t new_x, uint16_t new_y){
+    xpm_image_t image;
+    uint8_t* map;
+
+    map = xpm_load(xpm, XPM_INDEXED, &image);
+
+    if(vg_draw_rectangle(old_x, old_y, image.width, image.height,0)){
+        return 1;
+    }
+
+    if(vg_draw_xpm(xpm, new_x, new_y)){
+        return 1;
+    }
+    return 0;
+}

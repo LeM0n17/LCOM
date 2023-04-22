@@ -2,7 +2,6 @@
 
 #include <stdint.h>
 
-int count = 0;
 
 int(util_get_LSB)(uint16_t val, uint8_t *lsb) {
   if(lsb == NULL){
@@ -24,7 +23,6 @@ int (util_sys_inb)(int port, uint8_t *value) {
   uint32_t val = *value;
   int flag = sys_inb(port, &val);
   *value = val;
-  count++;
   return flag;
 }
 
