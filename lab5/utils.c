@@ -2,8 +2,6 @@
 
 #include <stdint.h>
 
-int count_io = 0;
-
 int(util_get_LSB)(uint16_t val, uint8_t *lsb) {
   if(lsb == NULL) return 1;
   *lsb = (uint8_t) val;
@@ -16,10 +14,9 @@ int(util_get_MSB)(uint16_t val, uint8_t *msb) {
   return 0;
 }
 
-int (util_sys_inb)(int port, uint8_t *value){
-  uint32_t val = *value;
-  if(sys_inb(port, &val)) return 1;
-  count_io++;
-  *value = val;
-  return 0;
+int (util_sys_inb)(int port, uint8_t *value) {
+  uint32_t val = 0;
+  int flag = sys_inb(port, &val);
+  *value = (uint8_t) val;
+  return flag;
 }

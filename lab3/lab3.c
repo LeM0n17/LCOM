@@ -9,6 +9,7 @@
 
 extern uint8_t out;
 extern int count_io;
+extern int count;
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -76,8 +77,43 @@ int(kbd_test_poll)() {
 }
 
 int(kbd_test_timed_scan)(uint8_t n) {
-  /* To be completed by the students */
-  printf("%s is not yet implemented!\n", __func__);
+  uint8_t kbd_bit_no;
+  uint8_t timer_bit_no;
+  timer_subscribe_int(&timer_bit_no);
+  kbc_subscribe_int(&kbd_bit_no);
 
-  return 1;
+  uint32_t kbd_irq_set = BIT(kbd_bit_no);
+  uint32_t timer_irq_set = BIT(timer_bit_no);
+
+  int ipc_status;
+  message msg;
+
+  while(out != KBD_ESC && count < (n * 60)){
+    int r;
+    if( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) {
+      printf("driver_receive failed with: %d", r);
+      continue;
+    }
+    if (is_ipc_notify(ipc_status)) {
+         switch (_ENDPOINT_P(msg.m_source)) {
+             case HARDWARE:		
+                 if (msg.m_notify.interrupts & kbd_irq_set) {
+                    if(kbc_read_out_buffer(&out)) return 1;
+                    kbc_ih();
+                    if(kbc_print()) return 1;
+                    count = 0;
+                 }
+
+                 if(msg.m_notify.interrupts & timer_irq_set){
+                    timer_int_handler();
+                 }
+                 break;
+             default:
+                 break;
+         }
+    }
+  }
+  if(kbc_unsubscribe_int())return 1;
+  if(timer_unsubscribe_int()) return 1;
+  return 0;
 }
