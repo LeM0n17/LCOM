@@ -166,7 +166,7 @@ int (vg_update)(xpm_map_t xpm, uint16_t old_x, uint16_t old_y, uint16_t new_x, u
 
 int (vg_update2)(Object obj, uint16_t old_x, uint16_t old_y){
     if(obj.x != old_x || obj.y != old_y){
-        if(vg_draw_rectangle(old_x, old_y, 100, 100 ,0XFFF0)){
+        if(vg_draw_rectangle(old_x, old_y, 50, 50 ,0XFFF0)){
             return 1;
         }
         if(vg_draw_rectangle(obj.x, obj.y, 50, 50 ,0X000F)){
