@@ -7,6 +7,8 @@
 
 
 extern uint8_t data;
+extern int process;
+extern uint8_t scan_codes[2];
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -32,7 +34,7 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-int kbd_loop(){
+int kbd_loop(Object player){
     int r = 0;
     uint8_t bit = 0;
     if(kbc_subscribe_int(&bit)) return 1;
@@ -53,6 +55,7 @@ int kbd_loop(){
                     if (msg.m_notify.interrupts & kanna) { /* subscribed interrupt */
                         if(kbc_read_out_buffer(&data)) return 1;
                         kbc_ih();
+                        if(process) process_scancode(player, scan_codes);
                     }
                     break;
                 default:
@@ -82,7 +85,7 @@ int(proj_main_loop)(){
     //draw arena
     vg_draw_arena();
 
-    if(kbd_loop()){
+    if(kbd_loop(player)){
         vg_exit();
         return 1;
     }

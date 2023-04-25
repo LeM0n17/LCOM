@@ -4,16 +4,16 @@
 int kbd_hook_id = 1;
 uint8_t data = 0;
 uint8_t scan_codes[2];
-int print = 0;
+int process = 0;
 int num = 1;
 
 void(kbc_ih)(){
     if(data == TWO_BYTE){
-        print = 0;
+        process = 0;
         num = 2;
         scan_codes[0] = data;
     } else {
-        print = 1; 
+        process = 1; 
         if(scan_codes[0] == TWO_BYTE){
             scan_codes[1] = data;
         } else {
@@ -61,7 +61,7 @@ int(check_status)(uint8_t st){
 }
 
 int(kbc_print_codes)(){
-    if(print){
+    if(process){
         if(data < MAKE){
             return kbd_print_scancode(true, num, scan_codes);
         }
