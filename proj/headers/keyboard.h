@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 #include <stdint.h>
-#include "../../headers/i8042.h"
+#include "i8042.h"
 
 void(kbc_ih)();
 

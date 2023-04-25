@@ -1,5 +1,5 @@
 #include <lcom/lcf.h>
-#include "keyboard.h"
+#include "../headers/keyboard.h"
 
 int kbd_hook_id = 1;
 uint8_t data = 0;

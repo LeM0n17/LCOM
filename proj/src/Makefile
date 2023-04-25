@@ -2,7 +2,7 @@
 PROG = proj 
 
 # source code files to be compiled
-SRCS = main.c list.c
+SRCS = main.c list.c keyboard.c video.c utils.c
 
 # header files to be included
 #INC_DIR = ../headers
