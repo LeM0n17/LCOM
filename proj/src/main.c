@@ -53,7 +53,6 @@ int kbd_loop(){
                     if (msg.m_notify.interrupts & kanna) { /* subscribed interrupt */
                         if(kbc_read_out_buffer(&data)) return 1;
                         kbc_ih();
-                        if(kbc_print_codes()) return 1;
                     }
                     break;
                 default:
@@ -82,7 +81,7 @@ int(proj_main_loop)(){
     }
     //draw arena
     vg_draw_arena();
-    
+
     if(kbd_loop()){
         vg_exit();
         return 1;
