@@ -35,6 +35,8 @@ int main(int argc, char *argv[]) {
 }
 
 int kbd_loop(Object player){
+    uint16_t old_x = 100;
+    uint16_t old_y = 100;
     int r = 0;
     uint8_t bit = 0;
     if(kbc_subscribe_int(&bit)) return 1;
@@ -55,7 +57,13 @@ int kbd_loop(Object player){
                     if (msg.m_notify.interrupts & kanna) { /* subscribed interrupt */
                         if(kbc_read_out_buffer(&data)) return 1;
                         kbc_ih();
-                        if(process) process_scancode(player, scan_codes);
+                        if(process){
+                            process_scancode(&player, scan_codes);
+                            vg_update2(player, old_x, old_y);
+                            old_x = player.x;
+                            old_y = player.y;
+                            process = false;
+                        }
                     }
                     break;
                 default:
@@ -84,6 +92,8 @@ int(proj_main_loop)(){
     }
     //draw arena
     vg_draw_arena();
+    //draw player
+    vg_draw_rectangle(player.x,player.y,50,50,0x000F);
 
     if(kbd_loop(player)){
         vg_exit();

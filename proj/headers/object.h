@@ -13,15 +13,15 @@ typedef struct
 
 #pragma options align=reset
 
-void moveUp(Object obj, uint16_t speed);
+void moveUp(Object* obj, uint16_t speed);
 
-void moveDown(Object obj, uint16_t speed);
+void moveDown(Object* obj, uint16_t speed);
 
-void moveLeft(Object obj, uint16_t speed);
+void moveLeft(Object* obj, uint16_t speed);
 
-void moveRight(Object obj, uint16_t speed);
+void moveRight(Object* obj, uint16_t speed);
 
-void process_scancode(Object obj, uint8_t scan_codes[]);
+void process_scancode(Object* obj, uint8_t scan_codes[]);
 
 
 #endif

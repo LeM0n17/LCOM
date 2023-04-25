@@ -2,6 +2,7 @@
 #define _LCOM_VIDEO_H_
 
 #include "VBE_macros.h"
+#include "object.h"
 #include <lcom/lcf.h>
 
 void* (vg_init)(uint16_t mode);
@@ -14,5 +15,6 @@ int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t len, uint16_t height, u
 int (vg_draw_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y);
 void (vg_draw_arena)();
 int (vg_update)(xpm_map_t xpm, uint16_t old_x, uint16_t old_y, uint16_t new_x, uint16_t new_y);
+int (vg_update2)(Object obj, uint16_t old_x, uint16_t old_y);
 
 #endif
