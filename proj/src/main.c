@@ -1,10 +1,9 @@
 #include <stdio.h>
 
 #include "list.h"
-#include "../headers/keyboard.h"
-#include "../headers/video.h"
-#include "../headers/object.h"
-
+#include "headers/keyboard.h"
+#include "headers/video.h"
+#include "headers/object.h"
 
 extern uint8_t data;
 extern int process;
@@ -80,8 +79,6 @@ int kbd_loop(Object player){
 
 }
 
-
-
 int(proj_main_loop)(){
     Object player;
     player.x = 100;
@@ -90,9 +87,11 @@ int(proj_main_loop)(){
         vg_exit();
         return 1;
     }
-    //draw arena
+
+    // draw arena
     vg_draw_arena();
-    //draw player
+
+    // draw player
     vg_draw_rectangle(player.x,player.y,50,50,0x000F);
 
     if(kbd_loop(player)){

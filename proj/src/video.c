@@ -100,7 +100,6 @@ int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t len, uint16_t height, u
     return 0;
 }
 
-
 int(vg_draw_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y){
     if(x > vg_info.XResolution || y > vg_info.YResolution){
         return 1;
@@ -139,13 +138,12 @@ int(vg_draw_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y){
 }
 
 void (vg_draw_arena)(){
-    vg_draw_rectangle(0,0, 1230, 50, 0xF09F);
-    vg_draw_rectangle(1230,0, 50, 1024, 0xF09F);
-    vg_draw_rectangle(0,0, 50, 1024, 0xF09F);
-    vg_draw_rectangle(50,974, 1180, 50, 0xF09F);
-    vg_draw_rectangle(50,50,1180,924,0XFFF0);
+    video_draw_rectangle(0,0, 1230, 50, 0xF09F);
+    video_draw_rectangle(1230,0, 50, 1024, 0xF09F);
+    video_draw_rectangle(0,0, 50, 1024, 0xF09F);
+    video_draw_rectangle(50,974, 1180, 50, 0xF09F);
+    video_draw_rectangle(50,50,1180,924,0XFFF0);
 }
-
 
 int (vg_update)(xpm_map_t xpm, uint16_t old_x, uint16_t old_y, uint16_t new_x, uint16_t new_y){
     xpm_image_t image;
@@ -162,7 +160,6 @@ int (vg_update)(xpm_map_t xpm, uint16_t old_x, uint16_t old_y, uint16_t new_x, u
     }
     return 0;
 }
-
 
 int (vg_update2)(Object obj, uint16_t old_x, uint16_t old_y){
     if(obj.x != old_x || obj.y != old_y){

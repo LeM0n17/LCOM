@@ -5,8 +5,7 @@
 
 #pragma pack(1)
 
-typedef struct
-{
+typedef struct {
     uint16_t x;
     uint16_t y;
 } Object;
@@ -23,6 +22,4 @@ void moveRight(Object* obj, uint16_t speed);
 
 void process_scancode(Object* obj, uint8_t scan_codes[]);
 
-
-#endif
-
+#endif // _LCOM_OBJECT_H_
