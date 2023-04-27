@@ -9,6 +9,9 @@
 // Any header files included below this line should have been created by you
 
 #include "video.h"
+#include "keyboard.h"
+
+extern uint8_t out;
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -40,13 +43,48 @@ int(video_test_init)(uint16_t mode, uint8_t delay) {
   return vg_exit();
 }
 
-int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y,
-                          uint16_t width, uint16_t height, uint32_t color) {
-  /* To be completed */
-  printf("%s(0x%03X, %u, %u, %u, %u, 0x%08x): under construction\n",
-         __func__, mode, x, y, width, height, color);
+int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color) {
 
-  return 1;
+  if(map_vm(mode)) return 1;
+
+  if(change_mode(mode)) return 1;
+
+  uint32_t new_color;
+  if(normalize_color(color, &new_color)) return 1;
+
+  if(draw_rectangle(x, y, width, height, color)) return 1;
+
+  uint8_t bit_no;
+  kbc_subscribe_int(&bit_no);
+
+  uint32_t irq_set = BIT(bit_no);
+
+  int ipc_status;
+  message msg;
+
+  while(out != KBD_ESC){
+    if(driver_receive(ANY, &msg, &ipc_status) != 0 ) {
+      continue;
+    }
+    if (is_ipc_notify(ipc_status)) {
+         switch (_ENDPOINT_P(msg.m_source)) {
+             case HARDWARE:		
+                 if (msg.m_notify.interrupts & irq_set) {
+                    if(kbc_read_out_buffer(&out)) return 1;
+                    kbc_ih();
+                    if(kbc_print()) return 1;
+                 }
+                 break;
+             default:
+                 break;
+         }
+    }
+  }
+  if(kbc_unsubscribe_int())return 1;
+
+  vg_exit();
+  
+  return EXIT_SUCCESS;
 }
 
 int(video_test_pattern)(uint16_t mode, uint8_t no_rectangles, uint32_t first, uint8_t step) {

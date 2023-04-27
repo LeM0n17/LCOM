@@ -1,0 +1,84 @@
+@lcflib.a:2019, lcf_start
+  video_test_rectangle(mode, x, y, width, height, color)
+> video_test_rectangle(0x115, 20, 20, 200, 200, 0x00fff000 [16773120])
+  @video.c:29, map_vm
+    vbe_get_mode_info(mode, &mode_inf)
+  > vbe_get_mode_info(0x115, addr: 0x8249c80)
+  < vbe_get_mode_info(0x115, addr: 0x8249c80 [0xe0000000, 800x600, 8:8:8 (24) <1.37329 MiB>]) -> (ret: 0)
+  @video.c:42, map_vm
+    sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr)
+  > sys_privctl(SELF, SYS_PRIV_ADD_MEM, addr: 0xeffff590 [0xe0000000 - 0xe015f900 <1.37329 MiB>])
+  < sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr) -> (ret: 0)
+  @video.c:49, map_vm
+    vm_map_phys(SELF, (void *)mr.mr_base, vram_size)
+  < vm_map_phys(SELF, addr: 0xe0000000, 1.37329 MiB) -> (ret: 0xef89b000)
+  @video.c:18, change_mode
+    sys_int86(&r)
+  > sys_int86(addr: 0xeffff570 [AX: 4f02, BX: 4115, CX: 0000, DX: 0000, ES: 0000, DI: 0000])
+  < sys_int86(addr: 0xeffff570 [AX: 004f, BX: 4115, CX: 0000, DX: 0000, ES: 0000, DI: 0000]) -> (ret: 0)
+  @keyboard.c:13, kbc_subscribe_int
+    sys_irqsetpolicy(KBD_IRQ_LINE, IRQ_ENABLE | IRQ_EXCLUSIVE, &kbc_hook_id)
+  > sys_irqsetpolicy(1, 3, addr: 0x822d268 [1])
+  < sys_irqsetpolicy(1, 3, addr: 0x822d268 [10]) -> (ret: 0)
+  @lab5.c:66, video_test_rectangle
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff5d0, addr: 0xeffff610)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
+  @utils.c:19, util_sys_inb
+    sys_inb(port, &val)
+  > sys_inb(0x64, addr: 0xeffff574)
+  < sys_inb(0x64, addr: 0xeffff574 [0x1d = 0b00011101])
+  @utils.c:19, util_sys_inb
+    sys_inb(port, &val)
+  > sys_inb(0x60, addr: 0xeffff574)
+  < sys_inb(0x60, addr: 0xeffff574 [0x9c = 0b10011100])
+  @lab5.c:74, video_test_rectangle
+    kbc_ih()
+  @keyboard.c:62, kbc_print
+    kbd_print_scancode(false, size, codes)
+    "Breakcode: 0x9c"
+  < kbd_print_scancode(false, 1, addr: 0x8249d84 [0x9c]) -> (ret: 0)
+  @lab5.c:66, video_test_rectangle
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff5d0, addr: 0xeffff610)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
+  @utils.c:19, util_sys_inb
+    sys_inb(port, &val)
+  > sys_inb(0x64, addr: 0xeffff574)
+  < sys_inb(0x64, addr: 0xeffff574 [0x1d = 0b00011101])
+  @utils.c:19, util_sys_inb
+    sys_inb(port, &val)
+  > sys_inb(0x60, addr: 0xeffff574)
+  < sys_inb(0x60, addr: 0xeffff574 [0x01 = 0b00000001])
+  @lab5.c:74, video_test_rectangle
+    kbc_ih()
+  @keyboard.c:60, kbc_print
+    kbd_print_scancode(true, size, codes)
+    "Makecode: 0x01"
+  < kbd_print_scancode(true, 1, addr: 0x8249d84 [0x01]) -> (ret: 0)
+  @lab5.c:66, video_test_rectangle
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff5d0, addr: 0xeffff610)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
+  @utils.c:19, util_sys_inb
+    sys_inb(port, &val)
+  > sys_inb(0x64, addr: 0xeffff574)
+  < sys_inb(0x64, addr: 0xeffff574 [0x1d = 0b00011101])
+  @utils.c:19, util_sys_inb
+    sys_inb(port, &val)
+  > sys_inb(0x60, addr: 0xeffff574)
+  < sys_inb(0x60, addr: 0xeffff574 [0x81 = 0b10000001])
+  @lab5.c:74, video_test_rectangle
+    kbc_ih()
+  @keyboard.c:62, kbc_print
+    kbd_print_scancode(false, size, codes)
+    "Breakcode: 0x81"
+  < kbd_print_scancode(false, 1, addr: 0x8249d84 [0x81]) -> (ret: 0)
+  @keyboard.c:17, kbc_unsubscribe_int
+    sys_irqrmpolicy(&kbc_hook_id)
+  > sys_irqrmpolicy(addr: 0x822d268 [10])
+  < sys_irqrmpolicy(addr: 0x822d268 [10]) -> (ret: 0)
+  @lab5.c:85, video_test_rectangle
+    vg_exit()
+  < vg_exit() -> (ret: 0)
+< video_test_rectangle(0x115, 20, 20, 200, 200, 0x00fff000 [16773120]) -> (ret: 0)
