@@ -1,4 +1,5 @@
-.vscode/
+.vscode
+.clang-format
 
 # MINIX output files
 *.o

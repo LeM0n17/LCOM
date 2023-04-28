@@ -1,9 +1,8 @@
 #include <stdio.h>
 
-#include "list.h"
-#include "headers/keyboard.h"
-#include "headers/video.h"
-#include "headers/object.h"
+#include "keyboard.h"
+#include "video.h"
+#include "object.h"
 
 extern uint8_t data;
 extern int process;

@@ -5,7 +5,7 @@ PROG = proj
 SRCS = main.c list.c keyboard.c video.c utils.c object.c
 
 # header files to be included
-#INC_DIR = ../headers
+INC_DIR = headers/devices headers/models headers/views
 
 # additional compilation flags
 # "-Wall -Wextra -Werror -I . -std=c11 -Wno-unused-parameter" are already set

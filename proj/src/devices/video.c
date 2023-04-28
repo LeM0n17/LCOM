@@ -1,5 +1,5 @@
 #include <lcom/lcf.h>
-#include "../headers/video.h"
+#include "video.h"
 
 vbe_mode_info_t vg_info;
 void* buffer_base = NULL;
