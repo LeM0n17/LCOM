@@ -112,9 +112,6 @@ int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y,
 int(video_test_pattern)(uint16_t mode, uint8_t no_rectangles, uint32_t first, uint8_t step) {
 	int flag = video_start(mode);
 	if (flag) return disable_video(flag);
-
-	uint16_t painted_rows = mode_info.y_res - mode_info.y_res % no_rectangles;
-	uint16_t painted_cols = mode_info.x_res - mode_info.x_res % no_rectangles;
 	
 	uint16_t width = mode_info.x_res / no_rectangles;
     uint16_t height = mode_info.y_res / no_rectangles;
@@ -147,21 +144,10 @@ int(video_test_pattern)(uint16_t mode, uint8_t no_rectangles, uint32_t first, ui
 		if (flag) return disable_video(flag);
 
 		x += width;
-		if (x < painted_cols) continue;
+		if (x < width * no_rectangles) continue;
 		
 		x = 0;
 		y += height;
-	}
-
-	// draw the black stripes
-	for (int i = painted_rows; i < mode_info.y_res; ++i){
-		flag = video_draw_row(0, i, mode_info.x_res, 0);
-		if (flag) return disable_video(flag);
-	}
-
-	for (int i = painted_cols; i < mode_info.x_res; ++i){
-		flag = video_draw_col(i, 0, mode_info.y_res, 0);
-		if (flag) return disable_video(flag);
 	}
 
 	flag = kbd_int_loop();
