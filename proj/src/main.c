@@ -1,12 +1,20 @@
 #include <stdio.h>
 
-#include "keyboard.h"
-#include "video.h"
-#include "object.h"
+/* DEVICES */
+#include "devices/KBC/keyboard.h"
+#include "devices/video_card/video.h"
 
-extern uint8_t data;
-extern int process;
-extern uint8_t scan_codes[2];
+/* MODELS */
+#include "models/object.h"
+
+/* VIEWS */
+#include "views/canvas.h"
+
+#define WAIT 5
+
+int kbd_hook_id;
+bool kbd_ih_error;
+kbd_data data;
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -32,71 +40,77 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-int kbd_loop(Object player){
-    uint16_t old_x = 100;
-    uint16_t old_y = 100;
-    int r = 0;
-    uint8_t bit = 0;
-    if(kbc_subscribe_int(&bit)) return 1;
-    uint32_t kanna = BIT(bit);
-    
-    int ipc_status;
-    message msg;
- 
-    while(data != KBD_ESC) {
-        /* Get a request message. */
-        if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
-            printf("driver_receive failed with: %d", r);
-            continue;
-        }
-        if (is_ipc_notify(ipc_status)) { /* received notification */
-            switch (_ENDPOINT_P(msg.m_source)) {
-                case HARDWARE: /* hardware interrupt notification */				
-                    if (msg.m_notify.interrupts & kanna) { /* subscribed interrupt */
-                        if(kbc_read_out_buffer(&data)) return 1;
-                        kbc_ih();
-                        if(process){
-                            process_scancode(&player, scan_codes);
-                            vg_update2(player, old_x, old_y);
-                            old_x = player.x;
-                            old_y = player.y;
-                            process = false;
-                        }
-                    }
-                    break;
-                default:
-                    break; /* no other notifications expected: do nothing */	
-            }
-        } else { /* received a standard message, not a notification */
-            /* no standard messages expected: do nothing */
-        }
-    }
-    if(kbc_unsubscribe_int()){
-        return 1;
-    }
-    return 0;
-
+int disable_video(int flag){
+    vg_exit();
+    return flag;
 }
 
-int(proj_main_loop)(){
-    Object player;
-    player.x = 100;
-    player.y = 100;
-    if(vg_init(0x11A) == NULL){
-        vg_exit();
-        return 1;
+int proj_int_loop(Object* player){
+    // global variables
+    kbd_hook_id = 0;
+
+    // local variables
+    int ipc_status;
+    message msg;
+
+    uint8_t kbd_bit_no = 0;
+    int flag = kbd_subscribe_int(&kbd_bit_no);
+    if (flag) return flag;
+
+    uint32_t kbd_mask = BIT(kbd_bit_no);
+
+    uint16_t old_x = player->x;
+    uint16_t old_y = player->y;
+    
+    while (data.scancode[data.two_byte] != KBD_ESC_BREAKCODE){
+        flag = driver_receive(ANY, &msg, &ipc_status);
+        if (flag){
+            printf("driver_receive failed with: %d", flag);
+            continue;
+        }
+
+        if (!is_ipc_notify(ipc_status)) continue;
+
+        switch(_ENDPOINT_P(msg.m_source)){
+            case HARDWARE : {
+                bool kbd_int = msg.m_notify.interrupts & kbd_mask;
+                if (!kbd_int) break;
+
+                kbd_get_scancode(&data, WAIT);
+
+                if (kbd_ih_error) return kbd_ih_error;
+                if (!data.valid) break;
+
+                process_scancode(player, &data);
+
+                flag = canvas_refresh(player, old_x, old_y);
+                if (flag) return flag;
+
+                old_x = player->x; old_y = player->y;
+            }
+            default : break;
+        }
     }
+
+    return kbd_unsubscribe_int();
+}
+
+int (proj_main_loop)(){
+    Object player = {100, 100};
+
+    int flag = video_start(0x11A);
+    if (flag) return disable_video(flag);
 
     // draw arena
-    vg_draw_arena();
+    flag = canvas_draw_arena(0xFFF0, 0xF09F);
+    if (flag) return disable_video(flag);
 
     // draw player
-    vg_draw_rectangle(player.x,player.y,50,50,0x000F);
+    flag = video_draw_rectangle(player.x, player.y, 50, 50, 0x000F);
+    if (flag) return disable_video(flag);
 
-    if(kbd_loop(player)){
-        vg_exit();
-        return 1;
-    }
-    vg_exit();
-    return 0;
+    flag = proj_int_loop(&player);
+    if (flag) return disable_video(flag);
+
+    return vg_exit();
 }

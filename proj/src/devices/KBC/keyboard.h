@@ -16,7 +16,7 @@
 #define is_makecode(scancode) !(scancode & BIT(7))
 
 typedef struct {
-    uint8_t scancode;
+    uint8_t scancode[2];
     bool valid;
     bool two_byte;
 } kbd_data;
