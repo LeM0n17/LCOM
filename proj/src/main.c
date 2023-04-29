@@ -3,6 +3,7 @@
 /* DEVICES */
 #include "devices/KBC/keyboard.h"
 #include "devices/video_card/video.h"
+#include "devices/KBC/mouse.h"
 
 /* MODELS */
 #include "models/object.h"
@@ -12,8 +13,13 @@
 
 #define WAIT 5
 
-int kbd_hook_id;
+int kbd_hook_id, mouse_hook_id;
+int mouse_x = 640;
+int mouse_y = 512;
+uint8_t mouse_packet;
+struct packet pp;
 bool kbd_ih_error;
+bool mouse_ih_error;
 kbd_data data;
 
 int main(int argc, char *argv[]) {
@@ -48,15 +54,23 @@ int disable_video(int flag){
 int proj_int_loop(Object* player){
     // global variables
     kbd_hook_id = 0;
+    mouse_hook_id = 12;
 
     // local variables
     int ipc_status;
     message msg;
 
+    //kbd
     uint8_t kbd_bit_no = 0;
     int flag = kbd_subscribe_int(&kbd_bit_no);
     if (flag) return flag;
 
+    //mouse
+    uint8_t mouse_bit_no;
+    mouse_enable_data_report(WAIT);
+    if(mouse_subscribe_int(&mouse_bit_no)) return 1;
+
+    uint32_t mouse_mask = BIT(mouse_bit_no);
     uint32_t kbd_mask = BIT(kbd_bit_no);
 
     uint16_t old_x = player->x;
@@ -74,23 +88,53 @@ int proj_int_loop(Object* player){
         switch(_ENDPOINT_P(msg.m_source)){
             case HARDWARE : {
                 bool kbd_int = msg.m_notify.interrupts & kbd_mask;
-                if (!kbd_int) break;
+                bool mouse_int = msg.m_notify.interrupts & mouse_mask;
+                if (kbd_int){
 
-                kbd_get_scancode(&data, WAIT);
+                    kbd_get_scancode(&data, WAIT);
 
-                if (kbd_ih_error) return kbd_ih_error;
-                if (!data.valid) break;
+                    if (kbd_ih_error) return kbd_ih_error;
+                    if (!data.valid) break;
 
-                process_scancode(player, &data);
+                    process_scancode(player, &data);
 
-                flag = canvas_refresh(player, old_x, old_y);
-                if (flag) return flag;
+                    flag = canvas_refresh(player, old_x, old_y);
+                    if (flag) return flag;
 
-                old_x = player->x; old_y = player->y;
+                    old_x = player->x; old_y = player->y;
+                }
+
+                if(mouse_int){
+
+                    mouse_get_data(&pp, WAIT);
+
+                    if(mouse_ih_error) return mouse_ih_error;
+                    if (mouse_packet < 3) break;
+
+                    mouse_parse_packet(&pp);
+
+                    mouse_x += pp.delta_x;
+                    
+                    if(mouse_x < 0) mouse_x = 0;
+                    if(mouse_x > 1280) mouse_x = 1280;
+
+                    mouse_y -= pp.delta_y;
+                    
+                    if(mouse_y < 0) mouse_y = 0;
+                    if(mouse_y > 1024) mouse_y = 1024;
+
+                    mouse_packet = 0;
+                }
             }
             default : break;
         }
     }
+
+    if(mouse_disable_data_report(WAIT)) return 1;
+
+    if(mouse_unsubscribe_int()) return 1;
+
+    printf("%d, %d", mouse_x, mouse_y);
 
     return kbd_unsubscribe_int();
 }
