@@ -12,6 +12,7 @@
 #include "keyboard.h"
 
 extern uint8_t out;
+extern vbe_mode_info_t mode_inf;
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -52,7 +53,7 @@ int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y, uint16_t width,
   uint32_t new_color;
   if(normalize_color(color, &new_color)) return 1;
 
-  if(draw_rectangle(x, y, width, height, color)) return 1;
+  if(vg_draw_rectangle(x, y, width, height, color)) return 1;
 
   uint8_t bit_no;
   kbc_subscribe_int(&bit_no);
@@ -88,11 +89,62 @@ int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y, uint16_t width,
 }
 
 int(video_test_pattern)(uint16_t mode, uint8_t no_rectangles, uint32_t first, uint8_t step) {
-  /* To be completed */
-  printf("%s(0x%03x, %u, 0x%08x, %d): under construction\n", __func__,
-         mode, no_rectangles, first, step);
+  if(map_vm(mode) != 0) return 1;
 
-  return 1;
+  if(change_mode(mode) != 0) return 1;
+
+  int vertical = mode_inf.YResolution / no_rectangles;
+  int horizontal = mode_inf.XResolution / no_rectangles;
+
+  for (int i = 0 ; i < no_rectangles ; i++) {
+    for (int j = 0 ; j < no_rectangles ; j++) {
+
+      uint32_t color;
+
+      if (mode_inf.MemoryModel == 0x06) {
+        uint32_t R = Red(j, step, first);
+        uint32_t G = Green(i, step, first);
+        uint32_t B = Blue(j, i, step, first);
+        color = direct_mode(R, G, B);
+      } else {
+        color = indexed_mode(j, i, step, first, no_rectangles);
+      }
+
+      if (vg_draw_rectangle(j * horizontal, i * vertical, horizontal, vertical, color)) return 1;
+    }
+  }
+
+  uint8_t bit_no;
+  kbc_subscribe_int(&bit_no);
+
+  uint32_t irq_set = BIT(bit_no);
+
+  int ipc_status;
+  message msg;
+
+  while(out != KBD_ESC){
+    if(driver_receive(ANY, &msg, &ipc_status) != 0 ) {
+      continue;
+    }
+    if (is_ipc_notify(ipc_status)) {
+         switch (_ENDPOINT_P(msg.m_source)) {
+             case HARDWARE:		
+                 if (msg.m_notify.interrupts & irq_set) {
+                    if(kbc_read_out_buffer(&out)) return 1;
+                    kbc_ih();
+                    if(kbc_print()) return 1;
+                 }
+                 break;
+             default:
+                 break;
+         }
+    }
+  }
+  if(kbc_unsubscribe_int())return 1;
+
+  vg_exit();
+
+  return EXIT_SUCCESS;
 }
 
 int(video_test_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y) {

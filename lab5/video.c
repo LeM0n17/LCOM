@@ -78,20 +78,52 @@ int (draw_pixel)(uint16_t x, uint16_t y, uint32_t color){
   return 0;
 }
 
-int (draw_hline)(uint16_t x, uint16_t y, uint16_t width, uint32_t color){
-  for(int i = 0; i < width; i++){
+int (vg_draw_hline)(uint16_t x, uint16_t y, uint16_t width, uint32_t color){
+  for(unsigned i = 0; i < width; i++){
     if(draw_pixel(x + i, y, color) != 0) return 1;
   }
 
   return 0;
 }
 
-int (draw_rectangle)(uint16_t x, uint16_t y, uint16_t height, uint16_t width, uint32_t color){
+int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color){
   for(int i = 0; i < height; i++){
-    if(draw_hline(x, y + i, width, color)){
+    if(vg_draw_hline(x, y + i, width, color)){
       vg_exit();
       return 1;
     }
   }
   return 0;
+}
+
+uint32_t (direct_mode)(uint32_t R, uint32_t G, uint32_t B) {
+  return (R << mode_inf.RedFieldPosition) | (G << mode_inf.GreenFieldPosition) | (B << mode_inf.BlueFieldPosition);
+}
+
+uint32_t (indexed_mode)(uint16_t col, uint16_t row, uint8_t step, uint32_t first, uint8_t n) {
+  return (first + (row * n + col) * step) % (1 << mode_inf.BitsPerPixel);
+}
+
+uint32_t (Red)(unsigned j, uint8_t step, uint32_t first) {
+  return (R(first) + j * step) % (1 << mode_inf.RedMaskSize);
+}
+
+uint32_t (Green)(unsigned i, uint8_t step, uint32_t first) {
+  return (G(first) + i * step) % (1 << mode_inf.GreenMaskSize);
+}
+
+uint32_t (Blue)(unsigned j, unsigned i, uint8_t step, uint32_t first) {
+  return (B(first) + (i + j) * step) % (1 << mode_inf.BlueMaskSize);
+}
+
+uint32_t (R)(uint32_t first){
+  return ((1 << mode_inf.RedMaskSize) - 1) & (first >> mode_inf.RedFieldPosition);
+}
+
+uint32_t (G)(uint32_t first){
+  return ((1 << mode_inf.GreenMaskSize) - 1) & (first >> mode_inf.GreenFieldPosition);
+}
+
+uint32_t (B)(uint32_t first){
+  return ((1 << mode_inf.BlueMaskSize) - 1) & (first >> mode_inf.BlueFieldPosition);
 }
