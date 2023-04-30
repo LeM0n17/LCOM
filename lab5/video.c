@@ -74,7 +74,8 @@ int (video_start)(uint16_t mode){
     memset(&reg86, 0, sizeof(reg86));
 
     reg86.intno = 0x10;
-    reg86.ax = 0x4F02;
+    reg86.ah = VBE_FUNCTION_CALL;
+    reg86.al = VBE_SET_MODE;
     reg86.bx = mode | BIT(14);
 
     flag = sys_int86(&reg86);
