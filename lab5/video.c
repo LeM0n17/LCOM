@@ -85,7 +85,7 @@ int (video_start)(uint16_t mode){
 }
 
 int (video_draw_pixel)(uint16_t x, uint16_t y, uint32_t color){
-    if (x > mode_info.x_res || y > mode_info.y_res)
+    if (x >= mode_info.x_res || y >= mode_info.y_res)
         return 1;
 
     uint32_t pixel_index = (y * mode_info.x_res + x) * mode_info.bytes_per_pixel;
@@ -95,10 +95,10 @@ int (video_draw_pixel)(uint16_t x, uint16_t y, uint32_t color){
 }
 
 int (video_draw_row)(uint16_t x, uint16_t y, uint16_t len, uint32_t color){
-    if (x > mode_info.x_res || y > mode_info.y_res)
+    if (x >= mode_info.x_res || y >= mode_info.y_res)
         return 1;
 
-    if (x + len > mode_info.x_res)
+    if (x + len >= mode_info.x_res)
         len = mode_info.x_res - x;
 
     uint32_t pixel_index = (y * mode_info.x_res + x) * mode_info.bytes_per_pixel;
@@ -115,10 +115,10 @@ int (video_draw_row)(uint16_t x, uint16_t y, uint16_t len, uint32_t color){
 }
 
 int (video_draw_col)(uint16_t x, uint16_t y, uint16_t len, uint32_t color){
-    if (x > mode_info.x_res || y > mode_info.y_res)
+    if (x >= mode_info.x_res || y >= mode_info.y_res)
         return 1;
 
-    if (y + len > mode_info.y_res)
+    if (y + len >= mode_info.y_res)
         len = mode_info.y_res - y;
 
     uint32_t pixel_index = (y * mode_info.x_res + x) * mode_info.bytes_per_pixel;
@@ -135,7 +135,7 @@ int (video_draw_col)(uint16_t x, uint16_t y, uint16_t len, uint32_t color){
 }
 
 int (video_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color){
-    if (y + height > mode_info.y_res)
+    if (y + height >= mode_info.y_res)
         height = mode_info.y_res - y;
     
     for (uint16_t i = 0; i < height; ++i){
@@ -154,10 +154,10 @@ int (video_draw_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y){
     uint16_t width = image.width;
     uint16_t height = image.height;
 
-    if (x + width > mode_info.x_res)
+    if (x + width >= mode_info.x_res)
         width = mode_info.x_res - x;
 
-    if (y + height > mode_info.y_res)
+    if (y + height >= mode_info.y_res)
         height = mode_info.y_res - y;
 
     for (int y_ = y; y_ < y + height; ++y_){
