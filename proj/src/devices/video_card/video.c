@@ -31,17 +31,9 @@ int (video_get_mode_info)(uint16_t mode){
     mode_info.blue_end = mode_info.blue_begin + vbe_info.BlueMaskSize;
 
     // create the color masks
-    mode_info.red_mask = 0;
-    for (int i = mode_info.red_begin; i < mode_info.red_end; ++i)
-        mode_info.red_mask |= BIT(i);
-
-    mode_info.green_mask = 0;
-    for (int i = mode_info.green_begin; i < mode_info.green_end; ++i)
-        mode_info.green_mask |= BIT(i);
-
-    mode_info.blue_mask = 0;
-    for (int i = mode_info.blue_begin; i < mode_info.blue_end; ++i)
-        mode_info.blue_mask |= BIT(i);
+    mode_info.red_mask = (BIT(vbe_info.RedMaskSize) - 1) << mode_info.red_begin;
+    mode_info.green_mask = (BIT(vbe_info.GreenMaskSize) - 1) << mode_info.green_begin;
+    mode_info.blue_mask = (BIT(vbe_info.BlueMaskSize) - 1) << mode_info.blue_begin;
     
     return 0;
 }
