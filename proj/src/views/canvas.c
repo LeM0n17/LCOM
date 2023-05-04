@@ -22,5 +22,8 @@ int (canvas_refresh)(Object* obj, uint16_t old_x, uint16_t old_y){
     int flag = video_draw_rectangle(old_x, old_y, 50, 50, arena_color);
     if (flag) return flag;
 
-    return video_draw_rectangle(obj->x, obj->y, 50, 50, 0x000F);
+    flag = video_draw_rectangle(obj->x, obj->y, 50, 50, 0x000F);
+    if (flag) return flag;
+
+    return video_switch();
 }

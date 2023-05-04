@@ -2,8 +2,9 @@
 
 /* DEVICES */
 #include "devices/KBC/keyboard.h"
-#include "devices/video_card/video.h"
 #include "devices/KBC/mouse.h"
+#include "devices/video_card/video.h"
+#include "devices/timer/timer.h"
 
 /* MODELS */
 #include "models/object.h"
@@ -13,7 +14,7 @@
 
 #define WAIT 5
 
-int kbd_hook_id, mouse_hook_id;
+int timer_hook_id, kbd_hook_id, mouse_hook_id;
 int mouse_x = 640;
 int mouse_y = 512;
 uint8_t mouse_packet;
@@ -28,11 +29,11 @@ int main(int argc, char *argv[]) {
 
   // enables to log function invocations that are being "wrapped" by LCF
   // [comment this out if you don't want/need it]
-  lcf_trace_calls("./trace.txt");
+  lcf_trace_calls("home/lcom/labs/proj/src/debug/trace.txt");
 
   // enables to save the output of printf function calls on a file
   // [comment this out if you don't want/need it]
-  lcf_log_output("./output.txt");
+  lcf_log_output("home/lcom/labs/proj/src/debug/output.txt");
 
   // handles control over to LCF
   // [LCF handles command line arguments and invokes the right function]
@@ -52,26 +53,37 @@ int disable_video(int flag){
 }
 
 int proj_int_loop(Object* player){
-    // global variables
-    kbd_hook_id = 0;
-    mouse_hook_id = 12;
+    timer_hook_id = 0;
+    kbd_hook_id = 1;
+    mouse_hook_id = 2;
 
-    // local variables
     int ipc_status;
     message msg;
 
-    //kbd
-    uint8_t kbd_bit_no = 0;
-    int flag = kbd_subscribe_int(&kbd_bit_no);
+    // enable timer
+    uint8_t timer_bit_no = 0;
+
+    int flag = timer_subscribe_int(&timer_bit_no);
     if (flag) return flag;
 
-    //mouse
-    uint8_t mouse_bit_no;
-    mouse_enable_data_report(WAIT);
-    if(mouse_subscribe_int(&mouse_bit_no)) return 1;
+    // enable keyboard
+    uint8_t kbd_bit_no = 0;
 
-    uint32_t mouse_mask = BIT(mouse_bit_no);
+    flag = kbd_subscribe_int(&kbd_bit_no);
+    if (flag) return flag;
+
+    // enable mouse
+    uint8_t mouse_bit_no = 0;
+
+    flag = mouse_enable_data_report(WAIT);
+    if (flag) return flag;
+
+    flag = mouse_subscribe_int(&mouse_bit_no);
+    if (flag) return flag;
+
+    uint32_t timer_mask = BIT(timer_bit_no);
     uint32_t kbd_mask = BIT(kbd_bit_no);
+    uint32_t mouse_mask = BIT(mouse_bit_no);
 
     uint16_t old_x = player->x;
     uint16_t old_y = player->y;
@@ -87,25 +99,21 @@ int proj_int_loop(Object* player){
 
         switch(_ENDPOINT_P(msg.m_source)){
             case HARDWARE : {
+                bool timer_int = msg.m_notify.interrupts & timer_mask;
                 bool kbd_int = msg.m_notify.interrupts & kbd_mask;
                 bool mouse_int = msg.m_notify.interrupts & mouse_mask;
-                if (kbd_int){
 
+                if (kbd_int){
                     kbd_get_scancode(&data, WAIT);
 
                     if (kbd_ih_error) return kbd_ih_error;
                     if (!data.valid) break;
 
                     process_scancode(player, &data);
-
-                    flag = canvas_refresh(player, old_x, old_y);
-                    if (flag) return flag;
-
                     old_x = player->x; old_y = player->y;
                 }
 
-                if(mouse_int){
-
+                if (mouse_int){
                     mouse_get_data(&pp, WAIT);
 
                     if(mouse_ih_error) return mouse_ih_error;
@@ -125,18 +133,31 @@ int proj_int_loop(Object* player){
 
                     mouse_packet = 0;
                 }
+
+                if (timer_int){
+                    flag = canvas_refresh(player, old_x, old_y);
+                    if (flag) return flag;
+                }
             }
             default : break;
         }
     }
 
-    if(mouse_disable_data_report(WAIT)) return 1;
+    // disable mouse
+    flag = mouse_disable_data_report(WAIT);
+    if (flag) return flag;
 
-    if(mouse_unsubscribe_int()) return 1;
+    flag = mouse_unsubscribe_int();
+    if (flag) return flag;
 
-    printf("%d, %d", mouse_x, mouse_y);
+    //printf("%d, %d", mouse_x, mouse_y);
 
-    return kbd_unsubscribe_int();
+    // disable keyboard
+    flag = kbd_unsubscribe_int();
+    if (flag) return flag;
+
+    // disable timer
+    return timer_unsubscribe_int();
 }
 
 int (proj_main_loop)(){
