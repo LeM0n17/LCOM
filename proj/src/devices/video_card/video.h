@@ -14,7 +14,6 @@ typedef struct {
     uint8_t mode;
     uint8_t memory_model;
     phys_bytes physical_base;
-    uint32_t physical_size;
     uint8_t bits_per_pixel, bytes_per_pixel;
     uint16_t x_res, y_res;
     uint32_t red_mask, green_mask, blue_mask;
@@ -24,11 +23,12 @@ typedef struct {
 
 int (video_get_mode_info)(uint16_t mode);
 int (video_start)(uint16_t mode);
-int (video_switch)();
 
 int (video_draw_pixel)(uint16_t x, uint16_t y, uint32_t color);
 int (video_draw_row)(uint16_t x, uint16_t y, uint16_t len, uint32_t color);
 int (video_draw_col)(uint16_t x, uint16_t y, uint16_t len, uint32_t color);
 int (video_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color);
+
+int (video_draw_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y);
 
 #endif // _LCOM_VIDEO_H_
