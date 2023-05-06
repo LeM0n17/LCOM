@@ -101,7 +101,10 @@ int proj_int_loop(Object* player){
                 bool mouse_int = msg.m_notify.interrupts & mouse_mask;
 
                 if (timer_int){
-                    printf("timer interrupt!\n");
+                    flag = canvas_refresh(player, old_x, old_y);
+                    if (flag) return flag;
+
+                    old_x = player->x; old_y = player->y;
                 }
 
                 if (kbd_int){
@@ -111,11 +114,6 @@ int proj_int_loop(Object* player){
                     if (!data.valid) break;
 
                     process_scancode(player, &data);
-
-                    flag = canvas_refresh(player, old_x, old_y);
-                    if (flag) return flag;
-
-                    old_x = player->x; old_y = player->y;
                 }
 
                 if (mouse_int){
