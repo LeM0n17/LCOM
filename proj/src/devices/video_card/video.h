@@ -11,11 +11,17 @@
 #define BLUE(color) ((color & mode_info.blue_mask) >> mode_info.blue_begin)
 
 typedef struct {
+    // general info
     uint8_t mode;
     uint8_t memory_model;
-    phys_bytes physical_base;
     uint8_t bits_per_pixel, bytes_per_pixel;
     uint16_t x_res, y_res;
+
+    // physical memory
+    phys_bytes physical_base;
+    uint32_t physical_size;
+
+    // color
     uint32_t red_mask, green_mask, blue_mask;
     uint8_t red_begin, green_begin, blue_begin;
     uint8_t red_end, green_end, blue_end;
@@ -23,6 +29,7 @@ typedef struct {
 
 int (video_get_mode_info)(uint16_t mode);
 int (video_start)(uint16_t mode);
+int (video_switch)();
 
 int (video_draw_pixel)(uint16_t x, uint16_t y, uint32_t color);
 int (video_draw_row)(uint16_t x, uint16_t y, uint16_t len, uint32_t color);

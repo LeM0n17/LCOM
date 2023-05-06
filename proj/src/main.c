@@ -172,6 +172,9 @@ int (proj_main_loop)(){
     flag = video_draw_rectangle(player.x, player.y, 50, 50, 0x000F);
     if (flag) return disable_video(flag);
 
+    flag = video_switch();
+    if (flag) return disable_video(flag);
+
     flag = proj_int_loop(&player);
     if (flag) return disable_video(flag);
 

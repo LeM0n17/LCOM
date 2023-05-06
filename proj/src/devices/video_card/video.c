@@ -2,7 +2,7 @@
 
 #include "video.h"
 
-uint8_t* video_mem;
+uint8_t *front_buffer, *back_buffer;
 video_mode_info mode_info;
 
 int (video_get_mode_info)(uint16_t mode){
@@ -14,13 +14,15 @@ int (video_get_mode_info)(uint16_t mode){
     // parse the information
     mode_info.mode = mode;
     mode_info.memory_model = vbe_info.MemoryModel;
-    mode_info.physical_base = vbe_info.PhysBasePtr;
 
     mode_info.bits_per_pixel = (phys_bytes) vbe_info.BitsPerPixel;
     mode_info.bytes_per_pixel = (mode_info.bits_per_pixel + 7) / 8; // rounding by excess
 
     mode_info.x_res = vbe_info.XResolution;
     mode_info.y_res = vbe_info.YResolution;
+
+    mode_info.physical_base = vbe_info.PhysBasePtr;
+    mode_info.physical_size = mode_info.x_res * mode_info.y_res * mode_info.bytes_per_pixel;
 
     mode_info.red_begin = vbe_info.RedFieldPosition;
     mode_info.green_begin = vbe_info.GreenFieldPosition;
@@ -42,11 +44,9 @@ int (video_start)(uint16_t mode){
     int flag = video_get_mode_info(mode);
     if (flag) return flag;
 
-    unsigned int vram_size = mode_info.x_res * mode_info.y_res * mode_info.bytes_per_pixel;
-
     struct minix_mem_range mr;
     mr.mr_base = (phys_bytes) mode_info.physical_base;	
-    mr.mr_limit = mr.mr_base + vram_size;
+    mr.mr_limit = mode_info.physical_base + mode_info.physical_size;
 
     // allow memory mapping
     flag = sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr);
@@ -56,7 +56,10 @@ int (video_start)(uint16_t mode){
     }
     
     // map the video memory to the address space of the process
-    if ((video_mem = vm_map_phys(SELF, (void*) mr.mr_base, vram_size)) == NULL){
+    front_buffer = vm_map_phys(SELF, (void*) mr.mr_base, mode_info.physical_size);
+    back_buffer = malloc(mode_info.physical_size);
+
+    if ((front_buffer == NULL) || (back_buffer == NULL)){
         perror("Couldn't map video memory!");
         return -1;
     }
@@ -77,14 +80,19 @@ int (video_start)(uint16_t mode){
     return flag;
 }
 
+int video_switch(){
+    memcpy(front_buffer, back_buffer, mode_info.physical_size);
+    return (front_buffer == NULL);
+}
+
 int (video_draw_pixel)(uint16_t x, uint16_t y, uint32_t color){
     if (x >= mode_info.x_res || y >= mode_info.y_res)
         return 1;
 
     uint32_t pixel_index = (y * mode_info.x_res + x) * mode_info.bytes_per_pixel;
 
-    memcpy(&video_mem[pixel_index], &color, mode_info.bytes_per_pixel);
-    return (video_mem == NULL);
+    memcpy(&back_buffer[pixel_index], &color, mode_info.bytes_per_pixel);
+    return (back_buffer == NULL);
 }
 
 int (video_draw_row)(uint16_t x, uint16_t y, uint16_t len, uint32_t color){
@@ -97,10 +105,10 @@ int (video_draw_row)(uint16_t x, uint16_t y, uint16_t len, uint32_t color){
     uint32_t pixel_index = (y * mode_info.x_res + x) * mode_info.bytes_per_pixel;
 
     while (len--){
-        memcpy(&video_mem[pixel_index], &color, mode_info.bytes_per_pixel);
+        memcpy(&back_buffer[pixel_index], &color, mode_info.bytes_per_pixel);
         pixel_index += mode_info.bytes_per_pixel;
 
-        int flag = (video_mem == NULL);
+        int flag = (back_buffer == NULL);
         if (flag) return flag;
     }
     
@@ -117,10 +125,10 @@ int (video_draw_col)(uint16_t x, uint16_t y, uint16_t len, uint32_t color){
     uint32_t pixel_index = (y * mode_info.x_res + x) * mode_info.bytes_per_pixel;
 
     while (len--){
-        memcpy(&video_mem[pixel_index], &color, mode_info.bytes_per_pixel);
+        memcpy(&back_buffer[pixel_index], &color, mode_info.bytes_per_pixel);
         pixel_index += mode_info.x_res * mode_info.bytes_per_pixel;
         
-        int flag = (video_mem == NULL);
+        int flag = (back_buffer == NULL);
         if (flag) return flag;
     }
     
