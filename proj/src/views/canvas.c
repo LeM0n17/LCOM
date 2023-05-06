@@ -5,10 +5,12 @@
 uint32_t walls_color;
 uint32_t arena_color;
 
-int (canvas_draw_arena)(uint32_t new_arena_color, uint32_t new_walls_color){
+void __canvas__(uint32_t new_arena_color, uint32_t new_walls_color){
     arena_color = new_arena_color;
     walls_color = new_walls_color;
+}
 
+int (canvas_draw_arena)(){
     return video_draw_rectangle(0, 0, 1230, 50, walls_color) ||
         video_draw_rectangle(1230, 0, 50, 1024, walls_color) ||
         video_draw_rectangle(0, 0, 50, 1024, walls_color) ||

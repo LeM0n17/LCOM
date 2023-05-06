@@ -159,13 +159,15 @@ int proj_int_loop(Object* player){
 }
 
 int (proj_main_loop)(){
-    Object player = {100, 100};
+    Object player = {100, 100, 50, 50, image_create_shape(0x000F)};
 
     int flag = video_start(0x11A);
     if (flag) return disable_video(flag);
 
     // draw arena
-    flag = canvas_draw_arena(0xFFF0, 0xF09F);
+    __canvas__(0xFFF0, 0xF09F);
+
+    flag = canvas_draw_arena();
     if (flag) return disable_video(flag);
 
     // draw player
