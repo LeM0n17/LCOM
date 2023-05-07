@@ -16,16 +16,16 @@
 #define is_makecode(scancode) !(scancode & BIT(7))
 
 typedef struct {
-    uint8_t scancode[2];
+    uint8_t scancodes[2];
     bool valid;
     bool two_byte;
-} kbd_data;
+} kbd_data_t;
 
 // for interrupts
 int (kbd_enable_int)(uint32_t wait_ticks);
 int (kbd_subscribe_int)(uint8_t *bit_no);
 int (kbd_unsubscribe_int)();
 
-void (kbd_get_scancode)(kbd_data* data, uint32_t wait_ticks);
+void (kbd_get_scancode)(kbd_data_t* kbd_data, uint32_t wait_ticks);
 
 #endif // _LCOM_KEYBOARD_H_

@@ -2,10 +2,12 @@
 
 #include "mouse.h"
 
+#define max(a, b) ((a > b) ? a : b)
+#define min(a, b) ((a < b) ? a : b)
+
 extern int mouse_hook_id;
 extern bool mouse_ih_error;
-extern struct packet pp;
-extern uint8_t mouse_packet;
+extern mouse_data_t mouse_data;
 
 int (mouse_subscribe_int)(uint8_t* bit_no){
     if (bit_no == NULL) return 1;
@@ -52,7 +54,7 @@ int (mouse_disable_data_report)(uint32_t wait_ticks){
     return 0;
 }
 
-void (mouse_get_data)(struct packet* pp, uint32_t wait_ticks){
+void (mouse_get_data)(mouse_data_t* mouse_data, uint32_t wait_ticks){
     uint8_t data = 0;
 
     mouse_ih_error = kbc_read_out_buf(&data, wait_ticks);
@@ -61,15 +63,17 @@ void (mouse_get_data)(struct packet* pp, uint32_t wait_ticks){
     // check if the data read is valid
     kbc_status status = kbc_parse_status();
     if (status.parity_error || status.timeout_error || !status.mouse_data){
-        mouse_packet = 0;
+        mouse_data->packet_no = 0;
         return;
     }
 
-    if (mouse_packet || is_first_byte(data))
-        pp->bytes[mouse_packet++] = data;
+    if (mouse_data->packet_no || is_first_byte(data))
+        mouse_data->pp.bytes[mouse_data->packet_no++] = data;
 }
 
-void mouse_parse_packet(struct packet* pp){
+void mouse_parse_packet(mouse_data_t* mouse_data){
+    struct packet *pp = &mouse_data->pp;
+
     uint8_t first_byte = pp->bytes[0];
     uint8_t delta_x = pp->bytes[1], delta_y = pp->bytes[2];
 
@@ -78,8 +82,11 @@ void mouse_parse_packet(struct packet* pp){
     pp->x_ov = (first_byte & MOUSE_X_OVFL);
 
     // offsets
-    pp->delta_y = (first_byte & MOUSE_Y_MSB) ? sign_extend(delta_y) : delta_y;
     pp->delta_x = (first_byte & MOUSE_X_MSB) ? sign_extend(delta_x) : delta_x;
+    mouse_data->x += min(max(pp->delta_x, 0), 1280);
+
+    pp->delta_y = (first_byte & MOUSE_Y_MSB) ? sign_extend(delta_y) : delta_y;
+    mouse_data->y += min(max(pp->delta_y, 0), 1024);
 
     // buttons
     pp->mb = (first_byte & MOUSE_MIDDLE_BUTTON);

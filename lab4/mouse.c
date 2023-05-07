@@ -4,7 +4,6 @@
 
 extern int mouse_hook_id;
 extern bool ih_error;
-extern struct packet pp;
 extern uint8_t counter;
 
 int (mouse_subscribe_int)(uint8_t* bit_no){

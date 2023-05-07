@@ -2,9 +2,6 @@
 
 #include "canvas.h"
 
-uint32_t walls_color;
-uint32_t arena_color;
-
 void __canvas__(uint32_t new_arena_color, uint32_t new_walls_color){
     arena_color = new_arena_color;
     walls_color = new_walls_color;

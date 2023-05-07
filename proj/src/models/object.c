@@ -34,8 +34,8 @@ void moveRight(Object* obj, uint16_t speed){
     }
 }
 
-void process_scancode(Object* obj, kbd_data* data){
-    uint8_t* scancodes = data->scancode;
+void process_scancode(Object* obj, kbd_data_t* data){
+    uint8_t* scancodes = data->scancodes;
 
     if (MOVE_UP(scancodes)){
         moveUp(obj, 10);

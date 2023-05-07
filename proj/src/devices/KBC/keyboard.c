@@ -28,12 +28,12 @@ int (kbd_unsubscribe_int)(){
     return sys_irqrmpolicy(&kbd_hook_id);
 }
 
-void (kbd_get_scancode)(kbd_data* data, uint32_t wait_ticks){
-    kbd_ih_error = kbc_read_out_buf(&data->scancode[data->two_byte], wait_ticks);
+void (kbd_get_scancode)(kbd_data_t* kbd_data, uint32_t wait_ticks){
+    kbd_ih_error = kbc_read_out_buf(&kbd_data->scancodes[kbd_data->two_byte], wait_ticks);
     if (kbd_ih_error) return;
 
     kbc_status status = kbc_parse_status();
 
-    data->valid = !(status.parity_error || status.timeout_error || status.mouse_data);
-    data->two_byte = (data->scancode[data->two_byte] == KBD_2B_SCANCODE);
+    kbd_data->valid = !(status.parity_error || status.timeout_error || status.mouse_data);
+    kbd_data->two_byte = (kbd_data->scancodes[kbd_data->two_byte] == KBD_2B_SCANCODE);
 }

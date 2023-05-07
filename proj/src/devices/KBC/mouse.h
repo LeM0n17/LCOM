@@ -27,12 +27,18 @@
 #define MOUSE_RIGHT_BUTTON BIT(1)
 #define MOUSE_LEFT_BUTTON BIT(0)
 
+typedef struct {
+    struct packet pp;
+    uint8_t packet_no;
+    uint16_t x, y;
+} mouse_data_t;
+
 int (mouse_subscribe_int)(uint8_t* bit_no);
 int (mouse_unsubscribe_int)();
 int (mouse_enable_data_report)(uint32_t wait_ticks);
 int (mouse_disable_data_report)(uint32_t wait_ticks);
 
-void (mouse_get_data)(struct packet* pp, uint32_t wait_ticks);
-void (mouse_parse_packet)(struct packet* pp);
+void (mouse_get_data)(mouse_data_t* data, uint32_t wait_ticks);
+void (mouse_parse_packet)(mouse_data_t* data);
 
 #endif // _LCOM_MOUSE_H_

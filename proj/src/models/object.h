@@ -28,6 +28,6 @@ void moveDown(Object* obj, uint16_t speed);
 void moveLeft(Object* obj, uint16_t speed);
 void moveRight(Object* obj, uint16_t speed);
 
-void process_scancode(Object* obj, kbd_data* data);
+void process_scancode(Object* obj, kbd_data_t* data);
 
 #endif // _LCOM_OBJECT_H_

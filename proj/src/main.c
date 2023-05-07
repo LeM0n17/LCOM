@@ -15,13 +15,10 @@
 #define WAIT 5
 
 int timer_hook_id, kbd_hook_id, mouse_hook_id;
-int mouse_x = 640;
-int mouse_y = 512;
 uint8_t mouse_packet;
-struct packet pp;
-bool kbd_ih_error;
-bool mouse_ih_error;
-kbd_data data;
+bool kbd_ih_error, mouse_ih_error;
+kbd_data_t kbd_data;
+mouse_data_t mouse_data;
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -85,7 +82,7 @@ int proj_int_loop(Object* player){
     uint16_t old_x = player->x;
     uint16_t old_y = player->y;
     
-    while (data.scancode[data.two_byte] != KBD_ESC_BREAKCODE){
+    while (kbd_data.scancodes[kbd_data.two_byte] != KBD_ESC_BREAKCODE){
         flag = driver_receive(ANY, &msg, &ipc_status);
         if (flag){
             printf("driver_receive failed with: %d", flag);
@@ -108,33 +105,22 @@ int proj_int_loop(Object* player){
                 }
 
                 if (kbd_int){
-                    kbd_get_scancode(&data, WAIT);
+                    kbd_get_scancode(&kbd_data, WAIT);
 
                     if (kbd_ih_error) return kbd_ih_error;
-                    if (!data.valid) break;
+                    if (!kbd_data.valid) break;
 
-                    process_scancode(player, &data);
+                    process_scancode(player, &kbd_data);
                 }
 
                 if (mouse_int){
-                    mouse_get_data(&pp, WAIT);
+                    mouse_get_data(&mouse_data, WAIT);
 
                     if(mouse_ih_error) return mouse_ih_error;
-                    if (mouse_packet < 3) break;
+                    if (mouse_data.packet_no < 3) break;
 
-                    mouse_parse_packet(&pp);
-
-                    mouse_x += pp.delta_x;
-                    
-                    if(mouse_x < 0) mouse_x = 0;
-                    if(mouse_x > 1280) mouse_x = 1280;
-
-                    mouse_y -= pp.delta_y;
-                    
-                    if(mouse_y < 0) mouse_y = 0;
-                    if(mouse_y > 1024) mouse_y = 1024;
-
-                    mouse_packet = 0;
+                    mouse_parse_packet(&mouse_data);
+                    mouse_data.packet_no = 0;
                 }
             }
             default : break;
@@ -160,6 +146,7 @@ int proj_int_loop(Object* player){
 
 int (proj_main_loop)(){
     Object player = {100, 100, 50, 50, image_create_shape(0x000F)};
+    mouse_data.x = 640; mouse_data.y = 512;
 
     int flag = video_start(0x11A);
     if (flag) return disable_video(flag);
