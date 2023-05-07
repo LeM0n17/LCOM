@@ -31,6 +31,7 @@ typedef struct {
     struct packet pp;
     uint8_t packet_no;
     uint16_t x, y;
+    bool error;
 } mouse_data_t;
 
 int (mouse_subscribe_int)(uint8_t* bit_no);

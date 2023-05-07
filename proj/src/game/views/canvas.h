@@ -1,7 +1,7 @@
 #ifndef _LCOM_CANVAS_H_
 #define _LCOM_CANVAS_H_
 
-#include "../devices/video_card/video.h"
+#include "../../devices/video_card/video.h"
 #include "../models/object.h"
 
 uint32_t walls_color;

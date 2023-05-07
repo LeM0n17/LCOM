@@ -4,11 +4,12 @@ PROG = proj
 .PATH: ${.CURDIR}/devices/KBC
 .PATH: ${.CURDIR}/devices/timer
 .PATH: ${.CURDIR}/devices/video_card
-.PATH: ${.CURDIR}/models
-.PATH: ${.CURDIR}/views
+.PATH: ${.CURDIR}/game
+.PATH: ${.CURDIR}/game/models
+.PATH: ${.CURDIR}/game/views
 
 # source code files to be compiled
-SRCS = main.c timer.c keyboard.c KBC.c video.c object.c canvas.c utils.c mouse.c image.c
+SRCS = main.c timer.c keyboard.c KBC.c video.c object.c canvas.c utils.c mouse.c image.c game.c
 
 # additional compilation flags
 # "-Wall -Wextra -Werror -I . -std=c11 -Wno-unused-parameter" are already set

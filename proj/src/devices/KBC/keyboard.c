@@ -3,7 +3,6 @@
 #include "keyboard.h"
 
 extern int kbd_hook_id;
-extern bool kbd_ih_error;
 
 int (kbd_enable_int)(uint32_t wait_ticks){
     uint8_t command = 0;
@@ -29,8 +28,8 @@ int (kbd_unsubscribe_int)(){
 }
 
 void (kbd_get_scancode)(kbd_data_t* kbd_data, uint32_t wait_ticks){
-    kbd_ih_error = kbc_read_out_buf(&kbd_data->scancodes[kbd_data->two_byte], wait_ticks);
-    if (kbd_ih_error) return;
+    kbd_data->error = kbc_read_out_buf(&kbd_data->scancodes[kbd_data->two_byte], wait_ticks);
+    if (kbd_data->error) return;
 
     kbc_status status = kbc_parse_status();
 

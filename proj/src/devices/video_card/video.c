@@ -80,6 +80,10 @@ int (video_start)(uint16_t mode){
     return flag;
 }
 
+int (video_stop)(){
+    return vg_exit();
+}
+
 int video_switch(){
     memcpy(front_buffer, back_buffer, mode_info.physical_size);
     return (front_buffer == NULL);

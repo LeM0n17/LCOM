@@ -6,8 +6,6 @@
 #define min(a, b) ((a < b) ? a : b)
 
 extern int mouse_hook_id;
-extern bool mouse_ih_error;
-extern mouse_data_t mouse_data;
 
 int (mouse_subscribe_int)(uint8_t* bit_no){
     if (bit_no == NULL) return 1;
@@ -57,8 +55,8 @@ int (mouse_disable_data_report)(uint32_t wait_ticks){
 void (mouse_get_data)(mouse_data_t* mouse_data, uint32_t wait_ticks){
     uint8_t data = 0;
 
-    mouse_ih_error = kbc_read_out_buf(&data, wait_ticks);
-    if (mouse_ih_error) return;
+    mouse_data->error = kbc_read_out_buf(&data, wait_ticks);
+    if (mouse_data->error) return;
 
     // check if the data read is valid
     kbc_status status = kbc_parse_status();

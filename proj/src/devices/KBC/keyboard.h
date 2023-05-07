@@ -17,8 +17,9 @@
 
 typedef struct {
     uint8_t scancodes[2];
-    bool valid;
     bool two_byte;
+    bool valid;
+    bool error;
 } kbd_data_t;
 
 // for interrupts

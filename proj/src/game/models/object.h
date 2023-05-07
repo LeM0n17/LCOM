@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-#include "../devices/KBC/keyboard.h"
+#include "../../devices/KBC/keyboard.h"
 #include "../views/image.h"
 
 #define MOVE_UP(scancodes) (scancodes[0] == 0x11 || (scancodes[0] == KBD_2B_SCANCODE && scancodes[1] == 0x48))

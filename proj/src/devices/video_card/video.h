@@ -28,7 +28,9 @@ typedef struct {
 } video_mode_info;
 
 int (video_get_mode_info)(uint16_t mode);
+
 int (video_start)(uint16_t mode);
+int (video_stop)();
 int (video_switch)();
 
 int (video_draw_pixel)(uint16_t x, uint16_t y, uint32_t color);
