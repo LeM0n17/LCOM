@@ -9,6 +9,7 @@ mouse_data_t mouse_data;
 
 // game logic variables
 Object *player;
+int draw;
 
 
 int (game_start)(){
@@ -84,12 +85,10 @@ int (game_loop)(){
                 bool timer_int = msg.m_notify.interrupts & timer_mask;
                 bool kbd_int = msg.m_notify.interrupts & kbd_mask;
                 bool mouse_int = msg.m_notify.interrupts & mouse_mask;
+                draw = 0;  // responsible for knowing whether to draw or not
 
                 if (timer_int){
-                    flag = canvas_refresh(player, old_x, old_y);
-                    if (flag) return flag;
-
-                    old_x = player->x; old_y = player->y;
+                    
                 }
 
                 if (kbd_int){
@@ -103,6 +102,7 @@ int (game_loop)(){
                     if (!kbd_data.valid) break;
 
                     process_scancode(player, &kbd_data);
+                    draw = 1; // missing condition to set the draw
                 }
 
                 if (mouse_int){
@@ -117,6 +117,14 @@ int (game_loop)(){
 
                     mouse_parse_packet(&mouse_data);
                     mouse_data.packet_no = 0;
+                    draw = 1;
+                }
+
+                if (draw) {
+                    flag = canvas_refresh(player, old_x, old_y);
+                    if (flag) return flag;
+
+                    old_x = player->x; old_y = player->y;
                 }
             }
             default : break;
