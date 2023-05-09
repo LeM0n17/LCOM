@@ -14,14 +14,19 @@ Image *image_create_sprite(xpm_map_t xpm){
         image = NULL;
     }
 
+    image->width = pixmap.width;
+    image->height = pixmap.height;
+
     return image;
 }
 
-Image *image_create_shape(uint16_t color){
+Image *image_create_shape(uint16_t width, uint16_t height, uint16_t color){
     Image *image = (Image*) malloc(sizeof *image);
     image->colors = malloc(sizeof *image->colors);
 
     image->type = SHAPE;
+    image->width = width; 
+    image->height = height;
     *image->colors = color;
 
     return image;

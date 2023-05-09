@@ -10,11 +10,12 @@
  */
 typedef struct {
     enum {SPRITE, SHAPE} type;
+    uint16_t width, height;
     uint16_t *colors;
 } Image;
 
 Image *image_create_sprite(xpm_map_t xpm);
-Image *image_create_shape(uint16_t color);
+Image *image_create_shape(uint16_t width, uint16_t height, uint16_t color);
 void image_destroy(Image* image);
 
 #endif // _LCOM_SPRITE_H_

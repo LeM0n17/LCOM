@@ -41,15 +41,15 @@ void process_scancode(Object* obj, kbd_data_t* data){
     uint8_t* scancodes = data->scancodes;
 
     if (MOVE_UP(scancodes)){
-        moveUp(obj, 10);
+        moveUp(obj, 5);
     }
     else if (MOVE_DOWN(scancodes)){
-        moveDown(obj, 10);
+        moveDown(obj, 5);
     }
     else if (MOVE_LEFT(scancodes)){
-        moveLeft(obj, 10);
+        moveLeft(obj, 5);
     }
     else if (MOVE_RIGHT(scancodes)){
-        moveRight(obj, 10);
+        moveRight(obj, 5);
     }
 }
