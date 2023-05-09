@@ -19,9 +19,10 @@ Image *image_create_sprite(xpm_map_t xpm){
 
 Image *image_create_shape(uint32_t color){
     Image *image = (Image*) malloc(sizeof *image);
+    image->colors = malloc(sizeof *image->colors);
 
     image->type = SHAPE;
-    image->colors = &color;
+    *image->colors = color;
 
     return image;
 }

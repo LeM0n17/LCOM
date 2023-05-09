@@ -13,12 +13,17 @@
 
 /**
  * @brief struct that models a collidable game element, that is, an element with a hitbox
- * @param x the x-coordinate of the Object
- * @param y the y-coordinate of the Object
+ * @param x the x-coordinate of the Object in the current frame
+ * @param y the y-coordinate of the Object in the current frame
+ * @param prev_x the x-coordinate of the Object in the previous frame
+ * @param prev_y the y-coordinate of the Object in the previous frame
+ * @param width the width of the Object
+ * @param height the height of the Object
  * @param image image that represents the visual appearance of the Object
  */
 typedef struct {
     uint16_t x, y;
+    uint16_t prev_x, prev_y;
     uint16_t width, height;
     Image* image;
 } Object;

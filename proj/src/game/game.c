@@ -9,16 +9,16 @@ mouse_data_t mouse_data;
 
 // game logic variables
 Object *player;
-int draw;
-
+bool draw;
 
 int (game_start)(){
     // create the player
     player = malloc(sizeof *player);
 
-    player->x = player->y = 100;
+    player->x = player->prev_x = 100;
+    player->y = player->prev_y = 100;
     player->width = player->height = 50;
-    player->image = image_create_shape(0x000F);
+    player->image = image_create_shape(0xF000);
 
     mouse_data.x = 640; mouse_data.y = 512;
 
@@ -32,7 +32,7 @@ int (game_start)(){
     if (flag) return flag;
 
     // draw player
-    flag = video_draw_rectangle(player->x, player->y, 50, 50, 0x000F);
+    flag = canvas_draw_object(player);
     if (flag) return flag;
 
     return video_switch();
@@ -67,9 +67,6 @@ int (game_loop)(){
     uint32_t timer_mask = BIT(timer_bit_no);
     uint32_t mouse_mask = BIT(mouse_bit_no);
     uint32_t kbd_mask = BIT(kbd_bit_no);
-
-    uint16_t old_x = player->x;
-    uint16_t old_y = player->y;
     
     while (kbd_data.scancodes[kbd_data.two_byte] != KBD_ESC_BREAKCODE){
         flag = driver_receive(ANY, &msg, &ipc_status);
@@ -102,7 +99,7 @@ int (game_loop)(){
                     if (!kbd_data.valid) break;
 
                     process_scancode(player, &kbd_data);
-                    draw = 1; // missing condition to set the draw
+                    draw = true;
                 }
 
                 if (mouse_int){
@@ -117,14 +114,15 @@ int (game_loop)(){
 
                     mouse_parse_packet(&mouse_data);
                     mouse_data.packet_no = 0;
-                    draw = 1;
+
+                    draw = true;
                 }
 
                 if (draw) {
-                    flag = canvas_refresh(player, old_x, old_y);
+                    flag = canvas_refresh(player);
                     if (flag) return flag;
 
-                    old_x = player->x; old_y = player->y;
+                    player->prev_x = player->x; player->prev_y = player->y;
                 }
             }
             default : break;

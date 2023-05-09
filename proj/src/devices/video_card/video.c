@@ -151,14 +151,8 @@ int (video_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t heig
     return 0;
 }
 
-int (video_draw_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y){
-    xpm_image_t image;
-    uint8_t* pixel_colors = xpm_load(xpm, XPM_INDEXED, &image);
-
+int (video_draw_sprite)(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t* colors){
     // check if any of the components overflow
-    uint16_t width = image.width;
-    uint16_t height = image.height;
-
     if (x + width >= mode_info.x_res)
         width = mode_info.x_res - x;
 
@@ -167,7 +161,7 @@ int (video_draw_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y){
 
     for (int y_ = y; y_ < y + height; ++y_){
         for (int x_ = x; x_ < x + width; ++x_){
-            int flag = video_draw_pixel(x_, y_, *pixel_colors++);
+            int flag = video_draw_pixel(x_, y_, *colors++);
             if (flag) return flag;
         }
     }

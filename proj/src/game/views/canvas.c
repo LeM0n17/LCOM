@@ -15,13 +15,19 @@ int (canvas_draw_arena)(){
         video_draw_rectangle(50, 50, 1180, 924, arena_color);
 }
 
-int (canvas_refresh)(Object* obj, uint16_t old_x, uint16_t old_y){
-    if (obj->x == old_x && obj->y == old_y) return 0;
+int (canvas_draw_object)(Object* obj){
+    printf("0x%x\n", *obj->image->colors);
+    return (obj->image->type == SPRITE) ? video_draw_sprite(obj->x, obj->y, obj->width, obj->height, obj->image->colors)
+                                        : video_draw_rectangle(obj->x, obj->y, obj->width, obj->height, *obj->image->colors);
+}
 
-    int flag = video_draw_rectangle(old_x, old_y, 50, 50, arena_color);
+int (canvas_refresh)(Object* obj){
+    if (obj->x == obj->prev_x && obj->y == obj->prev_y) return 0;
+
+    int flag = video_draw_rectangle(obj->prev_x, obj->prev_y, obj->width, obj->height, arena_color);
     if (flag) return flag;
 
-    flag = video_draw_rectangle(obj->x, obj->y, 50, 50, 0x000F);
+    flag = canvas_draw_object(obj);
     if (flag) return flag;
 
     return video_switch();

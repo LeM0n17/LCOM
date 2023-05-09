@@ -10,6 +10,7 @@ uint32_t arena_color;
 void (__canvas__)(uint32_t new_arena_color, uint32_t new_walls_color);
 
 int (canvas_draw_arena)();
-int (canvas_refresh)(Object* obj, uint16_t old_x, uint16_t old_y);
+int (canvas_draw_object)(Object* obj);
+int (canvas_refresh)(Object* obj);
 
 #endif // _LCOM_CANVAS_H_
