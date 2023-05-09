@@ -151,7 +151,7 @@ int (video_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t heig
     return 0;
 }
 
-int (video_draw_sprite)(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t* colors){
+int (video_draw_sprite)(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint16_t* colors){
     // check if any of the components overflow
     if (x + width >= mode_info.x_res)
         width = mode_info.x_res - x;
@@ -161,6 +161,11 @@ int (video_draw_sprite)(uint16_t x, uint16_t y, uint16_t width, uint16_t height,
 
     for (int y_ = y; y_ < y + height; ++y_){
         for (int x_ = x; x_ < x + width; ++x_){
+            if (!*colors){
+                colors++;
+                continue;
+            }
+
             int flag = video_draw_pixel(x_, y_, *colors++);
             if (flag) return flag;
         }

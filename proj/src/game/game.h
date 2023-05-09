@@ -13,6 +13,9 @@
 /* VIEWS */
 #include "views/canvas.h"
 
+/* SPRITES */
+#include "../images/Tank_1_Down.xpm"
+
 #define WAIT 5
 
 /**

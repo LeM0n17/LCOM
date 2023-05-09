@@ -5,7 +5,7 @@ Image *image_create_sprite(xpm_map_t xpm){
     xpm_image_t pixmap;
 
     image->type = SPRITE;
-    image->colors = (uint32_t*) xpm_load(xpm, XPM_5_6_5, &pixmap);
+    image->colors = (uint16_t*) xpm_load(xpm, XPM_5_6_5, &pixmap);
 
     if (image->colors == NULL){
         printf("Could not initialize sprite!\n");
@@ -17,7 +17,7 @@ Image *image_create_sprite(xpm_map_t xpm){
     return image;
 }
 
-Image *image_create_shape(uint32_t color){
+Image *image_create_shape(uint16_t color){
     Image *image = (Image*) malloc(sizeof *image);
     image->colors = malloc(sizeof *image->colors);
 

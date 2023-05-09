@@ -17,8 +17,8 @@ int (game_start)(){
 
     player->x = player->prev_x = 100;
     player->y = player->prev_y = 100;
-    player->width = player->height = 50;
-    player->image = image_create_shape(0xF000);
+    player->width = player->height = 32;
+    player->image = image_create_sprite((xpm_map_t) Tank_1_Down_xpm);
 
     mouse_data.x = 640; mouse_data.y = 512;
 
