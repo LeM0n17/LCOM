@@ -4,15 +4,15 @@
 
 void moveUp(Object* obj, uint16_t speed){
     if(obj->y - speed <= 50){
-        obj->y -= (obj->y - 50);
+        obj->y -= (obj->y - 64);
     } else {
         obj->y -= speed;
     }
 }
 
 void moveDown(Object* obj, uint16_t speed){
-    if (obj->y + obj->height + speed >= 974){
-        obj->y += (974 - obj->y - 50);
+    if (obj->y + (obj->height) + speed >= 974){
+        obj->y += (974 - obj->y - 64);
     }
     else {
         obj->y += speed;
@@ -21,7 +21,7 @@ void moveDown(Object* obj, uint16_t speed){
 
 void moveLeft(Object* obj, uint16_t speed){
     if (obj->x - speed <= 50){
-        obj->x -= (obj->x - 50);
+        obj->x -= (obj->x - 64);
     }
     else {
         obj->x -= speed;
@@ -29,8 +29,8 @@ void moveLeft(Object* obj, uint16_t speed){
 }
 
 void moveRight(Object* obj, uint16_t speed){
-    if (obj->x + obj->width + speed >= 1230){
-        obj->x += (1230 - obj->x - 50);
+    if (obj->x + (obj->width) + speed >= 1230){
+        obj->x += (1230 - obj->x - 64);
     }
     else {
         obj->x += speed;

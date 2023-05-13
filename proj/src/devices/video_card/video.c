@@ -159,15 +159,17 @@ int (video_draw_sprite)(uint16_t x, uint16_t y, uint16_t width, uint16_t height,
     if (y + height >= mode_info.y_res)
         height = mode_info.y_res - y;
 
-    for (int y_ = y; y_ < y + height; ++y_){
-        for (int x_ = x; x_ < x + width; ++x_){
+    for (int y_ = y; y_ < y + height; y_+=2){
+        for (int x_ = x; x_ < x + width; x_+=2){
             if (!*colors){
                 colors++;
                 continue;
             }
 
-            int flag = video_draw_pixel(x_, y_, *colors++);
-            if (flag) return flag;
+            video_draw_pixel(x_, y_ + 1, *colors);
+            video_draw_pixel(x_ + 1, y_, *colors);
+            video_draw_pixel(x_, y_, *colors);
+            video_draw_pixel(x_ + 1, y_ + 1, *colors++);
         }
     }
 
