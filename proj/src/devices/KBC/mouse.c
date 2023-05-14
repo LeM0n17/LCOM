@@ -81,10 +81,12 @@ void mouse_parse_packet(mouse_data_t* mouse_data){
 
     // offsets
     pp->delta_x = (first_byte & MOUSE_X_MSB) ? sign_extend(delta_x) : delta_x;
-    mouse_data->x += min(max(pp->delta_x, 0), 1280);
+    mouse_data->x += pp->delta_x;
+    mouse_data->x = min(max(mouse_data->x, 50), 1180);
 
     pp->delta_y = (first_byte & MOUSE_Y_MSB) ? sign_extend(delta_y) : delta_y;
-    mouse_data->y += min(max(pp->delta_y, 0), 1024);
+    mouse_data->y -= pp->delta_y;
+    mouse_data->y = min(max(mouse_data->y, 50), 974);
 
     // buttons
     pp->mb = (first_byte & MOUSE_MIDDLE_BUTTON);

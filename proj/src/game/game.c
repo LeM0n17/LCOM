@@ -20,7 +20,7 @@ int (game_start)(){
     player->width = player->height = 64;
     player->image = image_create_sprite((xpm_map_t) Tank_1_Down_xpm);
 
-    mouse_data.x = 640; mouse_data.y = 512;
+    mouse_data.x = mouse_data.prev_x = 640; mouse_data.y = mouse_data.prev_y = 512;
 
     int flag = video_start(0x11A);
     if (flag) return flag;
@@ -33,6 +33,10 @@ int (game_start)(){
 
     // draw player
     flag = canvas_draw_object(player);
+    if (flag) return flag;
+
+    //draw crosshair
+    flag = canvas_draw_crosshair(&mouse_data);
     if (flag) return flag;
 
     return video_switch();
@@ -85,7 +89,11 @@ int (game_loop)(){
                 draw = 0;  // responsible for knowing whether to draw or not
 
                 if (timer_int){
-                    
+
+                    int flag = canvas_refresh_crosshair(&mouse_data);
+                    if (flag) return flag;
+
+                    mouse_data.prev_x = mouse_data.x; mouse_data.prev_y = mouse_data.y; 
                 }
 
                 if (kbd_int){
@@ -114,6 +122,11 @@ int (game_loop)(){
 
                     mouse_parse_packet(&mouse_data);
                     mouse_data.packet_no = 0;
+
+                    //test to detect right click
+                    if(mouse_data.pp.lb){
+                        video_draw_rectangle(mouse_data.x, mouse_data.y, 50, 50, 0x964b00);
+                    }
 
                     draw = true;
                 }

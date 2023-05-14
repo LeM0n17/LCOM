@@ -16,9 +16,22 @@ int (canvas_draw_arena)(){
 }
 
 int (canvas_draw_object)(Object* obj){
-    printf("0x%x\n", *obj->image->colors);
     return (obj->image->type == SPRITE) ? video_draw_sprite(obj->x, obj->y, obj->width, obj->height, obj->image->colors)
                                         : video_draw_rectangle(obj->x, obj->y, obj->width, obj->height, *obj->image->colors);
+}
+
+int (canvas_draw_crosshair)(mouse_data_t* mouse_data){
+    return(video_draw_rectangle(mouse_data->x, mouse_data->y, 50, 50, 0xA020F0));
+}
+
+int (canvas_refresh_crosshair)(mouse_data_t* mouse_data){
+    int flag = video_draw_rectangle(mouse_data->prev_x, mouse_data->prev_y, 50, 50, arena_color);
+    if (flag) return flag;
+
+    flag = video_draw_rectangle(mouse_data->x, mouse_data->y, 50, 50, 0xA020F0);
+    if (flag) return flag;
+
+    return video_switch();
 }
 
 int (canvas_refresh)(Object* obj){
