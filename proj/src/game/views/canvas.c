@@ -35,7 +35,7 @@ int (canvas_refresh_crosshair)(mouse_data_t* mouse_data){
 }
 
 int (canvas_refresh)(Object* obj){
-    if (obj->x == obj->prev_x && obj->y == obj->prev_y) return 0;
+    //if (obj->x == obj->prev_x && obj->y == obj->prev_y) return 0;
 
     int flag = video_draw_rectangle(obj->prev_x, obj->prev_y, obj->width, obj->height, arena_color);
     if (flag) return flag;

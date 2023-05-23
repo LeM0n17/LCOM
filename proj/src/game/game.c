@@ -88,12 +88,8 @@ int (game_loop)(){
                 bool mouse_int = msg.m_notify.interrupts & mouse_mask;
                 draw = 0;  // responsible for knowing whether to draw or not
 
-                if (timer_int){
-
-                    int flag = canvas_refresh_crosshair(&mouse_data);
-                    if (flag) return flag;
-
-                    mouse_data.prev_x = mouse_data.x; mouse_data.prev_y = mouse_data.y; 
+                if (timer_int) {
+                    
                 }
 
                 if (kbd_int){
@@ -111,6 +107,7 @@ int (game_loop)(){
                 }
 
                 if (mouse_int){
+                    draw = true;
                     mouse_get_data(&mouse_data, WAIT);
 
                     if (mouse_data.error){
@@ -123,19 +120,21 @@ int (game_loop)(){
                     mouse_parse_packet(&mouse_data);
                     mouse_data.packet_no = 0;
 
-                    //test to detect right click
+                    //test to detect left click
                     if(mouse_data.pp.lb){
                         video_draw_rectangle(mouse_data.x, mouse_data.y, 50, 50, 0x964b00);
                     }
 
-                    draw = true;
                 }
 
                 if (draw) {
                     flag = canvas_refresh(player);
                     if (flag) return flag;
+                    flag = canvas_refresh_crosshair(&mouse_data);
+                    if (flag) return flag;
 
                     player->prev_x = player->x; player->prev_y = player->y;
+                    mouse_data.prev_x = mouse_data.x; mouse_data.prev_y = mouse_data.y; 
                 }
             }
             default : break;
