@@ -2,8 +2,39 @@
 
 #include "list.h"
 
-List create_list(){
-    List list = {.size = 0, .head = NULL, .tail = NULL};
+/*  NOTE FOR TYPES:
+0 = Object
+1 = Bullet  */
+
+void freeElement(ListElement *element, uint8_t type) {
+    if (type == 1) {
+        Bullet* obj = element->value;
+        freeObject(obj->object);
+        free(element->value);
+        return;
+    }
+    free(element->value);
+    free(element);
+}
+
+void freeList(List *list, uint8_t type) {
+    ListElement* ptr = list->head;
+    ListElement* prev = NULL;
+
+    while (ptr != NULL) {
+        prev = ptr;
+        ptr = prev->next;
+        freeElement(prev, type);
+    }
+    
+}
+
+List* create_list(){
+    List* list = malloc(sizeof(* list));
+    list->size = 0;
+    list->head = NULL;
+    list->tail = NULL;
+
     return list;
 }
 
@@ -45,7 +76,7 @@ void push_front(List* list, void* value){
     ++list->size;
 }
 
-void pop_back(List* list){
+void pop_back(List* list, uint8_t type){
     if (!list->size) return;
 
     // update the list
@@ -59,10 +90,10 @@ void pop_back(List* list){
     else
         list->head = NULL;
 
-    free(old_tail);
+    freeElement(old_tail, type);
 }
 
-void pop_front(List* list){
+void pop_front(List* list, uint8_t type){
     if (!list->size) return;
 
     // update the list
@@ -76,5 +107,24 @@ void pop_front(List* list){
     else
         list->tail = NULL;
 
-    free(old_head);
+    freeElement(old_head, type);
+}
+
+void pop_element(List* list, ListElement* element, uint8_t type) {
+    // update the size
+    --list->size;
+
+    // remove the element
+    if (element == list->head) {
+        element->next->prev = NULL;
+        list->head = element->next;
+    } else if (element == list->tail) {
+        element->prev->next = NULL;
+        list->tail = element->prev;
+    } else {
+        element->next->prev = element->prev;
+        element->prev->next = element->next;
+    }
+
+    freeElement(element, type);
 }

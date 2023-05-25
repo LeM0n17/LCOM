@@ -8,17 +8,12 @@ kbd_data_t kbd_data;
 mouse_data_t mouse_data;
 
 // game logic variables
-Object *player;
+GameState *game;
 bool draw;
 
 int (game_start)(){
     // create the player
-    player = malloc(sizeof *player);
-
-    player->x = player->prev_x = 100;
-    player->y = player->prev_y = 100;
-    player->width = player->height = 64;
-    player->image = image_create_sprite((xpm_map_t) Tank_1_Down_xpm);
+    game = createGame();
 
     mouse_data.x = mouse_data.prev_x = 640; mouse_data.y = mouse_data.prev_y = 512;
 
@@ -28,17 +23,8 @@ int (game_start)(){
     // draw arena
     __canvas__(0xFFF0, 0xF09F);
 
-    flag = canvas_draw_arena();
+    flag = canvas_refresh(game);
     if (flag) return flag;
-
-    // draw player
-    flag = canvas_draw_object(player);
-    if (flag) return flag;
-
-    //draw crosshair
-    flag = canvas_draw_crosshair(&mouse_data);
-    if (flag) return flag;
-
     return video_switch();
 }
 
@@ -102,7 +88,7 @@ int (game_loop)(){
 
                     if (!kbd_data.valid) break;
 
-                    process_scancode(player, &kbd_data);
+                    //process_scancode(player, &kbd_data);
                     draw = true;
                 }
 
@@ -122,19 +108,16 @@ int (game_loop)(){
 
                     //test to detect left click
                     if(mouse_data.pp.lb){
-                        video_draw_rectangle(mouse_data.x, mouse_data.y, 50, 50, 0x964b00);
+                        //video_draw_rectangle(mouse_data.x, mouse_data.y, 50, 50, 0x964b00);
                     }
 
                 }
 
                 if (draw) {
-                    flag = canvas_refresh(player);
+                    flag = canvas_refresh(game);
                     if (flag) return flag;
-                    flag = canvas_refresh_crosshair(&mouse_data);
-                    if (flag) return flag;
-
-                    player->prev_x = player->x; player->prev_y = player->y;
-                    mouse_data.prev_x = mouse_data.x; mouse_data.prev_y = mouse_data.y; 
+                    //flag = canvas_refresh_crosshair(&mouse_data);
+                    //if (flag) return flag;
                 }
             }
             default : break;
@@ -159,9 +142,12 @@ int (game_loop)(){
 }
 
 int game_stop(){
-    // delete the player
-    image_destroy(player->image);
-    free(player);
+    // delete the game
+    freeObject(game->player);
+    freeObject(game->mouse);
+    freeList(game->bullets, 1);
+    freeList(game->walls, 0);
+    free(game);
 
     return video_stop();
 }

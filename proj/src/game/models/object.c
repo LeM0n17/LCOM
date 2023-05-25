@@ -53,3 +53,9 @@ void process_scancode(Object* obj, kbd_data_t* data){
         moveRight(obj, 5);
     }
 }
+
+void freeObject(Object* obj) {
+    free(obj->image->colors);
+    free(obj->image);
+    free(obj);
+}

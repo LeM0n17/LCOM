@@ -23,7 +23,6 @@
  */
 typedef struct {
     uint16_t x, y;
-    uint16_t prev_x, prev_y;
     uint16_t width, height;
     Image* image;
 } Object;
@@ -34,5 +33,6 @@ void moveLeft(Object* obj, uint16_t speed);
 void moveRight(Object* obj, uint16_t speed);
 
 void process_scancode(Object* obj, kbd_data_t* data);
+void freeObject(Object *obj);
 
 #endif // _LCOM_OBJECT_H_

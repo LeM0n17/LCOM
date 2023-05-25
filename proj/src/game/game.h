@@ -9,12 +9,13 @@
 
 /* MODELS */
 #include "models/object.h"
+#include "models/gamestate.h"
 
 /* VIEWS */
 #include "views/canvas.h"
 
 /* SPRITES */
-#include "../images/Tank_1_Down.xpm"
+// #include "../images/Tank_1_Down.xpm"
 
 #define WAIT 5
 

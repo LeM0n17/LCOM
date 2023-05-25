@@ -20,27 +20,19 @@ int (canvas_draw_object)(Object* obj){
                                         : video_draw_rectangle(obj->x, obj->y, obj->width, obj->height, *obj->image->colors);
 }
 
-int (canvas_draw_crosshair)(mouse_data_t* mouse_data){
-    return(video_draw_rectangle(mouse_data->x, mouse_data->y, 50, 50, 0xA020F0));
+int (canvas_draw_crosshair)(Object* crosshair){
+    return video_draw_sprite(crosshair->x + crosshair->width/2, crosshair->y + crosshair->height/2, 
+        crosshair->width, crosshair->height, crosshair->image->colors);
 }
 
-int (canvas_refresh_crosshair)(mouse_data_t* mouse_data){
-    int flag = video_draw_rectangle(mouse_data->prev_x, mouse_data->prev_y, 50, 50, arena_color);
+int (canvas_refresh)(GameState* game){
+    int flag = canvas_draw_arena();
     if (flag) return flag;
 
-    flag = video_draw_rectangle(mouse_data->x, mouse_data->y, 50, 50, 0xA020F0);
+    flag = canvas_draw_object(game->player);
     if (flag) return flag;
 
-    return video_switch();
-}
-
-int (canvas_refresh)(Object* obj){
-    //if (obj->x == obj->prev_x && obj->y == obj->prev_y) return 0;
-
-    int flag = video_draw_rectangle(obj->prev_x, obj->prev_y, obj->width, obj->height, arena_color);
-    if (flag) return flag;
-
-    flag = canvas_draw_object(obj);
+    flag = canvas_draw_crosshair(game->mouse);
     if (flag) return flag;
 
     return video_switch();
