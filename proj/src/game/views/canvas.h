@@ -14,6 +14,7 @@ void (__canvas__)(uint32_t new_arena_color, uint32_t new_walls_color);
 int (canvas_draw_arena)();
 int (canvas_draw_object)(Object* obj);
 int (canvas_draw_crosshair)(Object* crosshair);
+int (draw_walls)(List* list);
 int (canvas_refresh)(GameState* game);
 
 #endif // _LCOM_CANVAS_H_

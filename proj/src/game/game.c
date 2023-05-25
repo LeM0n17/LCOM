@@ -21,7 +21,7 @@ int (game_start)(){
     if (flag) return flag;
 
     // draw arena
-    __canvas__(0xFFF0, 0xF09F);
+    __canvas__(0xFFF0, 0x03F0);
 
     flag = canvas_refresh(game);
     if (flag) return flag;
@@ -88,7 +88,7 @@ int (game_loop)(){
 
                     if (!kbd_data.valid) break;
 
-                    //process_scancode(player, &kbd_data);
+                    process_scancode(game->player, &kbd_data);
                     draw = true;
                 }
 
@@ -105,6 +105,9 @@ int (game_loop)(){
 
                     mouse_parse_packet(&mouse_data);
                     mouse_data.packet_no = 0;
+                    game->mouse->x = mouse_data.x;
+                    game->mouse->y = mouse_data.y;
+
 
                     //test to detect left click
                     if(mouse_data.pp.lb){

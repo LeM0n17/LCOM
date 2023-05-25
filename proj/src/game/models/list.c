@@ -54,7 +54,7 @@ void push_back(List* list, void* value){
     new_element->prev = list->tail;
 
     // update the list
-    if (!list->size) list->tail->next = new_element;
+    if (list->size) list->tail->next = new_element;
     if (!list->size) list->head = new_element;
     list->tail = new_element;
 
@@ -69,7 +69,7 @@ void push_front(List* list, void* value){
     new_element->prev = NULL;
 
     // update the list
-    if (!list->size) list->head->prev = new_element;
+    if (list->size) list->head->prev = new_element;
     list->head = new_element;
     if (!list->size) list->tail = new_element;
 

@@ -4,7 +4,8 @@
 
 void moveUp(Object* obj, uint16_t speed){
     if(obj->y - speed <= 50){
-        obj->y -= (obj->y - 64);
+        //obj->y -= (obj->y - 64);
+        return;
     } else {
         obj->y -= speed;
     }
@@ -58,4 +59,12 @@ void freeObject(Object* obj) {
     free(obj->image->colors);
     free(obj->image);
     free(obj);
+}
+
+bool pointInObject(Object *obj, uint16_t x, uint16_t y) {
+    return obj->x < x; // UNFINISHED 
+}
+
+bool checkCollisions(Object *obj1, Object* obj2) {
+
 }

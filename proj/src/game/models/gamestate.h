@@ -10,6 +10,7 @@
 
 #include "../../images/Tank_1_Down.xpm"
 #include "../../images/Cross.xpm"
+#include "../../images/Bullet.xpm"
 
 typedef struct {
     Object *player;
@@ -21,7 +22,7 @@ typedef struct {
 
 GameState* createGame();
 void createBullet(GameState *state, uint16_t xOrigin, uint16_t yOrigin, uint16_t xDestination, uint16_t yDestination, Object *owner);
-void insertWall(GameState *state, Object *wall);
+void insertWall(GameState *state, uint16_t x, uint16_t y, uint16_t width, uint16_t height);
 void gameStep(GameState *state);
 void freeGameState();
 
