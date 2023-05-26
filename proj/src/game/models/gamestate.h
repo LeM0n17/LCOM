@@ -25,5 +25,6 @@ void createBullet(GameState *state, uint16_t xOrigin, uint16_t yOrigin, uint16_t
 void insertWall(GameState *state, uint16_t x, uint16_t y, uint16_t width, uint16_t height);
 void gameStep(GameState *state);
 void freeGameState();
+void process_scancode(GameState* obj, kbd_data_t* data);
 
 #endif // _LCOM_GAME_STATE_H_

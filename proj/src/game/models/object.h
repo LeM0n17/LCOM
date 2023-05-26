@@ -32,7 +32,6 @@ void moveDown(Object* obj, uint16_t speed);
 void moveLeft(Object* obj, uint16_t speed);
 void moveRight(Object* obj, uint16_t speed);
 
-void process_scancode(Object* obj, kbd_data_t* data);
 void freeObject(Object *obj);
 bool pointInObject(Object *obj, uint16_t x, uint16_t y);
 bool checkCollisions(Object *obj1, Object* obj2);

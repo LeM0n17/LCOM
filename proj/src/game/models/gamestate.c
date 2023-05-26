@@ -6,8 +6,8 @@
 GameState* createGame() {
     // CREATE PLAYER
     Object* plr = malloc(sizeof(* plr));
-    plr->x = 100;
-    plr->y = 100;
+    plr->x = 178;
+    plr->y = 50;
     plr->width = plr->height = 64;
     plr->image = image_create_sprite((xpm_map_t) Tank_1_Down_xpm);
 
@@ -58,9 +58,7 @@ void gameStep(GameState *state) {
 
         bullet->object->x += bullet->velocityX;
         bullet->object->y += bullet->velocityY;
-
     }
-    
 }
 
 void createBullet(GameState *state, uint16_t xOrigin, uint16_t yOrigin, uint16_t xDestination, uint16_t yDestination, Object *owner) {
@@ -83,4 +81,36 @@ void createBullet(GameState *state, uint16_t xOrigin, uint16_t yOrigin, uint16_t
     bullet->object = object;
 
     push_back(state->bullets, bullet);
+}
+
+void process_scancode(GameState *state, kbd_data_t* data){
+    uint8_t* scancodes = data->scancodes;
+    uint16_t cacheY = state->player->y;
+    uint16_t cacheX = state->player->x;
+
+    if (MOVE_UP(scancodes)){
+        moveUp(state->player, 5);
+    }
+    else if (MOVE_DOWN(scancodes)){
+        moveDown(state->player, 5);
+    }
+    else if (MOVE_LEFT(scancodes)){
+        moveLeft(state->player, 5);
+    }
+    else if (MOVE_RIGHT(scancodes)){
+        moveRight(state->player, 5);
+    }
+
+    Object* wall = NULL;
+    ListElement* ptr = state->walls->head;
+    while (ptr != NULL) { // COLLISION CHECKING 
+        wall = ptr->value;
+        ptr = ptr->next;
+        if (checkCollisions(state->player, wall)) {
+            state->player->y = cacheY;
+            state->player->x = cacheX;
+            return;
+        }
+    }
+    
 }

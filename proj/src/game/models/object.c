@@ -3,56 +3,19 @@
 #include "object.h"
 
 void moveUp(Object* obj, uint16_t speed){
-    if(obj->y - speed <= 50){
-        //obj->y -= (obj->y - 64);
-        return;
-    } else {
-        obj->y -= speed;
-    }
+    obj->y -= speed;
 }
 
 void moveDown(Object* obj, uint16_t speed){
-    if (obj->y + (obj->height) + speed >= 974){
-        obj->y += (974 - obj->y - 64);
-    }
-    else {
-        obj->y += speed;
-    }
+    obj->y += speed;
 }
 
 void moveLeft(Object* obj, uint16_t speed){
-    if (obj->x - speed <= 50){
-        obj->x -= (obj->x - 64);
-    }
-    else {
-        obj->x -= speed;
-    }
+    obj->x -= speed;
 }
 
 void moveRight(Object* obj, uint16_t speed){
-    if (obj->x + (obj->width) + speed >= 1230){
-        obj->x += (1230 - obj->x - 64);
-    }
-    else {
-        obj->x += speed;
-    }
-}
-
-void process_scancode(Object* obj, kbd_data_t* data){
-    uint8_t* scancodes = data->scancodes;
-
-    if (MOVE_UP(scancodes)){
-        moveUp(obj, 5);
-    }
-    else if (MOVE_DOWN(scancodes)){
-        moveDown(obj, 5);
-    }
-    else if (MOVE_LEFT(scancodes)){
-        moveLeft(obj, 5);
-    }
-    else if (MOVE_RIGHT(scancodes)){
-        moveRight(obj, 5);
-    }
+    obj->x += speed;
 }
 
 void freeObject(Object* obj) {
@@ -62,9 +25,16 @@ void freeObject(Object* obj) {
 }
 
 bool pointInObject(Object *obj, uint16_t x, uint16_t y) {
-    return obj->x < x; // UNFINISHED 
+    return (obj->x < x) && (obj->x + obj->width > x) && (obj->y < y) && (obj->y + obj->height > y); 
 }
 
 bool checkCollisions(Object *obj1, Object* obj2) {
-
+    return pointInObject(obj2, obj1->x, obj1->y) || 
+        pointInObject(obj2, obj1->x + obj1->width, obj1->y) ||
+        pointInObject(obj2, obj1->x, obj1->y + obj1->height) || 
+        pointInObject(obj2, obj1->x + obj1->width, obj1->y + obj1->height) || 
+        pointInObject(obj1, obj2->x, obj2->y) || 
+        pointInObject(obj1, obj2->x + obj2->width, obj2->y) ||
+        pointInObject(obj1, obj2->x, obj2->y + obj2->height) || 
+        pointInObject(obj1, obj2->x + obj2->width, obj2->y + obj2->height);
 }

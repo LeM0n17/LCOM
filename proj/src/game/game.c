@@ -88,7 +88,7 @@ int (game_loop)(){
 
                     if (!kbd_data.valid) break;
 
-                    process_scancode(game->player, &kbd_data);
+                    process_scancode(game, &kbd_data);
                     draw = true;
                 }
 
