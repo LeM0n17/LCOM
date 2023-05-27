@@ -35,14 +35,6 @@ GameState* createGame() {
     return state;
 }
 
-int gcd(int a, int b) {
-    if (b == 0) {
-        return a;
-    } else {
-        return gcd(b, a % b);
-    }
-}
-
 void insertWall(GameState *state, uint16_t x, uint16_t y, uint16_t width, uint16_t height) {
     Object* wall = malloc(sizeof* wall);
     wall->x = x;
@@ -70,13 +62,16 @@ void gameStep(GameState *state) {
         bullet->object->x += bullet->velocityX;
         bullet->object->y += bullet->velocityY;
         
-        bool deleted = false;
-        while (!deleted && (element != NULL)) {
+        while (element != NULL) {
             value = element->value;
             element = element->next;
             if (pointInObject(value, bullet->object->x, bullet->object->y)){
-                pop_element(state->bullets, prev, 1);
-                deleted = true;
+                if (!bullet->bounces)
+                    pop_element(state->bullets, prev, 1);
+                else
+                    bullet_bounce(bullet, value);
+
+                break;
             }
         }
     }
@@ -100,6 +95,7 @@ void createBullet(GameState *state, uint16_t xOrigin, uint16_t yOrigin, uint16_t
     bullet->velocityX = 10 * (xDifference / distance);
     bullet->velocityY = 10 * (yDifference / distance);
     bullet->object = object;
+    bullet->bounces = 3;
 
     push_back(state->bullets, bullet);
 }

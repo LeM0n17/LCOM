@@ -10,8 +10,10 @@ typedef struct {
     Object *owner;
     float velocityX;
     float velocityY;
+    uint8_t bounces;
 } Bullet;
 
 void freeBullet(Bullet* obj);
+void bullet_bounce(Bullet* bullet, Object* obj);
 
 #endif
