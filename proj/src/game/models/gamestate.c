@@ -36,10 +36,10 @@ GameState* createGame() {
 
     // CREATE WALLS
     
-    insertWall(state, 0, 0, 178, 1024); // L
-    insertWall(state, 1280 - 178, 0, 178, 1024); // R
-    insertWall(state, 0, 0, 1280, 50); // T
-    insertWall(state, 0, 1024 - 50, 1280, 50); // B 
+    insertWall(state, 0, 0, 177, 1024); // L
+    insertWall(state, 1280 - 177, 0, 177, 1024); // R
+    insertWall(state, 0, 0, 1280, 49); // T
+    insertWall(state, 0, 1024 - 49, 1280, 49); // B 
 
     return state;
 }
@@ -187,7 +187,7 @@ void process_scancode(GameState *state, kbd_data_t* data){
             state->player->x = cacheX;
         }
     }
-
+    
     wall = NULL;
     ptr = state->walls->head;
     while (ptr != NULL) { // COLLISION CHECKING 
@@ -197,6 +197,6 @@ void process_scancode(GameState *state, kbd_data_t* data){
             state->player_2->y = cacheY_2;
             state->player_2->x = cacheX_2;
         }
-    }
+    } 
 
 }
