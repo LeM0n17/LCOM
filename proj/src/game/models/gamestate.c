@@ -62,19 +62,22 @@ void gameStep(GameState *state) {
     Object *value = NULL;
 
     while (ptr != NULL) {
+        element = state->walls->head;
         bullet = ptr->value;
         prev = ptr;
         ptr = ptr->next;
 
         bullet->object->x += bullet->velocityX;
         bullet->object->y += bullet->velocityY;
-        while (element != NULL) {
+        
+        bool deleted = false;
+        while (!deleted && (element != NULL)) {
             value = element->value;
+            element = element->next;
             if (pointInObject(value, bullet->object->x, bullet->object->y)){
                 pop_element(state->bullets, prev, 1);
-                break;
+                deleted = true;
             }
-            element = element->next;
         }
     }
 }
