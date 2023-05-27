@@ -11,6 +11,7 @@ typedef struct {
     float velocityX;
     float velocityY;
     uint8_t bounces;
+    bool bounced;
 } Bullet;
 
 void freeBullet(Bullet* obj);

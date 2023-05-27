@@ -9,8 +9,6 @@ void freeBullet(Bullet* obj) {
 }
 
 void bullet_bounce(Bullet* bullet, Object* obj){
-    uint8_t bounces_left = bullet->bounces;
-
     // revert the position
     bullet->object->x -= bullet->velocityX;
     bullet->object->y -= bullet->velocityY;
@@ -18,10 +16,12 @@ void bullet_bounce(Bullet* bullet, Object* obj){
     if (pointInObject(obj, bullet->object->x + bullet->velocityX, bullet->object->y)){
         bullet->velocityX *= -1;
         --bullet->bounces;
+        bullet->bounced = true;
     }
 
-    if(pointInObject(obj, bullet->object->x, bullet->object->y + bullet->velocityY)){
+    if (pointInObject(obj, bullet->object->x, bullet->object->y + bullet->velocityY)){
         bullet->velocityY *= -1;
-        bullet->bounces -= (bullet->bounces == bounces_left) ? 1 : 0;
+        bullet->bounces -= !bullet->bounced;
+        bullet->bounced = true;
     }
 }

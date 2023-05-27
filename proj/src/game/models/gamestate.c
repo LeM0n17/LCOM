@@ -67,9 +67,10 @@ void gameStep(GameState *state) {
         bullet = ptr->value;
         prev = ptr;
         ptr = ptr->next;
-
+        
         bullet->object->x += bullet->velocityX;
         bullet->object->y += bullet->velocityY;
+        bullet->bounced = false;
         
         while (element != NULL) {
             value = element->value;
@@ -105,6 +106,7 @@ void createBullet(GameState *state, uint16_t xOrigin, uint16_t yOrigin, uint16_t
     bullet->velocityY = 10 * (yDifference / distance);
     bullet->object = object;
     bullet->bounces = 3;
+    bullet->bounced = false;
 
     push_back(state->bullets, bullet);
 }
