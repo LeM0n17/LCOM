@@ -6,10 +6,24 @@
 #include "../../devices/KBC/keyboard.h"
 #include "../views/image.h"
 
-#define MOVE_UP(scancodes) (scancodes[0] == 0x11 || (scancodes[0] == KBD_2B_SCANCODE && scancodes[1] == 0x48))
-#define MOVE_DOWN(scancodes) (scancodes[0] == 0x1f || (scancodes[0] == KBD_2B_SCANCODE && scancodes[1] == 0x50))
-#define MOVE_LEFT(scancodes) (scancodes[0] == 0x1e || (scancodes[0] == KBD_2B_SCANCODE && scancodes[1] == 0x4b))
-#define MOVE_RIGHT(scancodes) (scancodes[0] == 0x20 || (scancodes[0] == KBD_2B_SCANCODE && scancodes[1] == 0x4d))
+#define MOVE_UP(scancodes) (scancodes[0] == 0x11)
+#define MOVE_DOWN(scancodes) (scancodes[0] == 0x1f)
+#define MOVE_LEFT(scancodes) (scancodes[0] == 0x1e)
+#define MOVE_RIGHT(scancodes) (scancodes[0] == 0x20)
+
+#define MOVE_UP_2(scancodes) (scancodes[0] == KBD_2B_SCANCODE && scancodes[1] == 0x48)
+#define MOVE_DOWN_2(scancodes) (scancodes[0] == KBD_2B_SCANCODE && scancodes[1] == 0x50)
+#define MOVE_LEFT_2(scancodes) (scancodes[0] == KBD_2B_SCANCODE && scancodes[1] == 0x4b)
+#define MOVE_RIGHT_2(scancodes) (scancodes[0] == KBD_2B_SCANCODE && scancodes[1] == 0x4d)
+
+#define SHOOT_RIGHT(scancodes) (scancodes[0] == 0x4d)
+#define SHOOT_LEFT(scancodes) (scancodes[0] == 0x4b)
+#define SHOOT_UP(scancodes) (scancodes[0] == 0x48)
+#define SHOOT_DOWN(scancodes) (scancodes[0] == 0x50)
+#define SHOOT_DOWN_RIGHT(scancodes) (scancodes[0] == 0x51)
+#define SHOOT_UP_RIGHT(scancodes) (scancodes[0] == 0x49)
+#define SHOOT_DOWN_LEFT(scancodes) (scancodes[0] == 0x4f)
+#define SHOOT_UP_LEFT(scancodes) (scancodes[0] == 0x47)
 
 /**
  * @brief struct that models a collidable game element, that is, an element with a hitbox

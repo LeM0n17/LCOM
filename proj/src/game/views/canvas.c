@@ -77,6 +77,9 @@ int (canvas_refresh)(GameState* game){
     flag = canvas_draw_object(game->player);
     if (flag) return flag;
 
+    flag = canvas_draw_object(game->player_2);
+    if (flag) return flag;
+
     flag = draw_bullets(game->bullets);
         if(flag) return flag;
 

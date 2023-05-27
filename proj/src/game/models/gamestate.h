@@ -14,9 +14,11 @@
 
 typedef struct {
     Object *player;
+    Object *player_2;
     Object *mouse;
     List *bullets;
     List *walls;
+    int bullet_cooldown_2;
 
 } GameState;
 
