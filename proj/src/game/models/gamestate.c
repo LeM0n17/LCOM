@@ -33,7 +33,15 @@ GameState* createGame() {
     insertWall(state, 0, 1024 - 50, 1280, 50); // B 
 
     return state;
-} 
+}
+
+int gcd(int a, int b) {
+    if (b == 0) {
+        return a;
+    } else {
+        return gcd(b, a % b);
+    }
+}
 
 void insertWall(GameState *state, uint16_t x, uint16_t y, uint16_t width, uint16_t height) {
     Object* wall = malloc(sizeof* wall);
@@ -50,6 +58,8 @@ void gameStep(GameState *state) {
     Bullet *bullet = NULL;
     ListElement* ptr = state->bullets->head;
     ListElement* prev = NULL;
+    ListElement* element = state->walls->head;
+    Object *value = NULL;
 
     while (ptr != NULL) {
         bullet = ptr->value;
@@ -58,12 +68,20 @@ void gameStep(GameState *state) {
 
         bullet->object->x += bullet->velocityX;
         bullet->object->y += bullet->velocityY;
+        while (element != NULL) {
+            value = element->value;
+            if (pointInObject(value, bullet->object->x, bullet->object->y)){
+                pop_element(state->bullets, prev, 1);
+                break;
+            }
+            element = element->next;
+        }
     }
 }
 
 void createBullet(GameState *state, uint16_t xOrigin, uint16_t yOrigin, uint16_t xDestination, uint16_t yDestination, Object *owner) {
-    uint16_t xDifference = xDestination - xOrigin;
-    uint16_t yDifference = yDestination - yOrigin;
+    int16_t xDifference = xDestination - xOrigin;
+    int16_t yDifference = yDestination - yOrigin;
 
     // Calculate Unit Vector
     float distance = sqrtf(xDifference * xDifference + yDifference * yDifference);

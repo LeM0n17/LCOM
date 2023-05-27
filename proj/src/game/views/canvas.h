@@ -15,6 +15,7 @@ int (canvas_draw_arena)();
 int (canvas_draw_object)(Object* obj);
 int (canvas_draw_crosshair)(Object* crosshair);
 int (draw_walls)(List* list);
+int (draw_bullets)(List* list);
 int (canvas_refresh)(GameState* game);
 
 #endif // _LCOM_CANVAS_H_

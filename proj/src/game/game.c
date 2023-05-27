@@ -32,6 +32,7 @@ int (game_loop)(){
     timer_hook_id = 0;
     kbd_hook_id = 1;
     mouse_hook_id = 2;
+    int bullet_cooldown = 0;
 
     int ipc_status;
     message msg;
@@ -75,7 +76,9 @@ int (game_loop)(){
                 draw = 0;  // responsible for knowing whether to draw or not
 
                 if (timer_int) {
-                    
+                    bullet_cooldown++;
+                    gameStep(game);
+                    draw =  1;
                 }
 
                 if (kbd_int){
@@ -109,9 +112,10 @@ int (game_loop)(){
                     game->mouse->y = mouse_data.y;
 
 
-                    //test to detect left click
-                    if(mouse_data.pp.lb){
-                        //video_draw_rectangle(mouse_data.x, mouse_data.y, 50, 50, 0x964b00);
+                    //fire bullet
+                    if(mouse_data.pp.lb && bullet_cooldown > 60){
+                        createBullet(game, game->player->x + game->player->width / 2, game->player->y + game->player->height / 2, game->mouse->x, game->mouse->y, game->player);
+                        bullet_cooldown = 0;
                     }
 
                 }

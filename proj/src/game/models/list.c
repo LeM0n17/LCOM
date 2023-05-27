@@ -115,7 +115,10 @@ void pop_element(List* list, ListElement* element, uint8_t type) {
     --list->size;
 
     // remove the element
-    if (element == list->head) {
+    if(list->size == 0){
+        list->head = NULL;
+        list->tail = NULL;
+    }else if (element == list->head) {
         element->next->prev = NULL;
         list->head = element->next;
     } else if (element == list->tail) {

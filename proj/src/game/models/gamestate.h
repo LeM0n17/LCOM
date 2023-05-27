@@ -26,5 +26,6 @@ void insertWall(GameState *state, uint16_t x, uint16_t y, uint16_t width, uint16
 void gameStep(GameState *state);
 void freeGameState();
 void process_scancode(GameState* obj, kbd_data_t* data);
+int gcd(int a, int b);
 
 #endif // _LCOM_GAME_STATE_H_
