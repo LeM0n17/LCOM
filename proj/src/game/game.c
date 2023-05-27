@@ -77,7 +77,13 @@ int (game_loop)(){
 
                 if (timer_int) {
                     bullet_cooldown++;
+                    game->bullet_cooldown_2++;
                     gameStep(game);
+
+                    if(mouse_data.pp.lb && bullet_cooldown > 30){
+                        createBullet(game, game->player->x + game->player->width / 2, game->player->y + game->player->height / 2, game->mouse->x, game->mouse->y, game->player);
+                        bullet_cooldown = 0;
+                    }
                     draw =  1;
                 }
 
@@ -113,10 +119,6 @@ int (game_loop)(){
 
 
                     //fire bullet
-                    if(mouse_data.pp.lb && bullet_cooldown > 60){
-                        createBullet(game, game->player->x + game->player->width / 2, game->player->y + game->player->height / 2, game->mouse->x, game->mouse->y, game->player);
-                        bullet_cooldown = 0;
-                    }
 
                 }
 
