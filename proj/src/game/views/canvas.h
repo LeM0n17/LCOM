@@ -23,15 +23,59 @@ uint32_t walls_color;
 uint32_t arena_color;
 uint32_t final_color;
 
+/**
+ * @brief unitialies global variables to values given to the function
+ * 
+ */
 void (__canvas__)(uint32_t new_arena_color, uint32_t new_walls_color, uint32_t new_final_color);
 
+/**
+ * @brief draws the arena
+ * 
+ */
 int (canvas_draw_arena)();
+/**
+ * @brief draws the final screen telling who the winner is
+ * 
+ */
 int (canvas_draw_final)(GameState* state);
+/**
+ * @brief draws given object
+ * 
+ * @param obj object to be drawn
+ * 
+ */
 int (canvas_draw_object)(Object* obj);
+/**
+ * @brief draws the crosshair
+ * 
+ */
 int (canvas_draw_crosshair)(Object* crosshair);
+/**
+ * @brief draws all the walls
+ * 
+ * @param list list of walls to be drawn
+ * 
+ */
 int (canvas_draw_walls)(List* list);
+/**
+ * @brief draws the bullets
+ * 
+ * @param list list of bullets to be drawn
+ * 
+ */
 int (canvas_draw_bullets)(List* list);
+/**
+ * @brief draws all the components of the game
+ * 
+ * @param game gamestate
+ * 
+ */
 int (canvas_refresh_game)(GameState* game);
+/**
+ * @brief starting at a given hour changes the colors of the game
+ * 
+ */
 int (nightTransform)(uint32_t* color);
 
 #endif // _LCOM_CANVAS_H_
