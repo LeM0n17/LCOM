@@ -9,7 +9,7 @@ mouse_data_t mouse_data;
 
 // game logic variables
 GameState *game;
-extern bool draw;
+bool draw;
 
 int (game_start)(){
     // create the player

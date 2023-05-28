@@ -41,13 +41,57 @@ typedef struct {
     Image* image;
 } Object;
 
+/**
+ * @brief changes the position of the object, making it go up
+ * @param obj the object whose position will change
+ * @param speed the speed of the object (i.e. by how much the position will change)
+ */
 void moveUp(Object* obj, uint16_t speed);
+
+/**
+ * @brief changes the position of the object, making it go down
+ * @param obj the object whose position will change
+ * @param speed the speed of the object (i.e. by how much the position will change)
+ */
 void moveDown(Object* obj, uint16_t speed);
+
+/**
+ * @brief changes the position of the object, making it go left
+ * @param obj the object whose position will change
+ * @param speed the speed of the object (i.e. by how much the position will change)
+ */
 void moveLeft(Object* obj, uint16_t speed);
+
+/**
+ * @brief changes the position of the object, making it go right
+ * @param obj the object whose position will change
+ * @param speed the speed of the object (i.e. by how much the position will change)
+ */
 void moveRight(Object* obj, uint16_t speed);
 
+/**
+ * @brief frees the memory allocated by an object
+ * @param obj the object whose memory will be freed
+ */
 void freeObject(Object *obj);
+
+/**
+ * @brief verifies if a point is inside an object
+ * @param obj the object
+ * @param x the x-coordinate of the point
+ * @param y the y-coordinate of the point
+ * @return true if the point is inside the object
+ * @return false if the point is outside the object
+ */
 bool pointInObject(Object *obj, uint16_t x, uint16_t y);
+
+/**
+ * @brief check if two objects are colliding
+ * @param obj1 the first object
+ * @param obj2 the second object
+ * @return true if the objects are colliding
+ * @return false if the objects are not colliding
+ */
 bool checkCollisions(Object *obj1, Object* obj2);
 
 #endif // _LCOM_OBJECT_H_
