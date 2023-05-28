@@ -21,7 +21,7 @@ int (game_start)(){
     if (flag) return flag;
 
     // draw arena
-    __canvas__(0xFFF0, 0x03F0);
+    __canvas__(0xFFF0, 0x03F0, 0x0000);
 
     flag = canvas_refresh(game);
     if (flag) return flag;
@@ -80,6 +80,13 @@ int (game_loop)(){
                     game->bullet_cooldown_2++;
                     gameStep(game);
 
+                    if(game->winner != 0){
+                        canvas_draw_final();
+                        video_switch();
+                        sleep(5);
+                        game_start();
+                    }
+
                     if(mouse_data.pp.lb && bullet_cooldown > 30){
                         createBullet(game, game->player->x + game->player->width / 2, game->player->y + game->player->height / 2, game->mouse->x, game->mouse->y, game->player);
                         bullet_cooldown = 0;
@@ -118,7 +125,7 @@ int (game_loop)(){
                     game->mouse->y = mouse_data.y;
                 }
 
-                if (draw) {
+                if (draw && game->winner == 0) {
                     flag = canvas_refresh(game);
                     if (flag) return flag;
                     //flag = canvas_refresh_crosshair(&mouse_data);

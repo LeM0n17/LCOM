@@ -36,6 +36,7 @@ GameState* createGame() {
     state->player_2 = plr_2;
     state->mouse = mouse;
     state->bullet_cooldown_2 = 0;
+    state->winner = 0;
 
     // CREATE WALLS
     
@@ -74,6 +75,14 @@ void gameStep(GameState *state) {
         bullet->object->x += bullet->velocityX;
         bullet->object->y += bullet->velocityY;
         bullet->bounced = false;
+
+        if(pointInObject(state->player, bullet->object->x, bullet->object->y) && state->player != bullet->owner){
+            state->winner = 2;
+        }
+
+        if(pointInObject(state->player_2, bullet->object->x, bullet->object->y) && state->player_2 != bullet->owner){
+            state->winner = 1;
+        }
         
         while (element != NULL) {
             value = element->value;

@@ -19,10 +19,8 @@ typedef struct {
     List *bullets;
     List *walls;
     int bullet_cooldown_2;
-<<<<<<< HEAD
-=======
+    int winner;
 
->>>>>>> f001505c3a8a08a271382c1487a3b2e90c093ea3
 } GameState;
 
 GameState* createGame();
