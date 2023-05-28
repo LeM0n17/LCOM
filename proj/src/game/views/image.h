@@ -16,6 +16,7 @@ typedef struct {
 
 Image *image_create_sprite(xpm_map_t xpm);
 Image *image_create_shape(uint16_t width, uint16_t height, uint16_t color);
+void image_switch(Image* image, xpm_map_t xpm);
 void image_destroy(Image* image);
 
 #endif // _LCOM_SPRITE_H_

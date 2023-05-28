@@ -116,10 +116,6 @@ int (game_loop)(){
                     mouse_data.packet_no = 0;
                     game->mouse->x = mouse_data.x;
                     game->mouse->y = mouse_data.y;
-
-
-                    //fire bullet
-
                 }
 
                 if (draw) {
