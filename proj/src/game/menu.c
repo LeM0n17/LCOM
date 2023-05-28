@@ -147,15 +147,9 @@ int (menu_loop)(){
     return timer_unsubscribe_int();
 }
 
-int game_stop(){
-    // delete the game
-    freeObject(game->player);
-    freeObject(game->mouse);
-    freeList(game->bullets, 1);
-    freeList(game->walls, 0);
-    free(game);
-
+int menu_stop(){
+    menu_destroy(menu);
     state = EXIT;
-    
+
     return 0;
 }

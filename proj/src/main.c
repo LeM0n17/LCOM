@@ -1,8 +1,9 @@
 #include <stdio.h>
 
+#include "game/game.h"
 #include "game/menu.h"
 
-enum STATE {MENU, START, QUIT};
+typedef enum {MENU, GAME, QUIT} STATE;
 STATE state;
 
 int main(int argc, char *argv[]) {
@@ -39,27 +40,29 @@ int (proj_main_loop)(){
     int flag;
 
     while (state != QUIT){
-        case (MENU) : {
-            flag = menu_start();
-            if (flag) return disable_video(flag);
+        switch (state) {
+            case (MENU) : {
+                flag = menu_start();
+                if (flag) return disable_video(flag);
 
-            flag = menu_loop();
-            if (flag) return disable_video(flag);
+                flag = menu_loop();
+                if (flag) return disable_video(flag);
 
-            flag = menu_stop();
-            if (flag) return disable_video(flag);
+                flag = menu_stop();
+                if (flag) return disable_video(flag);
+            }
+            case (GAME) : {
+                flag = game_start();
+                if (flag) return disable_video(flag);
+
+                flag = game_loop();
+                if (flag) return disable_video(flag);
+
+                flag = game_stop();
+                if (flag) return disable_video(flag);
+            }
+            default : break;
         }
-        case (GAME) : {
-            flag = game_start();
-            if (flag) return disable_video(flag);
-
-            flag = game_loop();
-            if (flag) return disable_video(flag);
-
-            flag = game_stop();
-            if (flag) return disable_video(flag);
-        }
-        default : break;        
     }
 
     return flag;

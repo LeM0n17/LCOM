@@ -2,9 +2,10 @@
 
 #include "canvas.h"
 
-void __canvas__(uint32_t new_arena_color, uint32_t new_walls_color){
+void __canvas__(uint32_t new_arena_color, uint32_t new_walls_color, uint32_t new_final_color){
     arena_color = new_arena_color;
     walls_color = new_walls_color;
+    final_color = new_final_color;
 }
 
 int (nightTransform)(uint32_t* color) {
@@ -24,6 +25,21 @@ int (canvas_draw_arena)(){
     uint32_t color = arena_color;
     if (nightTransform(&color)) return 1;
     return video_draw_rectangle(50, 50, 1180, 924, color);
+}
+
+int (canvas_draw_final)(GameState* state){
+    uint32_t color = final_color;
+    Image* image;
+
+    if(state->winner == 1){
+        image = image_create_sprite((xpm_map_t) P1Win_xpm);
+    } else {
+        image = image_create_sprite((xpm_map_t) P2Win_xpm);
+    }
+
+    int flag = video_draw_rectangle(0, 0, 1280, 1024, color);
+    if(flag) return flag;
+    return video_draw_sprite(250, 250, image->width * 2, image->height * 2, image->colors);
 }
 
 int (canvas_draw_object)(Object* obj){

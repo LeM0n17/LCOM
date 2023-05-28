@@ -71,3 +71,15 @@ void menu_step(menu_state *state){
         quit_button->image = image_create_shape((xpm_image_t) Quit.xpm);
     }
 }
+
+void menu_destroy(menu_state* state) {
+    // delete the start button
+    free(state->start_button->body);
+    free(state->start_button);
+
+    // delete the quit button
+    free(state->quit_button->body);
+    free(state->quit_button);
+
+    free(state);
+}
