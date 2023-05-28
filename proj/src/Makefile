@@ -7,6 +7,7 @@ PROG = proj
 .PATH: ${.CURDIR}/devices/video_card
 .PATH: ${.CURDIR}/game
 .PATH: ${.CURDIR}/game/models
+.PATH: ${.CURDIR}/game/states
 .PATH: ${.CURDIR}/game/views
 
 # source code files to be compiled
