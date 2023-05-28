@@ -48,10 +48,10 @@ int (canvas_draw_object)(Object* obj){
 }
 
 int (canvas_draw_crosshair)(Object* crosshair){
-    return video_draw_sprite(crosshair->x, crosshair->y, crosshair->width, crosshair->height, crosshair->image->colors);
+    return canvas_draw_object(crosshair);
 }
 
-int (draw_walls)(List* list) {
+int (canvas_draw_walls)(List* list) {
     int flag = 0;
     ListElement* element = list->head;
     Object *value = NULL;
@@ -68,7 +68,7 @@ int (draw_walls)(List* list) {
     return 0;
 }
 
-int (draw_bullets)(List* list) {
+int (canvas_draw_bullets)(List* list) {
     int flag = 0;
     ListElement* element = list->head;
     Bullet *value = NULL;
@@ -83,11 +83,11 @@ int (draw_bullets)(List* list) {
     return 0;
 }
 
-int (canvas_refresh)(GameState* game){
+int (canvas_refresh_game)(GameState* game){
     int flag = canvas_draw_arena();
     if (flag) return flag;
 
-    flag = draw_walls(game->walls);
+    flag = canvas_draw_walls(game->walls);
     if (flag) return flag;
 
     flag = canvas_draw_object(game->player);
@@ -96,7 +96,7 @@ int (canvas_refresh)(GameState* game){
     flag = canvas_draw_object(game->player_2);
     if (flag) return flag;
 
-    flag = draw_bullets(game->bullets);
+    flag = canvas_draw_bullets(game->bullets);
         if(flag) return flag;
 
     flag = canvas_draw_crosshair(game->mouse);

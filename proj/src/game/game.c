@@ -9,7 +9,7 @@ mouse_data_t mouse_data;
 
 // game logic variables
 GameState *game;
-bool draw;
+extern bool draw;
 
 int (game_start)(){
     // create the player
@@ -23,8 +23,9 @@ int (game_start)(){
     // draw arena
     __canvas__(0xFFF0, 0x03F0, 0x0000);
 
-    flag = canvas_refresh(game);
+    flag = canvas_refresh_game(game);
     if (flag) return flag;
+
     return video_switch();
 }
 
@@ -126,10 +127,8 @@ int (game_loop)(){
                 }
 
                 if (draw && game->winner == 0) {
-                    flag = canvas_refresh(game);
+                    flag = canvas_refresh_game(game);
                     if (flag) return flag;
-                    //flag = canvas_refresh_crosshair(&mouse_data);
-                    //if (flag) return flag;
                 }
             }
             default : break;
@@ -142,8 +141,6 @@ int (game_loop)(){
 
     flag = mouse_unsubscribe_int();
     if (flag) return flag;
-
-    //printf("%d, %d", mouse_x, mouse_y);
 
     // disable the keyboard
     flag = kbd_unsubscribe_int();

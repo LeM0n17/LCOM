@@ -41,5 +41,5 @@ int (proj_main_loop)(){
     flag = game_stop();
     if (flag) return disable_video(flag);
 
-    return 0;
+    return flag;
 }
