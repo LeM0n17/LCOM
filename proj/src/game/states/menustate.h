@@ -4,6 +4,13 @@
 #include "../models/list.h"
 #include "../models/object.h"
 
+/* IMAGES */
+#include "../../images/Start.xpm"
+#include "../../images/Quit.xpm"
+#include "../../images/Start_Hover.xpm"
+#include "../../images/Quit_Hover.xpm"
+#include "../../images/Cross.xpm"
+
 typedef struct {
     Object* body;
     bool hover;

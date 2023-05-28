@@ -110,10 +110,10 @@ int (canvas_refresh_menu)(menu_state* menu){
     if (flag) return flag;
 
     // draw the buttons
-    for (ListElement *it = menu->buttons->head; it != nullptr; it = it->next){
-        flag = canvas_draw_object((Object*) it->value);
-        if (flag) return flag;
-    }
+    flag = canvas_draw_object((Object*) menu->quit_button->body);
+    if (flag) return flag;
+    flag = canvas_draw_object((Object*) menu->start_button->body);
+    if (flag) return flag;
 
     return video_switch();
 }

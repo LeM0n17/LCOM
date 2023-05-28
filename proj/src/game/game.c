@@ -84,7 +84,7 @@ int (game_loop)(){
                     gameStep(game);
 
                     if(game->winner != 0){
-                        canvas_draw_final();
+                        canvas_draw_final(game);
                         video_switch();
                         sleep(5);
                         game_start();

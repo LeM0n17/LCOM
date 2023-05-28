@@ -17,20 +17,20 @@ menu_state* __menu__() {
     // create the start button
     Object *start_button = malloc(sizeof *start_button);
 
-    start_button->image = image_create_sprite((xpm_map_t) Cross_xpm);
+    start_button->image = image_create_sprite((xpm_map_t) Start_xpm);
     start_button->x = 640;
     start_button->y = 500;
 
-    menu->start_button = start_button;
+    menu->start_button->body = start_button;
 
     // create the quit button
     Object *quit_button = malloc(sizeof *quit_button);
 
-    quit_button->image = image_create_sprite((xpm_map_t) Cross_xpm);
+    quit_button->image = image_create_sprite((xpm_map_t) Quit_xpm);
     quit_button->x = 640;
     quit_button->y = 500;
 
-    menu->quit_button = quit_button;
+    menu->quit_button->body = quit_button;
 
     return menu;  
 }
@@ -40,35 +40,35 @@ void menu_step(menu_state *state){
     Button* quit_button = state->quit_button;
 
     // check if the cursor is hovering over the start button
-    bool collides = checkCollisions(state->cursor, state->start_button);
+    bool collides = checkCollisions(state->cursor, state->start_button->body);
 
-    if (colides && !start_button->hover) {
+    if (collides && !start_button->hover) {
         start_button->hover = true;
 
-        image_destroy(start_button->image);
-        start_button->image = image_create_shape((xpm_image_t) Start_hover.xpm);
+        image_destroy(start_button->body->image);
+        start_button->body->image = image_create_sprite((xpm_map_t) Start_Hover_xpm);
     }
-    else if (!collides && start->button->hover) {
+    else if (!collides && start_button->hover) {
         start_button->hover = false;
 
-        image_destroy(start_button->image);
-        start_button->image = image_create_shape((xpm_image_t) Start.xpm);
+        image_destroy(start_button->body->image);
+        start_button->body->image = image_create_sprite((xpm_map_t) Start_xpm);
     }
 
     // check if the cursor is hovering over the quit button
-    collides = checkCollisions(state->cursor, state->quit_button);
+    collides = checkCollisions(state->cursor, state->quit_button->body);
 
-    if (colides && !quit_button->hover) {
+    if (collides && !quit_button->hover) {
         quit_button->hover = true;
 
-        image_destroy(quit_button->image);
-        quit_button->image = image_create_shape((xpm_image_t) Quit_hover.xpm);
+        image_destroy(quit_button->body->image);
+        quit_button->body->image = image_create_sprite((xpm_map_t) Quit_Hover_xpm);
     }
     else if (!collides && quit_button->hover) {
         quit_button->hover = false;
 
-        image_destroy(quit_button->image);
-        quit_button->image = image_create_shape((xpm_image_t) Quit.xpm);
+        image_destroy(quit_button->body->image);
+        quit_button->body->image = image_create_sprite((xpm_map_t) Quit_xpm);
     }
 }
 

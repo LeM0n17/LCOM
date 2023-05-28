@@ -1,5 +1,5 @@
-#ifndef _LCOM_GAME_H_
-#define _LCOM_GAME_H_
+#ifndef _LCOM_MENU_H_
+#define _LCOM_MENU_H_
 
 /* DEVICES */
 #include "../devices/KBC/keyboard.h"
@@ -15,6 +15,8 @@
 
 /* STATES */
 #include "states/menustate.h"
+
+#include "game.h"
 
 #define WAIT 5
 
@@ -36,4 +38,4 @@ int (menu_loop)();
  */
 int (menu_stop)();
 
-#endif // _LCOM_GAME_H_
+#endif // _LCOM_MENU_H_

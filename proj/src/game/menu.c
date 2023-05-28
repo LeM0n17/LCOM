@@ -24,9 +24,9 @@ int (menu_start)(){
     if (flag) return flag;
 
     // draw arena
-    __canvas__(0xFFF0, 0x03F0);
+    __canvas__(0xFFF0, 0x03F0, 0x0000);
 
-    flag = canvas_refresh(game);
+    flag = canvas_refresh_menu(menu);
     if (flag) return flag;
 
     return video_switch();
@@ -83,12 +83,12 @@ int (menu_loop)(){
                     menu_step(menu);
                     draw = true;
 
-                    if (mouse_data.packet.lb && menu->quit_button->hover) {
-                        state = EXIT;
+                    if (mouse_data.pp.lb && menu->quit_button->hover) {
+                        state = QUIT;
                         break;
                     }
 
-                    if (mouse_data.packet.lb && menu->start_button->hover){
+                    if (mouse_data.pp.lb && menu->start_button->hover){
                         state = GAME;
                         break;
                     }
@@ -149,7 +149,7 @@ int (menu_loop)(){
 
 int menu_stop(){
     menu_destroy(menu);
-    state = EXIT;
+    state = QUIT;
 
     return 0;
 }

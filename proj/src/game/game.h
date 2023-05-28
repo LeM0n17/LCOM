@@ -16,6 +16,9 @@
 /* STATES */
 #include "states/gamestate.h"
 
+/* TYPEDEF */
+typedef enum {MENU, GAME, QUIT} STATE;
+
 #define WAIT 5
 
 /**

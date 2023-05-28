@@ -3,7 +3,6 @@
 #include "game/game.h"
 #include "game/menu.h"
 
-typedef enum {MENU, GAME, QUIT} STATE;
 STATE state;
 
 int main(int argc, char *argv[]) {
