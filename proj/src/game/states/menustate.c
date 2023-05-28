@@ -22,16 +22,26 @@ menu_state* __menu__() {
     start_button->x = 640;
     start_button->y = 500;
 
-    menu->start_button->body = start_button;
+    Button *start = malloc(sizeof *start);
+
+    start->body = start_button;
+    start->hover = false;
+
+    menu->start_button = start;
 
     // create the quit button
     Object *quit_button = malloc(sizeof *quit_button);
 
     quit_button->image = image_create_sprite((xpm_map_t) Quit_xpm);
     quit_button->x = 640;
-    quit_button->y = 500;
+    quit_button->y = 800;
 
-    menu->quit_button->body = quit_button;
+    Button* quit = malloc(sizeof *quit);
+
+    quit->body = quit_button;
+    quit->hover = false;
+
+    menu->quit_button = quit;
 
     return menu;  
 }
