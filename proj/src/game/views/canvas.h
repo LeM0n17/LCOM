@@ -75,7 +75,10 @@ int (canvas_refresh_game)(GameState* game);
 /**
  * @brief starting at a given hour changes the colors of the game
  * 
+ * @param color reference to the color to be changed
+ * 
  */
+
 int (nightTransform)(uint32_t* color);
 
 #endif // _LCOM_CANVAS_H_

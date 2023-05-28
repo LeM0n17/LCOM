@@ -27,10 +27,32 @@ typedef struct {
     uint8_t red_end, green_end, blue_end;
 } video_mode_info;
 
+/**
+ * @brief calls the function get_mode_info, gets information about the given mode
+ * 
+ * @param mode video card mode
+ * 
+ */
 int (video_get_mode_info)(uint16_t mode);
 
+/**
+ * @brief switches the video card mode to the given mode, allocating memory
+ * 
+ * @param mode video card mode
+ * 
+ */
 int (video_start)(uint16_t mode);
+
+/**
+ * @brief switches the video mode back to text mode
+ * 
+ */
 int (video_stop)();
+
+/**
+ * @brief copies the memory from the back buffer to the front buffer
+ * 
+ */
 int (video_switch)();
 
 int (video_draw_pixel)(uint16_t x, uint16_t y, uint32_t color);
@@ -38,6 +60,16 @@ int (video_draw_row)(uint16_t x, uint16_t y, uint16_t len, uint32_t color);
 int (video_draw_col)(uint16_t x, uint16_t y, uint16_t len, uint32_t color);
 int (video_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color);
 
+/**
+ * @brief draws a sprite
+ * 
+ * @param x horizontal position
+ * @param y vertical position
+ * @param width width of the sprite
+ * @param height height of the sprite
+ * @param colors pointer to the array of the sprite's colors
+ * 
+ */
 int (video_draw_sprite)(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint16_t* colors);
 
 #endif // _LCOM_VIDEO_H_
