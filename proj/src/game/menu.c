@@ -149,7 +149,5 @@ int (menu_loop)(){
 
 int menu_stop(){
     menu_destroy(menu);
-    state = QUIT;
-
     return 0;
 }

@@ -49,6 +49,8 @@ int (proj_main_loop)(){
 
                 flag = menu_stop();
                 if (flag) return disable_video(flag);
+
+                break;
             }
             case (GAME) : {
                 flag = game_start();
@@ -59,11 +61,12 @@ int (proj_main_loop)(){
 
                 flag = game_stop();
                 if (flag) return disable_video(flag);
+
+                break;
             }
             default : break;
         }
     }
 
     return flag;
-    
 }

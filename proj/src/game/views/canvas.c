@@ -110,9 +110,14 @@ int (canvas_refresh_menu)(menu_state* menu){
     if (flag) return flag;
 
     // draw the buttons
-    flag = canvas_draw_object((Object*) menu->quit_button->body);
+    flag = canvas_draw_object(menu->quit_button->body);
     if (flag) return flag;
-    flag = canvas_draw_object((Object*) menu->start_button->body);
+
+    flag = canvas_draw_object(menu->start_button->body);
+    if (flag) return flag;
+
+    // draw the cursor
+    flag = canvas_draw_object(menu->cursor);
     if (flag) return flag;
 
     return video_switch();
