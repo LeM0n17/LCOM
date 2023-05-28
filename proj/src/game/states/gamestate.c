@@ -2,10 +2,6 @@
 
 #include "gamestate.h"
 
-<<<<<<< HEAD
-=======
-
->>>>>>> f001505c3a8a08a271382c1487a3b2e90c093ea3
 GameState* createGame() {
     // CREATE PLAYER 1
     Object* plr = malloc(sizeof(* plr));

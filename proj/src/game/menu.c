@@ -1,6 +1,6 @@
 #include <lcom/lcf.h>
 
-#include "game.h"
+#include "menu.h"
 
 extern STATE state;
 
@@ -9,15 +9,16 @@ int timer_hook_id, kbd_hook_id, mouse_hook_id;
 kbd_data_t kbd_data;
 mouse_data_t mouse_data;
 
-// game logic variables
-GameState *game;
-extern bool draw;
+// menu variables
+menu_state *menu;
+bool draw;
 
-int (game_start)(){
+int (menu_start)(){
     // create the player
-    game = createGame();
+    menu = __menu__();
 
-    mouse_data.x = mouse_data.prev_x = 640; mouse_data.y = mouse_data.prev_y = 512;
+    mouse_data.x = mouse_data.prev_x = 640;
+    mouse_data.y = mouse_data.prev_y = 512;
 
     int flag = video_start(0x11A);
     if (flag) return flag;
@@ -25,17 +26,16 @@ int (game_start)(){
     // draw arena
     __canvas__(0xFFF0, 0x03F0);
 
-    flag = canvas_refresh_game(game);
+    flag = canvas_refresh(game);
     if (flag) return flag;
 
     return video_switch();
 }
 
-int (game_loop)(){
+int (menu_loop)(){
     timer_hook_id = 0;
     kbd_hook_id = 1;
     mouse_hook_id = 2;
-    int bullet_cooldown = 0;
 
     int ipc_status;
     message msg;
@@ -76,18 +76,22 @@ int (game_loop)(){
                 bool timer_int = msg.m_notify.interrupts & timer_mask;
                 bool kbd_int = msg.m_notify.interrupts & kbd_mask;
                 bool mouse_int = msg.m_notify.interrupts & mouse_mask;
-                draw = 0;  // responsible for knowing whether to draw or not
+
+                draw = false;
 
                 if (timer_int) {
-                    bullet_cooldown++;
-                    game->bullet_cooldown_2++;
-                    gameStep(game);
+                    menu_step(menu);
+                    draw = true;
 
-                    if(mouse_data.pp.lb && bullet_cooldown > 30){
-                        createBullet(game, game->player->x + game->player->width / 2, game->player->y + game->player->height / 2, game->mouse->x, game->mouse->y, game->player);
-                        bullet_cooldown = 0;
+                    if (mouse_data.packet.lb && menu->quit_button->hover) {
+                        state = EXIT;
+                        break;
                     }
-                    draw =  1;
+
+                    if (mouse_data.packet.lb && menu->start_button->hover){
+                        state = GAME;
+                        break;
+                    }
                 }
 
                 if (kbd_int){
@@ -99,9 +103,6 @@ int (game_loop)(){
                     }
 
                     if (!kbd_data.valid) break;
-
-                    process_scancode(game, &kbd_data);
-                    draw = true;
                 }
 
                 if (mouse_int){
@@ -117,15 +118,14 @@ int (game_loop)(){
 
                     mouse_parse_packet(&mouse_data);
                     mouse_data.packet_no = 0;
-                    game->mouse->x = mouse_data.x;
-                    game->mouse->y = mouse_data.y;
+
+                    menu->cursor->x = mouse_data.x;
+                    menu->cursor->y = mouse_data.y;
                 }
 
                 if (draw) {
-                    flag = canvas_refresh_game(game);
+                    flag = canvas_refresh_menu(menu);
                     if (flag) return flag;
-                    //flag = canvas_refresh_crosshair(&mouse_data);
-                    //if (flag) return flag;
                 }
             }
             default : break;
@@ -155,7 +155,7 @@ int game_stop(){
     freeList(game->walls, 0);
     free(game);
 
-    state = MENU;
+    state = EXIT;
     
-    return video_stop();
+    return 0;
 }

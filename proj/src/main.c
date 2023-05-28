@@ -1,6 +1,9 @@
 #include <stdio.h>
 
-#include "game/game.h"
+#include "game/menu.h"
+
+enum STATE {MENU, START, QUIT};
+STATE state;
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -32,14 +35,33 @@ int disable_video(int flag){
 }
 
 int (proj_main_loop)(){
-    int flag = game_start();
-    if (flag) return disable_video(flag);
+    state = MENU;
+    int flag;
 
-    flag = game_loop();
-    if (flag) return disable_video(flag);
+    while (state != QUIT){
+        case (MENU) : {
+            flag = menu_start();
+            if (flag) return disable_video(flag);
 
-    flag = game_stop();
-    if (flag) return disable_video(flag);
+            flag = menu_loop();
+            if (flag) return disable_video(flag);
 
-    return 0;
+            flag = menu_stop();
+            if (flag) return disable_video(flag);
+        }
+        case (GAME) : {
+            flag = game_start();
+            if (flag) return disable_video(flag);
+
+            flag = game_loop();
+            if (flag) return disable_video(flag);
+
+            flag = game_stop();
+            if (flag) return disable_video(flag);
+        }
+        default : break;        
+    }
+
+    return flag;
+    
 }

@@ -21,7 +21,7 @@ menu_state* __menu__() {
     start_button->x = 640;
     start_button->y = 500;
 
-    push_back(menu->buttons, start_button);
+    menu->start_button = start_button;
 
     // create the quit button
     Object *quit_button = malloc(sizeof *quit_button);
@@ -30,21 +30,44 @@ menu_state* __menu__() {
     quit_button->x = 640;
     quit_button->y = 500;
 
-    push_back(menu->buttons, quit_button);    
+    menu->quit_button = quit_button;
+
+    return menu;  
 }
 
 void menu_step(menu_state *state){
-    List* list = state->buttons;
+    Button* start_button = state->start_button;
+    Button* quit_button = state->quit_button;
 
-    for (ListElement* it = list->head; it != list->tail; it = it->next){
-        Object *button = (Object*) it->value;
+    // check if the cursor is hovering over the start button
+    bool collides = checkCollisions(state->cursor, state->start_button);
 
-        if (!checkCollisions(button, state->cursor))
-            continue;
-        
-        image_destroy(button->image);
-        button->image = image_create_sprite();
+    if (colides && !start_button->hover) {
+        start_button->hover = true;
+
+        image_destroy(start_button->image);
+        start_button->image = image_create_shape((xpm_image_t) Start_hover.xpm);
+    }
+    else if (!collides && start->button->hover) {
+        start_button->hover = false;
+
+        image_destroy(start_button->image);
+        start_button->image = image_create_shape((xpm_image_t) Start.xpm);
+    }
+
+    // check if the cursor is hovering over the quit button
+    collides = checkCollisions(state->cursor, state->quit_button);
+
+    if (colides && !quit_button->hover) {
+        quit_button->hover = true;
+
+        image_destroy(quit_button->image);
+        quit_button->image = image_create_shape((xpm_image_t) Quit_hover.xpm);
+    }
+    else if (!collides && quit_button->hover) {
+        quit_button->hover = false;
+
+        image_destroy(quit_button->image);
+        quit_button->image = image_create_shape((xpm_image_t) Quit.xpm);
     }
 }
-
-

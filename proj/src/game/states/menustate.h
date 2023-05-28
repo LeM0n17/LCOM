@@ -5,7 +5,13 @@
 #include "../models/object.h"
 
 typedef struct {
-    List *buttons;
+    Object* body;
+    bool hover;
+} Button;
+
+typedef struct {
+    Button* start_button;
+    Button* quit_button;
     Object* cursor;
 } menu_state;
 
