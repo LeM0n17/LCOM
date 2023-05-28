@@ -12,10 +12,10 @@ GameState* createGame() {
 
     //CREATE PLAYER 2
     Object* plr_2 = malloc(sizeof(* plr_2));
-    plr_2->x = 178;
-    plr_2->y = 200;
+    plr_2->x = 1038;
+    plr_2->y = 910;
     plr_2->width = plr_2->height = 64;
-    plr_2->image = image_create_sprite((xpm_map_t) Tank_1_Down_xpm);
+    plr_2->image = image_create_sprite((xpm_map_t) Tank_2_Down_xpm);
 
     // CREATE MOUSE
     Object* mouse = malloc(sizeof(* mouse));
@@ -127,29 +127,29 @@ void process_scancode(GameState *state, kbd_data_t* data){
     uint16_t cacheX_2 = state->player_2->x;
 
     if (MOVE_UP_2(scancodes)){
-        moveUp(state->player, 5);
+        moveUp(state->player_2, 5);
     }
     else if (MOVE_DOWN_2(scancodes)){
-        moveDown(state->player, 5);
+        moveDown(state->player_2, 5);
     }
     else if (MOVE_LEFT_2(scancodes)){
-        moveLeft(state->player, 5);
+        moveLeft(state->player_2, 5);
     }
     else if (MOVE_RIGHT_2(scancodes)){
-        moveRight(state->player, 5);
+        moveRight(state->player_2, 5);
     }
 
     if (MOVE_UP(scancodes)){
-        moveUp(state->player_2, 5);
+        moveUp(state->player, 5);
     }
     else if (MOVE_DOWN(scancodes)){
-        moveDown(state->player_2, 5);
+        moveDown(state->player, 5);
     }
     else if (MOVE_LEFT(scancodes)){
-        moveLeft(state->player_2, 5);
+        moveLeft(state->player, 5);
     }
     else if (MOVE_RIGHT(scancodes)){
-        moveRight(state->player_2, 5);
+        moveRight(state->player, 5);
     }
 
     if(state->bullet_cooldown_2 > 30){

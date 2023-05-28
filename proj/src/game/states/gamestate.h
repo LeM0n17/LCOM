@@ -9,6 +9,7 @@
 #include "../models/bullet.h"
 
 #include "../../images/Tank_1_Down.xpm"
+#include "../../images/Tank_2_Down.xpm"
 #include "../../images/Cross.xpm"
 #include "../../images/Bullet.xpm"
 
