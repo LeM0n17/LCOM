@@ -1,6 +1,7 @@
 #include <lcom/lcf.h>
 
 #include "menustate.h"
+#include "../../images/Cross.xpm"
 
 menu_state* __menu__() {
     menu_state *menu = malloc(sizeof* menu);

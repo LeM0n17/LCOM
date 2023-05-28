@@ -9,7 +9,6 @@
 #include "../../images/Quit.xpm"
 #include "../../images/Start_Hover.xpm"
 #include "../../images/Quit_Hover.xpm"
-#include "../../images/Cross.xpm"
 
 typedef struct {
     Object* body;
