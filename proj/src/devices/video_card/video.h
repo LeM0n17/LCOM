@@ -55,9 +55,57 @@ int (video_stop)();
  */
 int (video_switch)();
 
+/**
+ * @brief draws pixel at given position with given color
+ * 
+ * @param x x position of the pixel
+ * 
+ * @param y y position of the pixel
+ * 
+ * @param color color with which to paint the pixel
+ * 
+ */
 int (video_draw_pixel)(uint16_t x, uint16_t y, uint32_t color);
+/**
+ * @brief draws row of pixels starting at given position, with given lenth and given color
+ * 
+ * @param x x starting position
+ * 
+ * @param y y starting position
+ * 
+ * @param len lenth of the row
+ * 
+ * @param color color with which to paint the row
+ * 
+ */
 int (video_draw_row)(uint16_t x, uint16_t y, uint16_t len, uint32_t color);
+/**
+ * @brief draws column of pixels starting at given position, with given lenth and given color
+ * 
+ * @param x x starting position
+ * 
+ * @param y y starting position
+ * 
+ * @param len lenth of the column
+ * 
+ * @param color color with which to paint the column
+ * 
+ */
 int (video_draw_col)(uint16_t x, uint16_t y, uint16_t len, uint32_t color);
+/**
+ * @brief draws rectangle of pixels
+ * 
+ * @param x x starting position
+ * 
+ * @param y y starting position
+ * 
+ * @param width width of the rectangle
+ * 
+ * @param height height of the rectangle
+ * 
+ * @param color color with which to paint the rectangle
+ * 
+ */
 int (video_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color);
 
 /**
