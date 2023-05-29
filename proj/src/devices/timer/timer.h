@@ -11,6 +11,18 @@
 /* IRQ */
 #define TIMER0_IRQ 0
 
+/**
+ * @brief different components of the status of a timer
+ * 
+ * @param timer timer chosen
+ * 
+ * @param init_mode initialisation mode of the timer
+ * 
+ * @param count_mode count_mode of the timer
+ * 
+ * @param bcd tells if the timer is bcd
+ * 
+ */
 typedef struct {
     uint8_t timer;
     enum timer_init init_mode;
