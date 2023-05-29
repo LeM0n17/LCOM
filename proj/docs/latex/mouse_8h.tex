@@ -1,0 +1,160 @@
+\hypertarget{mouse_8h}{}\doxysection{mouse.\+h File Reference}
+\label{mouse_8h}\index{mouse.h@{mouse.h}}
+{\ttfamily \#include $<$lcom/lab4.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}KBC.\+h\char`\"{}}\newline
+Include dependency graph for mouse.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mouse_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=161pt]{mouse_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmouse__data__t}{mouse\+\_\+data\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mouse_8h_a85964cb90343bb1a029b1d1b4229f910}\label{mouse_8h_a85964cb90343bb1a029b1d1b4229f910}} 
+\#define {\bfseries MOUSE\+\_\+\+IRQ}~12
+\item 
+\mbox{\Hypertarget{mouse_8h_a3e3121f843c787bc2d22082f2f7e2f66}\label{mouse_8h_a3e3121f843c787bc2d22082f2f7e2f66}} 
+\#define {\bfseries MOUSE\+\_\+\+SUCCESS\+\_\+\+BYTE}~0x\+FA
+\item 
+\mbox{\Hypertarget{mouse_8h_ac0d5ccbc6b7351690cd945d791d53f25}\label{mouse_8h_ac0d5ccbc6b7351690cd945d791d53f25}} 
+\#define {\bfseries MOUSE\+\_\+\+ERROR\+\_\+\+BYTE}~0x\+FE
+\item 
+\mbox{\Hypertarget{mouse_8h_ac2b00f154a4ab8f8ba831f5f2a4a3610}\label{mouse_8h_ac2b00f154a4ab8f8ba831f5f2a4a3610}} 
+\#define {\bfseries MOUSE\+\_\+\+TWICE\+\_\+\+ERROR\+\_\+\+BYTE}~0x\+FC
+\item 
+\mbox{\Hypertarget{mouse_8h_aa64c0152a698b987038ad779b35ff483}\label{mouse_8h_aa64c0152a698b987038ad779b35ff483}} 
+\#define {\bfseries is\+\_\+first\+\_\+byte}(byte)~(byte \& BIT(3))
+\item 
+\mbox{\Hypertarget{mouse_8h_a4110e0da907998875d150de556f14457}\label{mouse_8h_a4110e0da907998875d150de556f14457}} 
+\#define {\bfseries sign\+\_\+extend}(byte)~(0x\+FF00 $\vert$ byte)
+\item 
+\mbox{\Hypertarget{mouse_8h_aaa583bb56e5e2a9757d5d78a3c83f285}\label{mouse_8h_aaa583bb56e5e2a9757d5d78a3c83f285}} 
+\#define {\bfseries MOUSE\+\_\+\+Y\+\_\+\+OVFL}~BIT(7)
+\item 
+\mbox{\Hypertarget{mouse_8h_ac113431b56bb3f19e4e81c6af3e47a26}\label{mouse_8h_ac113431b56bb3f19e4e81c6af3e47a26}} 
+\#define {\bfseries MOUSE\+\_\+\+X\+\_\+\+OVFL}~BIT(6)
+\item 
+\mbox{\Hypertarget{mouse_8h_a36f55f4cc48222327c3f3f7ba268c2c8}\label{mouse_8h_a36f55f4cc48222327c3f3f7ba268c2c8}} 
+\#define {\bfseries MOUSE\+\_\+\+Y\+\_\+\+MSB}~BIT(5)
+\item 
+\mbox{\Hypertarget{mouse_8h_ac49aa38e0d8da143f439def5e796d08c}\label{mouse_8h_ac49aa38e0d8da143f439def5e796d08c}} 
+\#define {\bfseries MOUSE\+\_\+\+X\+\_\+\+MSB}~BIT(4)
+\item 
+\mbox{\Hypertarget{mouse_8h_af198ea1d58a225ba7fce4ae77e2faa04}\label{mouse_8h_af198ea1d58a225ba7fce4ae77e2faa04}} 
+\#define {\bfseries MOUSE\+\_\+\+MIDDLE\+\_\+\+BUTTON}~BIT(2)
+\item 
+\mbox{\Hypertarget{mouse_8h_aa1092e0190b6ee5bc6733943d970fed7}\label{mouse_8h_aa1092e0190b6ee5bc6733943d970fed7}} 
+\#define {\bfseries MOUSE\+\_\+\+RIGHT\+\_\+\+BUTTON}~BIT(1)
+\item 
+\mbox{\Hypertarget{mouse_8h_afb42537b362f394ed4db90fd34c87330}\label{mouse_8h_afb42537b362f394ed4db90fd34c87330}} 
+\#define {\bfseries MOUSE\+\_\+\+LEFT\+\_\+\+BUTTON}~BIT(0)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int() \mbox{\hyperlink{mouse_8h_a20285aed4b3ef45812cd967532dd09db}{mouse\+\_\+subscribe\+\_\+int}} (uint8\+\_\+t $\ast$bit\+\_\+no)
+\begin{DoxyCompactList}\small\item\em subscribes the mouse interrupts \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{mouse_8h_a3ecf823d80520009ae5e0d76ae40a3c3}{mouse\+\_\+unsubscribe\+\_\+int}} ()
+\begin{DoxyCompactList}\small\item\em unsubscribes mouse interrupts \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{mouse_8h_a7e0b0d9429282501d744353e61967e8c}{mouse\+\_\+enable\+\_\+data\+\_\+report}} (uint32\+\_\+t wait\+\_\+ticks)
+\begin{DoxyCompactList}\small\item\em enables data reporting for the mouse \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{mouse_8h_adfbac8a057141b5b2b53ef154d35f0a2}{mouse\+\_\+disable\+\_\+data\+\_\+report}} (uint32\+\_\+t wait\+\_\+ticks)
+\begin{DoxyCompactList}\small\item\em disables data reporting for the mouse \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{mouse_8h_afb6708dab8eb768afef473d3201276b5}\label{mouse_8h_afb6708dab8eb768afef473d3201276b5}} 
+void() {\bfseries mouse\+\_\+get\+\_\+data} (\mbox{\hyperlink{structmouse__data__t}{mouse\+\_\+data\+\_\+t}} $\ast$data, uint32\+\_\+t wait\+\_\+ticks)
+\begin{DoxyCompactList}\small\item\em reads the newest mouse data \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{mouse_8h_a26db594bad053f7f90bd00a32639c7b0}{mouse\+\_\+parse\+\_\+packet}} (\mbox{\hyperlink{structmouse__data__t}{mouse\+\_\+data\+\_\+t}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em parses the mouse data received from the KBC \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{mouse_8h_adfbac8a057141b5b2b53ef154d35f0a2}\label{mouse_8h_adfbac8a057141b5b2b53ef154d35f0a2}} 
+\index{mouse.h@{mouse.h}!mouse\_disable\_data\_report@{mouse\_disable\_data\_report}}
+\index{mouse\_disable\_data\_report@{mouse\_disable\_data\_report}!mouse.h@{mouse.h}}
+\doxysubsubsection{\texorpdfstring{mouse\_disable\_data\_report()}{mouse\_disable\_data\_report()}}
+{\footnotesize\ttfamily int() mouse\+\_\+disable\+\_\+data\+\_\+report (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{wait\+\_\+ticks }\end{DoxyParamCaption})}
+
+
+
+disables data reporting for the mouse 
+
+\begin{DoxyReturn}{Returns}
+zero on success, non-\/zero otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mouse_8h_a7e0b0d9429282501d744353e61967e8c}\label{mouse_8h_a7e0b0d9429282501d744353e61967e8c}} 
+\index{mouse.h@{mouse.h}!mouse\_enable\_data\_report@{mouse\_enable\_data\_report}}
+\index{mouse\_enable\_data\_report@{mouse\_enable\_data\_report}!mouse.h@{mouse.h}}
+\doxysubsubsection{\texorpdfstring{mouse\_enable\_data\_report()}{mouse\_enable\_data\_report()}}
+{\footnotesize\ttfamily int() mouse\+\_\+enable\+\_\+data\+\_\+report (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{wait\+\_\+ticks }\end{DoxyParamCaption})}
+
+
+
+enables data reporting for the mouse 
+
+\begin{DoxyReturn}{Returns}
+zero on success, non-\/zero otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mouse_8h_a26db594bad053f7f90bd00a32639c7b0}\label{mouse_8h_a26db594bad053f7f90bd00a32639c7b0}} 
+\index{mouse.h@{mouse.h}!mouse\_parse\_packet@{mouse\_parse\_packet}}
+\index{mouse\_parse\_packet@{mouse\_parse\_packet}!mouse.h@{mouse.h}}
+\doxysubsubsection{\texorpdfstring{mouse\_parse\_packet()}{mouse\_parse\_packet()}}
+{\footnotesize\ttfamily void() mouse\+\_\+parse\+\_\+packet (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmouse__data__t}{mouse\+\_\+data\+\_\+t}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+parses the mouse data received from the KBC 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & the data to be parsed \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{mouse_8h_a20285aed4b3ef45812cd967532dd09db}\label{mouse_8h_a20285aed4b3ef45812cd967532dd09db}} 
+\index{mouse.h@{mouse.h}!mouse\_subscribe\_int@{mouse\_subscribe\_int}}
+\index{mouse\_subscribe\_int@{mouse\_subscribe\_int}!mouse.h@{mouse.h}}
+\doxysubsubsection{\texorpdfstring{mouse\_subscribe\_int()}{mouse\_subscribe\_int()}}
+{\footnotesize\ttfamily int() mouse\+\_\+subscribe\+\_\+int (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{bit\+\_\+no }\end{DoxyParamCaption})}
+
+
+
+subscribes the mouse interrupts 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bit\+\_\+no} & pointer to a number representing the position dedicated to the mouse in the interrupt vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+zero on success, non-\/zero otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mouse_8h_a3ecf823d80520009ae5e0d76ae40a3c3}\label{mouse_8h_a3ecf823d80520009ae5e0d76ae40a3c3}} 
+\index{mouse.h@{mouse.h}!mouse\_unsubscribe\_int@{mouse\_unsubscribe\_int}}
+\index{mouse\_unsubscribe\_int@{mouse\_unsubscribe\_int}!mouse.h@{mouse.h}}
+\doxysubsubsection{\texorpdfstring{mouse\_unsubscribe\_int()}{mouse\_unsubscribe\_int()}}
+{\footnotesize\ttfamily int() mouse\+\_\+unsubscribe\+\_\+int (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+unsubscribes mouse interrupts 
+
+\begin{DoxyReturn}{Returns}
+zero on success, non-\/zero otherwise 
+\end{DoxyReturn}

@@ -1,0 +1,91 @@
+\hypertarget{game_8h}{}\doxysection{game.\+h File Reference}
+\label{game_8h}\index{game.h@{game.h}}
+{\ttfamily \#include \char`\"{}../devices/\+KBC/keyboard.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../devices/video\+\_\+card/video.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../devices/\+KBC/mouse.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../devices/timer/timer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}models/object.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}views/canvas.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}states/gamestate.\+h\char`\"{}}\newline
+Include dependency graph for game.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{game_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=128pt]{game_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{game_8h_aef72fe86b7c60b1a86920496456edeac}\label{game_8h_aef72fe86b7c60b1a86920496456edeac}} 
+\#define {\bfseries WAIT}~5
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{game_8h_a275a67132f10277ada3a0ee3d616b647}\label{game_8h_a275a67132f10277ada3a0ee3d616b647}} 
+enum {\bfseries STATE} \{ {\bfseries MENU}
+, {\bfseries GAME}
+, {\bfseries QUIT}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int() \mbox{\hyperlink{game_8h_ad87c6e08f9a857bd2280466d045955a8}{game\+\_\+start}} ()
+\begin{DoxyCompactList}\small\item\em initializes all aspects of the game, including allocating memory for its objects \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{game_8h_a649a26d3c9953d9f2af863e859e0c40d}{game\+\_\+loop}} ()
+\begin{DoxyCompactList}\small\item\em executes the gameplay loop \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{game_8h_a26826d8598eb11212f32a695fcdf2662}{game\+\_\+stop}} ()
+\begin{DoxyCompactList}\small\item\em terminates the game, ensuring all allocated memory is freed \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{game_8h_a649a26d3c9953d9f2af863e859e0c40d}\label{game_8h_a649a26d3c9953d9f2af863e859e0c40d}} 
+\index{game.h@{game.h}!game\_loop@{game\_loop}}
+\index{game\_loop@{game\_loop}!game.h@{game.h}}
+\doxysubsubsection{\texorpdfstring{game\_loop()}{game\_loop()}}
+{\footnotesize\ttfamily int() game\+\_\+loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+executes the gameplay loop 
+
+\begin{DoxyReturn}{Returns}
+zero on success, non-\/zero otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{game_8h_ad87c6e08f9a857bd2280466d045955a8}\label{game_8h_ad87c6e08f9a857bd2280466d045955a8}} 
+\index{game.h@{game.h}!game\_start@{game\_start}}
+\index{game\_start@{game\_start}!game.h@{game.h}}
+\doxysubsubsection{\texorpdfstring{game\_start()}{game\_start()}}
+{\footnotesize\ttfamily int() game\+\_\+start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+initializes all aspects of the game, including allocating memory for its objects 
+
+\begin{DoxyReturn}{Returns}
+zero on success, non-\/zero otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{game_8h_a26826d8598eb11212f32a695fcdf2662}\label{game_8h_a26826d8598eb11212f32a695fcdf2662}} 
+\index{game.h@{game.h}!game\_stop@{game\_stop}}
+\index{game\_stop@{game\_stop}!game.h@{game.h}}
+\doxysubsubsection{\texorpdfstring{game\_stop()}{game\_stop()}}
+{\footnotesize\ttfamily int() game\+\_\+stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+terminates the game, ensuring all allocated memory is freed 
+
+\begin{DoxyReturn}{Returns}
+zero on success, non-\/zero otherwise 
+\end{DoxyReturn}

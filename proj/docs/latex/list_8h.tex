@@ -1,0 +1,250 @@
+\hypertarget{list_8h}{}\doxysection{list.\+h File Reference}
+\label{list_8h}\index{list.h@{list.h}}
+{\ttfamily \#include \char`\"{}bullet.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}object.\+h\char`\"{}}\newline
+Include dependency graph for list.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{list_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=197pt]{list_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_list_element}{List\+Element}}
+\begin{DoxyCompactList}\small\item\em struct that represents an element of a list \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_list}{List}}
+\begin{DoxyCompactList}\small\item\em struct that represents a list \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct_list_element}{List\+Element}} \mbox{\hyperlink{list_8h_a2ed3f05aa04f815668616346419e4e02}{List\+Element}}
+\begin{DoxyCompactList}\small\item\em struct that represents an element of a list \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_list}{List}} $\ast$ \mbox{\hyperlink{list_8h_a08e417a05cc1267b62b6186177286be7}{create\+\_\+list}} ()
+\begin{DoxyCompactList}\small\item\em Create a list object. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{list_8h_a9cb277e25661a2c7c0e74d7d0e59ae85}{get\+\_\+front}} (\mbox{\hyperlink{struct_list}{List}} $\ast$list)
+\begin{DoxyCompactList}\small\item\em returns the element at the front of the list \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{list_8h_ae1d72f07ebfac9a3990e5aca445725a3}{get\+\_\+back}} (\mbox{\hyperlink{struct_list}{List}} $\ast$list)
+\begin{DoxyCompactList}\small\item\em returns the element at the back of the list \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{list_8h_a26df77593aaf55b4afe411d8c76a376b}{push\+\_\+back}} (\mbox{\hyperlink{struct_list}{List}} $\ast$list, void $\ast$value)
+\begin{DoxyCompactList}\small\item\em inserts a new element at the back of the list \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{list_8h_a869d63e817726e0a5b519be9b412d03f}{push\+\_\+front}} (\mbox{\hyperlink{struct_list}{List}} $\ast$list, void $\ast$value)
+\begin{DoxyCompactList}\small\item\em inserts a new element at the front of the list \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{list_8h_a68eafa4f8adeb8d8a85036617ca5feb4}{pop\+\_\+back}} (\mbox{\hyperlink{struct_list}{List}} $\ast$list, uint8\+\_\+t type)
+\begin{DoxyCompactList}\small\item\em removes the element at the back of the list \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{list_8h_a64fa2359e748ab440226296e386bc173}{pop\+\_\+front}} (\mbox{\hyperlink{struct_list}{List}} $\ast$list, uint8\+\_\+t type)
+\begin{DoxyCompactList}\small\item\em removes the element at the front of the list \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{list_8h_a12f7cadd1cd0bb64bdce9e4cc55da9a7}{pop\+\_\+element}} (\mbox{\hyperlink{struct_list}{List}} $\ast$list, \mbox{\hyperlink{struct_list_element}{List\+Element}} $\ast$element, uint8\+\_\+t type)
+\begin{DoxyCompactList}\small\item\em deallocates the memory of a list element \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{list_8h_af4f490633c393d3f50017ad3d4f014ab}{free\+Element}} (\mbox{\hyperlink{struct_list_element}{List\+Element}} $\ast$element, uint8\+\_\+t type)
+\begin{DoxyCompactList}\small\item\em deallocates the memory of a list element \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{list_8h_adf8fa8ec1d79e1b070852860be2f4a57}{free\+List}} (\mbox{\hyperlink{struct_list}{List}} $\ast$list, uint8\+\_\+t type)
+\begin{DoxyCompactList}\small\item\em deallocates the memory of a list \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{list_8h_a2ed3f05aa04f815668616346419e4e02}\label{list_8h_a2ed3f05aa04f815668616346419e4e02}} 
+\index{list.h@{list.h}!ListElement@{ListElement}}
+\index{ListElement@{ListElement}!list.h@{list.h}}
+\doxysubsubsection{\texorpdfstring{ListElement}{ListElement}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_list_element}{List\+Element}} \mbox{\hyperlink{struct_list_element}{List\+Element}}}
+
+
+
+struct that represents an element of a list 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & the actual element \\
+\hline
+{\em prev} & the previous element of the list \\
+\hline
+{\em next} & the next element of the list \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{list_8h_a08e417a05cc1267b62b6186177286be7}\label{list_8h_a08e417a05cc1267b62b6186177286be7}} 
+\index{list.h@{list.h}!create\_list@{create\_list}}
+\index{create\_list@{create\_list}!list.h@{list.h}}
+\doxysubsubsection{\texorpdfstring{create\_list()}{create\_list()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_list}{List}} $\ast$ create\+\_\+list (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Create a list object. 
+
+\begin{DoxyReturn}{Returns}
+List$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{list_8h_af4f490633c393d3f50017ad3d4f014ab}\label{list_8h_af4f490633c393d3f50017ad3d4f014ab}} 
+\index{list.h@{list.h}!freeElement@{freeElement}}
+\index{freeElement@{freeElement}!list.h@{list.h}}
+\doxysubsubsection{\texorpdfstring{freeElement()}{freeElement()}}
+{\footnotesize\ttfamily void free\+Element (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_list_element}{List\+Element}} $\ast$}]{element,  }\item[{uint8\+\_\+t}]{type }\end{DoxyParamCaption})}
+
+
+
+deallocates the memory of a list element 
+
+
+\begin{DoxyParams}{Parameters}
+{\em element} & element whose memory will be freed \\
+\hline
+{\em type} & if 0, the element is an \mbox{\hyperlink{struct_object}{Object}}, otherwise it is a \mbox{\hyperlink{struct_bullet}{Bullet}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{list_8h_adf8fa8ec1d79e1b070852860be2f4a57}\label{list_8h_adf8fa8ec1d79e1b070852860be2f4a57}} 
+\index{list.h@{list.h}!freeList@{freeList}}
+\index{freeList@{freeList}!list.h@{list.h}}
+\doxysubsubsection{\texorpdfstring{freeList()}{freeList()}}
+{\footnotesize\ttfamily void free\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_list}{List}} $\ast$}]{list,  }\item[{uint8\+\_\+t}]{type }\end{DoxyParamCaption})}
+
+
+
+deallocates the memory of a list 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & list whose memory will be freed \\
+\hline
+{\em type} & if 0, the list contained Objects, otherwise it contained Bullets \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{list_8h_ae1d72f07ebfac9a3990e5aca445725a3}\label{list_8h_ae1d72f07ebfac9a3990e5aca445725a3}} 
+\index{list.h@{list.h}!get\_back@{get\_back}}
+\index{get\_back@{get\_back}!list.h@{list.h}}
+\doxysubsubsection{\texorpdfstring{get\_back()}{get\_back()}}
+{\footnotesize\ttfamily void $\ast$ get\+\_\+back (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_list}{List}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+returns the element at the back of the list 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & list whose back element will be returned \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$ the element at the back of the list 
+\end{DoxyReturn}
+\mbox{\Hypertarget{list_8h_a9cb277e25661a2c7c0e74d7d0e59ae85}\label{list_8h_a9cb277e25661a2c7c0e74d7d0e59ae85}} 
+\index{list.h@{list.h}!get\_front@{get\_front}}
+\index{get\_front@{get\_front}!list.h@{list.h}}
+\doxysubsubsection{\texorpdfstring{get\_front()}{get\_front()}}
+{\footnotesize\ttfamily void $\ast$ get\+\_\+front (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_list}{List}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+returns the element at the front of the list 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & list whose front element will be returned \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$ the element at the front of the list 
+\end{DoxyReturn}
+\mbox{\Hypertarget{list_8h_a68eafa4f8adeb8d8a85036617ca5feb4}\label{list_8h_a68eafa4f8adeb8d8a85036617ca5feb4}} 
+\index{list.h@{list.h}!pop\_back@{pop\_back}}
+\index{pop\_back@{pop\_back}!list.h@{list.h}}
+\doxysubsubsection{\texorpdfstring{pop\_back()}{pop\_back()}}
+{\footnotesize\ttfamily void pop\+\_\+back (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_list}{List}} $\ast$}]{list,  }\item[{uint8\+\_\+t}]{type }\end{DoxyParamCaption})}
+
+
+
+removes the element at the back of the list 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & list whose back element will be removed \\
+\hline
+{\em type} & if 0, the element is an \mbox{\hyperlink{struct_object}{Object}}, otherwise it is a \mbox{\hyperlink{struct_bullet}{Bullet}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{list_8h_a12f7cadd1cd0bb64bdce9e4cc55da9a7}\label{list_8h_a12f7cadd1cd0bb64bdce9e4cc55da9a7}} 
+\index{list.h@{list.h}!pop\_element@{pop\_element}}
+\index{pop\_element@{pop\_element}!list.h@{list.h}}
+\doxysubsubsection{\texorpdfstring{pop\_element()}{pop\_element()}}
+{\footnotesize\ttfamily void pop\+\_\+element (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_list}{List}} $\ast$}]{list,  }\item[{\mbox{\hyperlink{struct_list_element}{List\+Element}} $\ast$}]{element,  }\item[{uint8\+\_\+t}]{type }\end{DoxyParamCaption})}
+
+
+
+deallocates the memory of a list element 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & list where the element to be removed belongs \\
+\hline
+{\em element} & element whose memory will be freed \\
+\hline
+{\em type} & if 0, the element is an \mbox{\hyperlink{struct_object}{Object}}, otherwise it is a \mbox{\hyperlink{struct_bullet}{Bullet}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{list_8h_a64fa2359e748ab440226296e386bc173}\label{list_8h_a64fa2359e748ab440226296e386bc173}} 
+\index{list.h@{list.h}!pop\_front@{pop\_front}}
+\index{pop\_front@{pop\_front}!list.h@{list.h}}
+\doxysubsubsection{\texorpdfstring{pop\_front()}{pop\_front()}}
+{\footnotesize\ttfamily void pop\+\_\+front (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_list}{List}} $\ast$}]{list,  }\item[{uint8\+\_\+t}]{type }\end{DoxyParamCaption})}
+
+
+
+removes the element at the front of the list 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & list whose front element will be removed \\
+\hline
+{\em type} & if 0, the element is an \mbox{\hyperlink{struct_object}{Object}}, otherwise it is a \mbox{\hyperlink{struct_bullet}{Bullet}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{list_8h_a26df77593aaf55b4afe411d8c76a376b}\label{list_8h_a26df77593aaf55b4afe411d8c76a376b}} 
+\index{list.h@{list.h}!push\_back@{push\_back}}
+\index{push\_back@{push\_back}!list.h@{list.h}}
+\doxysubsubsection{\texorpdfstring{push\_back()}{push\_back()}}
+{\footnotesize\ttfamily void push\+\_\+back (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_list}{List}} $\ast$}]{list,  }\item[{void $\ast$}]{value }\end{DoxyParamCaption})}
+
+
+
+inserts a new element at the back of the list 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & list wherein the element will be inserted \\
+\hline
+{\em value} & element to be inserted \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{list_8h_a869d63e817726e0a5b519be9b412d03f}\label{list_8h_a869d63e817726e0a5b519be9b412d03f}} 
+\index{list.h@{list.h}!push\_front@{push\_front}}
+\index{push\_front@{push\_front}!list.h@{list.h}}
+\doxysubsubsection{\texorpdfstring{push\_front()}{push\_front()}}
+{\footnotesize\ttfamily void push\+\_\+front (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_list}{List}} $\ast$}]{list,  }\item[{void $\ast$}]{value }\end{DoxyParamCaption})}
+
+
+
+inserts a new element at the front of the list 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & list wherein the element will be inserted \\
+\hline
+{\em value} & element to be inserted \\
+\hline
+\end{DoxyParams}

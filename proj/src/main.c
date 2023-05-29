@@ -1,3 +1,8 @@
+/**
+ * @file main.c
+ *
+ */
+
 #include <stdio.h>
 
 #include "game/game.h"

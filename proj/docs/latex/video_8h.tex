@@ -1,0 +1,219 @@
+\hypertarget{video_8h}{}\doxysection{video.\+h File Reference}
+\label{video_8h}\index{video.h@{video.h}}
+{\ttfamily \#include $<$lcom/lcf.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}VBE.\+h\char`\"{}}\newline
+Include dependency graph for video.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=266pt]{video_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=158pt]{video_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structvideo__mode__info}{video\+\_\+mode\+\_\+info}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{video_8h_ae4df843a3df4a293ed0201517bec416d}\label{video_8h_ae4df843a3df4a293ed0201517bec416d}} 
+\#define {\bfseries RED}(color)~((color \& mode\+\_\+info.\+red\+\_\+mask) $>$$>$ mode\+\_\+info.\+red\+\_\+begin)
+\item 
+\mbox{\Hypertarget{video_8h_aec56d6392cc4be371bbad243b25c8961}\label{video_8h_aec56d6392cc4be371bbad243b25c8961}} 
+\#define {\bfseries GREEN}(color)~((color \& mode\+\_\+info.\+green\+\_\+mask) $>$$>$ mode\+\_\+info.\+green\+\_\+begin)
+\item 
+\mbox{\Hypertarget{video_8h_a751ced6489ac419fd8366883a1959706}\label{video_8h_a751ced6489ac419fd8366883a1959706}} 
+\#define {\bfseries BLUE}(color)~((color \& mode\+\_\+info.\+blue\+\_\+mask) $>$$>$ mode\+\_\+info.\+blue\+\_\+begin)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int() \mbox{\hyperlink{video_8h_aabc11f695261f7992ed99e500e4abd79}{video\+\_\+get\+\_\+mode\+\_\+info}} (uint16\+\_\+t mode)
+\begin{DoxyCompactList}\small\item\em calls the function get\+\_\+mode\+\_\+info, gets information about the given mode \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{video_8h_a5ce0d146cc6430592e59b65d347bf529}{video\+\_\+start}} (uint16\+\_\+t mode)
+\begin{DoxyCompactList}\small\item\em switches the video card mode to the given mode, allocating memory \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{video_8h_a490e591107aaeacf6f77b7b43f4e4692}{video\+\_\+stop}} ()
+\begin{DoxyCompactList}\small\item\em switches the video mode back to text mode \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{video_8h_ac138abcd7620b5021137c53bb0f3e6a7}{video\+\_\+switch}} ()
+\begin{DoxyCompactList}\small\item\em copies the memory from the back buffer to the front buffer \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{video_8h_aab7e6116680ca792cf7e2613b823db78}{video\+\_\+draw\+\_\+pixel}} (uint16\+\_\+t x, uint16\+\_\+t y, uint32\+\_\+t color)
+\begin{DoxyCompactList}\small\item\em draws pixel at given position with given color \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{video_8h_afa9a9098b944bf9abc4b7fee30ccaf0e}{video\+\_\+draw\+\_\+row}} (uint16\+\_\+t x, uint16\+\_\+t y, uint16\+\_\+t len, uint32\+\_\+t color)
+\begin{DoxyCompactList}\small\item\em draws row of pixels starting at given position, with given lenth and given color \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{video_8h_a4e05dd0ddcea5225b5e4d4ac03640233}{video\+\_\+draw\+\_\+col}} (uint16\+\_\+t x, uint16\+\_\+t y, uint16\+\_\+t len, uint32\+\_\+t color)
+\begin{DoxyCompactList}\small\item\em draws column of pixels starting at given position, with given lenth and given color \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{video_8h_ab69808bba8202501311ca99afe05a84e}{video\+\_\+draw\+\_\+rectangle}} (uint16\+\_\+t x, uint16\+\_\+t y, uint16\+\_\+t width, uint16\+\_\+t height, uint32\+\_\+t color)
+\begin{DoxyCompactList}\small\item\em draws rectangle of pixels \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{video_8h_a21f436ca43e99f8db5a9983bb3b6364e}{video\+\_\+draw\+\_\+sprite}} (uint16\+\_\+t x, uint16\+\_\+t y, uint16\+\_\+t width, uint16\+\_\+t height, uint16\+\_\+t $\ast$colors)
+\begin{DoxyCompactList}\small\item\em draws a sprite \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{video_8h_a4e05dd0ddcea5225b5e4d4ac03640233}\label{video_8h_a4e05dd0ddcea5225b5e4d4ac03640233}} 
+\index{video.h@{video.h}!video\_draw\_col@{video\_draw\_col}}
+\index{video\_draw\_col@{video\_draw\_col}!video.h@{video.h}}
+\doxysubsubsection{\texorpdfstring{video\_draw\_col()}{video\_draw\_col()}}
+{\footnotesize\ttfamily int() video\+\_\+draw\+\_\+col (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y,  }\item[{uint16\+\_\+t}]{len,  }\item[{uint32\+\_\+t}]{color }\end{DoxyParamCaption})}
+
+
+
+draws column of pixels starting at given position, with given lenth and given color 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & x starting position\\
+\hline
+{\em y} & y starting position\\
+\hline
+{\em len} & lenth of the column\\
+\hline
+{\em color} & color with which to paint the column \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{video_8h_aab7e6116680ca792cf7e2613b823db78}\label{video_8h_aab7e6116680ca792cf7e2613b823db78}} 
+\index{video.h@{video.h}!video\_draw\_pixel@{video\_draw\_pixel}}
+\index{video\_draw\_pixel@{video\_draw\_pixel}!video.h@{video.h}}
+\doxysubsubsection{\texorpdfstring{video\_draw\_pixel()}{video\_draw\_pixel()}}
+{\footnotesize\ttfamily int() video\+\_\+draw\+\_\+pixel (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y,  }\item[{uint32\+\_\+t}]{color }\end{DoxyParamCaption})}
+
+
+
+draws pixel at given position with given color 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & x position of the pixel\\
+\hline
+{\em y} & y position of the pixel\\
+\hline
+{\em color} & color with which to paint the pixel \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{video_8h_ab69808bba8202501311ca99afe05a84e}\label{video_8h_ab69808bba8202501311ca99afe05a84e}} 
+\index{video.h@{video.h}!video\_draw\_rectangle@{video\_draw\_rectangle}}
+\index{video\_draw\_rectangle@{video\_draw\_rectangle}!video.h@{video.h}}
+\doxysubsubsection{\texorpdfstring{video\_draw\_rectangle()}{video\_draw\_rectangle()}}
+{\footnotesize\ttfamily int() video\+\_\+draw\+\_\+rectangle (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y,  }\item[{uint16\+\_\+t}]{width,  }\item[{uint16\+\_\+t}]{height,  }\item[{uint32\+\_\+t}]{color }\end{DoxyParamCaption})}
+
+
+
+draws rectangle of pixels 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & x starting position\\
+\hline
+{\em y} & y starting position\\
+\hline
+{\em width} & width of the rectangle\\
+\hline
+{\em height} & height of the rectangle\\
+\hline
+{\em color} & color with which to paint the rectangle \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{video_8h_afa9a9098b944bf9abc4b7fee30ccaf0e}\label{video_8h_afa9a9098b944bf9abc4b7fee30ccaf0e}} 
+\index{video.h@{video.h}!video\_draw\_row@{video\_draw\_row}}
+\index{video\_draw\_row@{video\_draw\_row}!video.h@{video.h}}
+\doxysubsubsection{\texorpdfstring{video\_draw\_row()}{video\_draw\_row()}}
+{\footnotesize\ttfamily int() video\+\_\+draw\+\_\+row (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y,  }\item[{uint16\+\_\+t}]{len,  }\item[{uint32\+\_\+t}]{color }\end{DoxyParamCaption})}
+
+
+
+draws row of pixels starting at given position, with given lenth and given color 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & x starting position\\
+\hline
+{\em y} & y starting position\\
+\hline
+{\em len} & lenth of the row\\
+\hline
+{\em color} & color with which to paint the row \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{video_8h_a21f436ca43e99f8db5a9983bb3b6364e}\label{video_8h_a21f436ca43e99f8db5a9983bb3b6364e}} 
+\index{video.h@{video.h}!video\_draw\_sprite@{video\_draw\_sprite}}
+\index{video\_draw\_sprite@{video\_draw\_sprite}!video.h@{video.h}}
+\doxysubsubsection{\texorpdfstring{video\_draw\_sprite()}{video\_draw\_sprite()}}
+{\footnotesize\ttfamily int() video\+\_\+draw\+\_\+sprite (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y,  }\item[{uint16\+\_\+t}]{width,  }\item[{uint16\+\_\+t}]{height,  }\item[{uint16\+\_\+t $\ast$}]{colors }\end{DoxyParamCaption})}
+
+
+
+draws a sprite 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & horizontal position \\
+\hline
+{\em y} & vertical position \\
+\hline
+{\em width} & width of the sprite \\
+\hline
+{\em height} & height of the sprite \\
+\hline
+{\em colors} & pointer to the array of the sprite\textquotesingle{}s colors \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{video_8h_aabc11f695261f7992ed99e500e4abd79}\label{video_8h_aabc11f695261f7992ed99e500e4abd79}} 
+\index{video.h@{video.h}!video\_get\_mode\_info@{video\_get\_mode\_info}}
+\index{video\_get\_mode\_info@{video\_get\_mode\_info}!video.h@{video.h}}
+\doxysubsubsection{\texorpdfstring{video\_get\_mode\_info()}{video\_get\_mode\_info()}}
+{\footnotesize\ttfamily int() video\+\_\+get\+\_\+mode\+\_\+info (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{mode }\end{DoxyParamCaption})}
+
+
+
+calls the function get\+\_\+mode\+\_\+info, gets information about the given mode 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mode} & video card mode \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{video_8h_a5ce0d146cc6430592e59b65d347bf529}\label{video_8h_a5ce0d146cc6430592e59b65d347bf529}} 
+\index{video.h@{video.h}!video\_start@{video\_start}}
+\index{video\_start@{video\_start}!video.h@{video.h}}
+\doxysubsubsection{\texorpdfstring{video\_start()}{video\_start()}}
+{\footnotesize\ttfamily int() video\+\_\+start (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{mode }\end{DoxyParamCaption})}
+
+
+
+switches the video card mode to the given mode, allocating memory 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mode} & video card mode \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{video_8h_a490e591107aaeacf6f77b7b43f4e4692}\label{video_8h_a490e591107aaeacf6f77b7b43f4e4692}} 
+\index{video.h@{video.h}!video\_stop@{video\_stop}}
+\index{video\_stop@{video\_stop}!video.h@{video.h}}
+\doxysubsubsection{\texorpdfstring{video\_stop()}{video\_stop()}}
+{\footnotesize\ttfamily int() video\+\_\+stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+switches the video mode back to text mode 
+
+\mbox{\Hypertarget{video_8h_ac138abcd7620b5021137c53bb0f3e6a7}\label{video_8h_ac138abcd7620b5021137c53bb0f3e6a7}} 
+\index{video.h@{video.h}!video\_switch@{video\_switch}}
+\index{video\_switch@{video\_switch}!video.h@{video.h}}
+\doxysubsubsection{\texorpdfstring{video\_switch()}{video\_switch()}}
+{\footnotesize\ttfamily int() video\+\_\+switch (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+copies the memory from the back buffer to the front buffer 
+

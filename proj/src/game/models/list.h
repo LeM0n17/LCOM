@@ -1,3 +1,8 @@
+/**
+ * @file list.h
+ *
+ */
+
 #ifndef _LCOM_LIST_H_
 #define _LCOM_LIST_H_
 

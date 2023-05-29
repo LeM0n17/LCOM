@@ -1,3 +1,8 @@
+/**
+ * @file object.h
+ *
+ */
+
 #ifndef _LCOM_OBJECT_H_
 #define _LCOM_OBJECT_H_
 

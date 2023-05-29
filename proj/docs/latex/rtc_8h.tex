@@ -1,0 +1,142 @@
+\hypertarget{rtc_8h}{}\doxysection{rtc.\+h File Reference}
+\label{rtc_8h}\index{rtc.h@{rtc.h}}
+{\ttfamily \#include $<$lcom/lcf.\+h$>$}\newline
+Include dependency graph for rtc.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=138pt]{rtc_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=134pt]{rtc_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{rtc_8h_afa3f09c1762f9f93aff6d60d538e7ba1}\label{rtc_8h_afa3f09c1762f9f93aff6d60d538e7ba1}} 
+\#define {\bfseries RTC\+\_\+\+REG\+\_\+\+UPDATING}~10
+\item 
+\mbox{\Hypertarget{rtc_8h_a3205fcd72049a48cde7f5914dbe38b2c}\label{rtc_8h_a3205fcd72049a48cde7f5914dbe38b2c}} 
+\#define {\bfseries RTC\+\_\+\+REG\+\_\+\+COUNTING}~11
+\item 
+\mbox{\Hypertarget{rtc_8h_ac9c66ddea4814d826969f0052b6bc069}\label{rtc_8h_ac9c66ddea4814d826969f0052b6bc069}} 
+\#define {\bfseries RTC\+\_\+\+REG\+\_\+\+INPUT}~0x70
+\item 
+\mbox{\Hypertarget{rtc_8h_a6663d87a9e13f91ff85b654f2ee2e054}\label{rtc_8h_a6663d87a9e13f91ff85b654f2ee2e054}} 
+\#define {\bfseries RTC\+\_\+\+REG\+\_\+\+OUTPUT}~0x71
+\item 
+\mbox{\Hypertarget{rtc_8h_a5853380e2a65a58a833ae56e1a09db09}\label{rtc_8h_a5853380e2a65a58a833ae56e1a09db09}} 
+\#define {\bfseries RTC\+\_\+\+BIN\+\_\+\+MASK}~BIT(2)
+\item 
+\mbox{\Hypertarget{rtc_8h_a43f6540c6d3a78b930f9adad56cf7fac}\label{rtc_8h_a43f6540c6d3a78b930f9adad56cf7fac}} 
+\#define {\bfseries RTC\+\_\+\+SECONDS}~0
+\item 
+\mbox{\Hypertarget{rtc_8h_aabc0725ac27ea93c913a2a4d7cd51ac7}\label{rtc_8h_aabc0725ac27ea93c913a2a4d7cd51ac7}} 
+\#define {\bfseries RTC\+\_\+\+MINUTES}~2
+\item 
+\mbox{\Hypertarget{rtc_8h_a4d74cdb9a956c4f1783ad5aff00dc2b8}\label{rtc_8h_a4d74cdb9a956c4f1783ad5aff00dc2b8}} 
+\#define {\bfseries RTC\+\_\+\+HOURS}~4
+\item 
+\mbox{\Hypertarget{rtc_8h_a8645ae13bb42ddf10d3ca762a8754160}\label{rtc_8h_a8645ae13bb42ddf10d3ca762a8754160}} 
+\#define {\bfseries RTC\+\_\+\+DAY}~7
+\item 
+\mbox{\Hypertarget{rtc_8h_abda0c877ee1a02b8351c0cfe72838088}\label{rtc_8h_abda0c877ee1a02b8351c0cfe72838088}} 
+\#define {\bfseries RTC\+\_\+\+MONTH}~8
+\item 
+\mbox{\Hypertarget{rtc_8h_a1df5568e6774b73aa4c6e59fc40e9147}\label{rtc_8h_a1df5568e6774b73aa4c6e59fc40e9147}} 
+\#define {\bfseries RTC\+\_\+\+YEAR}~9
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{rtc_8h_ac33aecbecb5bb4bde0c0fe4886a82e2a}{get\+RTCOutput}} (uint8\+\_\+t cmd, uint8\+\_\+t $\ast$output)
+\begin{DoxyCompactList}\small\item\em through its variables, it reads the timer\textquotesingle{}s output \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{rtc_8h_a0e62d22688381847db1059881f06cb34}{is\+Binary}} ()
+\begin{DoxyCompactList}\small\item\em checks if the RTC is in binary mode \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{rtc_8h_a51e107b9d9a7d1a1b395f97735a9bf40}{to\+Binary}} (uint8\+\_\+t num)
+\begin{DoxyCompactList}\small\item\em function that converts a RTC output not in binary to its binary counterpart \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rtc_8h_a3a4e50c67005b26aeadb52942a6fe9ee}{read\+RTC}} (uint8\+\_\+t what, uint8\+\_\+t $\ast$result)
+\begin{DoxyCompactList}\small\item\em function that requests the RTC for any information regarding the time \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{rtc_8h_ac33aecbecb5bb4bde0c0fe4886a82e2a}\label{rtc_8h_ac33aecbecb5bb4bde0c0fe4886a82e2a}} 
+\index{rtc.h@{rtc.h}!getRTCOutput@{getRTCOutput}}
+\index{getRTCOutput@{getRTCOutput}!rtc.h@{rtc.h}}
+\doxysubsubsection{\texorpdfstring{getRTCOutput()}{getRTCOutput()}}
+{\footnotesize\ttfamily int get\+RTCOutput (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{cmd,  }\item[{uint8\+\_\+t $\ast$}]{output }\end{DoxyParamCaption})}
+
+
+
+through its variables, it reads the timer\textquotesingle{}s output 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmd} & the command to output to RTC \\
+\hline
+{\em output} & reference to the value the RTC outputs \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int is 0 if the function went smoothly, will not be 0 if any errors occured 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtc_8h_a0e62d22688381847db1059881f06cb34}\label{rtc_8h_a0e62d22688381847db1059881f06cb34}} 
+\index{rtc.h@{rtc.h}!isBinary@{isBinary}}
+\index{isBinary@{isBinary}!rtc.h@{rtc.h}}
+\doxysubsubsection{\texorpdfstring{isBinary()}{isBinary()}}
+{\footnotesize\ttfamily bool is\+Binary (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+checks if the RTC is in binary mode 
+
+\begin{DoxyReturn}{Returns}
+true if it is 
+
+false if it is not 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtc_8h_a3a4e50c67005b26aeadb52942a6fe9ee}\label{rtc_8h_a3a4e50c67005b26aeadb52942a6fe9ee}} 
+\index{rtc.h@{rtc.h}!readRTC@{readRTC}}
+\index{readRTC@{readRTC}!rtc.h@{rtc.h}}
+\doxysubsubsection{\texorpdfstring{readRTC()}{readRTC()}}
+{\footnotesize\ttfamily int read\+RTC (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{what,  }\item[{uint8\+\_\+t $\ast$}]{result }\end{DoxyParamCaption})}
+
+
+
+function that requests the RTC for any information regarding the time 
+
+
+\begin{DoxyParams}{Parameters}
+{\em what} & what the code wants to be returned, using the macros defined at the top of the document. \\
+\hline
+{\em result} & a reference to the variable where the result should be assigned \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int is 0 if the function went smoothly, will not be 0 if any errors occured 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtc_8h_a51e107b9d9a7d1a1b395f97735a9bf40}\label{rtc_8h_a51e107b9d9a7d1a1b395f97735a9bf40}} 
+\index{rtc.h@{rtc.h}!toBinary@{toBinary}}
+\index{toBinary@{toBinary}!rtc.h@{rtc.h}}
+\doxysubsubsection{\texorpdfstring{toBinary()}{toBinary()}}
+{\footnotesize\ttfamily uint8\+\_\+t to\+Binary (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{num }\end{DoxyParamCaption})}
+
+
+
+function that converts a RTC output not in binary to its binary counterpart 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num} & the number to be converted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t the conversion\textquotesingle{}s result 
+\end{DoxyReturn}

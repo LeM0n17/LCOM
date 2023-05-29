@@ -1,3 +1,8 @@
+/**
+ * @file VBE.h
+ *
+ */
+
 #ifndef _LCOM_VBE_H_
 #define _LCOM_VBE_H_
 

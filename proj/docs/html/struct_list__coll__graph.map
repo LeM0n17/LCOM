@@ -1,0 +1,4 @@
+<map id="List" name="List">
+<area shape="rect" id="node1" title="struct that represents a list" alt="" coords="29,117,72,144"/>
+<area shape="rect" id="node2" href="$struct_list_element.html" title="struct that represents an element of a list" alt="" coords="5,8,96,35"/>
+</map>

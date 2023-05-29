@@ -1,0 +1,63 @@
+\hypertarget{_k_b_c_8h_source}{}\doxysection{KBC.\+h}
+\label{_k_b_c_8h_source}\index{KBC.h@{KBC.h}}
+\mbox{\hyperlink{_k_b_c_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ \_LCOM\_KBC\_H\_}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ \_LCOM\_KBC\_H\_}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{i8042_8h}{i8042.h}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ DELAY\_US\ 20000}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{/*\ KBC\ COMMANDS\ */}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ written\ to\ the\ command\ register}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ KBC\_GET\_COMMAND\ 0x20}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ KBC\_SET\_COMMAND\ 0x60}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ KBC\_FORWARD\_TO\_MOUSE\ 0xD4}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ written\ to\ the\ input\ buffer}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ KBC\_ENABLE\_DATA\_REPORT\ 0xF4}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ KBC\_DISABLE\_DATA\_REPORT\ 0xF5}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{bool}\ parity\_error;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{bool}\ timeout\_error;}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{bool}\ mouse\_data;}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{bool}\ ibf\_full;}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{bool}\ obf\_full;}
+\DoxyCodeLine{00040\ \}\ \mbox{\hyperlink{structkbc__status}{kbc\_status}};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{static}\ uint8\_t\ st;\ \textcolor{comment}{//\ status}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ status\ functions}}
+\DoxyCodeLine{00049\ \textcolor{comment}{}int\ (\mbox{\hyperlink{_k_b_c_8h_a13cfd33558643790080ba97a4729560f}{kbc\_get\_status}})();}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00055\ \mbox{\hyperlink{structkbc__status}{kbc\_status}}\ (\mbox{\hyperlink{_k_b_c_8h_a705477e324e2b79edcb695041998700f}{kbc\_parse\_status}})();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00062\ bool\ (\mbox{\hyperlink{_k_b_c_8h_aa9ed47cd314163dd3a4612079bc965ad}{kbc\_can\_write}})();}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00069\ bool\ (\mbox{\hyperlink{_k_b_c_8h_a3cda70b1c4c463a4ec9e650cc7df9fcf}{kbc\_can\_read}})();}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00076\ int\ (\mbox{\hyperlink{_k_b_c_8h_a1dc25eebe0c2eac4f1f01c52c13077a0}{kbc\_delay\_write}})(uint32\_t\ wait\_ticks);}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00083\ int\ (\mbox{\hyperlink{_k_b_c_8h_a1a7e51c69059888862e8a0f6f38aad55}{kbc\_delay\_read}})(uint32\_t\ wait\_ticks);}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{comment}{//\ command\ byte\ functions}}
+\DoxyCodeLine{00092\ \textcolor{comment}{}int\ (\mbox{\hyperlink{_k_b_c_8h_a25fe16cf4df6709d8b83625fbd6fc8aa}{kbc\_write\_command}})(uint8\_t\ command,\ uint32\_t\ wait\_ticks);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00100\ int\ (\mbox{\hyperlink{_k_b_c_8h_a487ec5239960c1996fd6551a781e6fc4}{kbc\_get\_command\_byte}})(uint8\_t*\ command,\ uint32\_t\ wait\_ticks);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00108\ int\ (\mbox{\hyperlink{_k_b_c_8h_a137d1ba2bdd1326eb136341e23f5a568}{kbc\_set\_command\_byte}})(uint8\_t\ command,\ uint32\_t\ wait\_ticks);}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{comment}{//\ I/O\ buffer\ functions}}
+\DoxyCodeLine{00116\ \textcolor{comment}{}int\ (\mbox{\hyperlink{_k_b_c_8h_aece5b12d15658338bc90cb4b66df2ff5}{kbc\_read\_out\_buf}})(uint8\_t*\ data,\ uint32\_t\ wait\_ticks);}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00123\ int\ (\mbox{\hyperlink{_k_b_c_8h_a6eda39c7d5e4c843a778bcd96931f17b}{kbc\_write\_in\_buf}})(uint8\_t\ data,\ uint32\_t\ wait\_ticks);}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_LCOM\_KBC\_H\_}}
+
+\end{DoxyCode}

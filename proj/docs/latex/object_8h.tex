@@ -1,0 +1,226 @@
+\hypertarget{object_8h}{}\doxysection{object.\+h File Reference}
+\label{object_8h}\index{object.h@{object.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../../devices/\+KBC/keyboard.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../views/image.\+h\char`\"{}}\newline
+Include dependency graph for object.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{object_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{object_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_object}{Object}}
+\begin{DoxyCompactList}\small\item\em struct that models a collidable game element, that is, an element with a hitbox \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{object_8h_a03be31315e8f1ace4dd282c37e4e127f}\label{object_8h_a03be31315e8f1ace4dd282c37e4e127f}} 
+\#define {\bfseries MOVE\+\_\+\+UP}(scancodes)~(scancodes\mbox{[}0\mbox{]} == 0x11)
+\item 
+\mbox{\Hypertarget{object_8h_a8aa39d125d93f21fe44bd7aa4781f329}\label{object_8h_a8aa39d125d93f21fe44bd7aa4781f329}} 
+\#define {\bfseries MOVE\+\_\+\+DOWN}(scancodes)~(scancodes\mbox{[}0\mbox{]} == 0x1f)
+\item 
+\mbox{\Hypertarget{object_8h_a6a4e0f6ba3df4f13175c641c3d93a279}\label{object_8h_a6a4e0f6ba3df4f13175c641c3d93a279}} 
+\#define {\bfseries MOVE\+\_\+\+LEFT}(scancodes)~(scancodes\mbox{[}0\mbox{]} == 0x1e)
+\item 
+\mbox{\Hypertarget{object_8h_a2b89fb2f7095c6838307fc4beebfbf83}\label{object_8h_a2b89fb2f7095c6838307fc4beebfbf83}} 
+\#define {\bfseries MOVE\+\_\+\+RIGHT}(scancodes)~(scancodes\mbox{[}0\mbox{]} == 0x20)
+\item 
+\mbox{\Hypertarget{object_8h_a9f8452a8dfe3965bfa5dec26a131f292}\label{object_8h_a9f8452a8dfe3965bfa5dec26a131f292}} 
+\#define {\bfseries MOVE\+\_\+\+UP\+\_\+2}(scancodes)~(scancodes\mbox{[}0\mbox{]} == KBD\+\_\+2\+B\+\_\+\+SCANCODE \&\& scancodes\mbox{[}1\mbox{]} == 0x48)
+\item 
+\mbox{\Hypertarget{object_8h_ae72674ad44a940b94100738759c919a9}\label{object_8h_ae72674ad44a940b94100738759c919a9}} 
+\#define {\bfseries MOVE\+\_\+\+DOWN\+\_\+2}(scancodes)~(scancodes\mbox{[}0\mbox{]} == KBD\+\_\+2\+B\+\_\+\+SCANCODE \&\& scancodes\mbox{[}1\mbox{]} == 0x50)
+\item 
+\mbox{\Hypertarget{object_8h_a33dadabd1e11cc647c2a5e0159112d06}\label{object_8h_a33dadabd1e11cc647c2a5e0159112d06}} 
+\#define {\bfseries MOVE\+\_\+\+LEFT\+\_\+2}(scancodes)~(scancodes\mbox{[}0\mbox{]} == KBD\+\_\+2\+B\+\_\+\+SCANCODE \&\& scancodes\mbox{[}1\mbox{]} == 0x4b)
+\item 
+\mbox{\Hypertarget{object_8h_aaf22c8ca24d166aa70924a561019433b}\label{object_8h_aaf22c8ca24d166aa70924a561019433b}} 
+\#define {\bfseries MOVE\+\_\+\+RIGHT\+\_\+2}(scancodes)~(scancodes\mbox{[}0\mbox{]} == KBD\+\_\+2\+B\+\_\+\+SCANCODE \&\& scancodes\mbox{[}1\mbox{]} == 0x4d)
+\item 
+\mbox{\Hypertarget{object_8h_a7dcaab752de199cc932d3c78493d9cf8}\label{object_8h_a7dcaab752de199cc932d3c78493d9cf8}} 
+\#define {\bfseries SHOOT\+\_\+\+RIGHT}(scancodes)~(scancodes\mbox{[}0\mbox{]} == 0x4d)
+\item 
+\mbox{\Hypertarget{object_8h_af1ee29913eac2c5379a543e9e1210284}\label{object_8h_af1ee29913eac2c5379a543e9e1210284}} 
+\#define {\bfseries SHOOT\+\_\+\+LEFT}(scancodes)~(scancodes\mbox{[}0\mbox{]} == 0x4b)
+\item 
+\mbox{\Hypertarget{object_8h_a3fc339dc68be928ecc0bcec8270972ab}\label{object_8h_a3fc339dc68be928ecc0bcec8270972ab}} 
+\#define {\bfseries SHOOT\+\_\+\+UP}(scancodes)~(scancodes\mbox{[}0\mbox{]} == 0x48)
+\item 
+\mbox{\Hypertarget{object_8h_a08d9490d51354491e23b6f7b1f35f9a4}\label{object_8h_a08d9490d51354491e23b6f7b1f35f9a4}} 
+\#define {\bfseries SHOOT\+\_\+\+DOWN}(scancodes)~(scancodes\mbox{[}0\mbox{]} == 0x50)
+\item 
+\mbox{\Hypertarget{object_8h_aa3bcf0c133311f7524bdf8638ddf01ee}\label{object_8h_aa3bcf0c133311f7524bdf8638ddf01ee}} 
+\#define {\bfseries SHOOT\+\_\+\+DOWN\+\_\+\+RIGHT}(scancodes)~(scancodes\mbox{[}0\mbox{]} == 0x51)
+\item 
+\mbox{\Hypertarget{object_8h_a823cdb626217a8df2340f61a697ce0f5}\label{object_8h_a823cdb626217a8df2340f61a697ce0f5}} 
+\#define {\bfseries SHOOT\+\_\+\+UP\+\_\+\+RIGHT}(scancodes)~(scancodes\mbox{[}0\mbox{]} == 0x49)
+\item 
+\mbox{\Hypertarget{object_8h_a97f5a817b68dd1938be70f2c1c52dd40}\label{object_8h_a97f5a817b68dd1938be70f2c1c52dd40}} 
+\#define {\bfseries SHOOT\+\_\+\+DOWN\+\_\+\+LEFT}(scancodes)~(scancodes\mbox{[}0\mbox{]} == 0x4f)
+\item 
+\mbox{\Hypertarget{object_8h_a937dfbeb5b44244cd300e2f5c0a3cd95}\label{object_8h_a937dfbeb5b44244cd300e2f5c0a3cd95}} 
+\#define {\bfseries SHOOT\+\_\+\+UP\+\_\+\+LEFT}(scancodes)~(scancodes\mbox{[}0\mbox{]} == 0x47)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{object_8h_af98fbe590fedcd34b3abc75bb3afe9ec}{move\+Up}} (\mbox{\hyperlink{struct_object}{Object}} $\ast$obj, uint16\+\_\+t speed)
+\begin{DoxyCompactList}\small\item\em changes the position of the object, making it go up \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{object_8h_a3142da8573974da6ce633fcb0c319f81}{move\+Down}} (\mbox{\hyperlink{struct_object}{Object}} $\ast$obj, uint16\+\_\+t speed)
+\begin{DoxyCompactList}\small\item\em changes the position of the object, making it go down \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{object_8h_a0f29891b59f7027c81dd0178a0ba2010}{move\+Left}} (\mbox{\hyperlink{struct_object}{Object}} $\ast$obj, uint16\+\_\+t speed)
+\begin{DoxyCompactList}\small\item\em changes the position of the object, making it go left \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{object_8h_a2ba8dddeb868b41a9ebd8b765a9a1790}{move\+Right}} (\mbox{\hyperlink{struct_object}{Object}} $\ast$obj, uint16\+\_\+t speed)
+\begin{DoxyCompactList}\small\item\em changes the position of the object, making it go right \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{object_8h_abb7d07cf2d08764e7ff2f7f1bf913475}{free\+Object}} (\mbox{\hyperlink{struct_object}{Object}} $\ast$obj)
+\begin{DoxyCompactList}\small\item\em frees the memory allocated by an object \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{object_8h_a75e4c9d90d2222c4fa4b2cd12b1aa676}{point\+In\+Object}} (\mbox{\hyperlink{struct_object}{Object}} $\ast$obj, uint16\+\_\+t x, uint16\+\_\+t y)
+\begin{DoxyCompactList}\small\item\em verifies if a point is inside an object \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{object_8h_a72fc6a1b4f1e5fb68ad42888192b956e}{check\+Collisions}} (\mbox{\hyperlink{struct_object}{Object}} $\ast$obj1, \mbox{\hyperlink{struct_object}{Object}} $\ast$obj2)
+\begin{DoxyCompactList}\small\item\em check if two objects are colliding \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{object_8h_a72fc6a1b4f1e5fb68ad42888192b956e}\label{object_8h_a72fc6a1b4f1e5fb68ad42888192b956e}} 
+\index{object.h@{object.h}!checkCollisions@{checkCollisions}}
+\index{checkCollisions@{checkCollisions}!object.h@{object.h}}
+\doxysubsubsection{\texorpdfstring{checkCollisions()}{checkCollisions()}}
+{\footnotesize\ttfamily bool check\+Collisions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_object}{Object}} $\ast$}]{obj1,  }\item[{\mbox{\hyperlink{struct_object}{Object}} $\ast$}]{obj2 }\end{DoxyParamCaption})}
+
+
+
+check if two objects are colliding 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj1} & the first object \\
+\hline
+{\em obj2} & the second object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the objects are colliding 
+
+false if the objects are not colliding 
+\end{DoxyReturn}
+\mbox{\Hypertarget{object_8h_abb7d07cf2d08764e7ff2f7f1bf913475}\label{object_8h_abb7d07cf2d08764e7ff2f7f1bf913475}} 
+\index{object.h@{object.h}!freeObject@{freeObject}}
+\index{freeObject@{freeObject}!object.h@{object.h}}
+\doxysubsubsection{\texorpdfstring{freeObject()}{freeObject()}}
+{\footnotesize\ttfamily void free\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_object}{Object}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+
+
+frees the memory allocated by an object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & the object whose memory will be freed \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{object_8h_a3142da8573974da6ce633fcb0c319f81}\label{object_8h_a3142da8573974da6ce633fcb0c319f81}} 
+\index{object.h@{object.h}!moveDown@{moveDown}}
+\index{moveDown@{moveDown}!object.h@{object.h}}
+\doxysubsubsection{\texorpdfstring{moveDown()}{moveDown()}}
+{\footnotesize\ttfamily void move\+Down (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_object}{Object}} $\ast$}]{obj,  }\item[{uint16\+\_\+t}]{speed }\end{DoxyParamCaption})}
+
+
+
+changes the position of the object, making it go down 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & the object whose position will change \\
+\hline
+{\em speed} & the speed of the object (i.\+e. by how much the position will change) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{object_8h_a0f29891b59f7027c81dd0178a0ba2010}\label{object_8h_a0f29891b59f7027c81dd0178a0ba2010}} 
+\index{object.h@{object.h}!moveLeft@{moveLeft}}
+\index{moveLeft@{moveLeft}!object.h@{object.h}}
+\doxysubsubsection{\texorpdfstring{moveLeft()}{moveLeft()}}
+{\footnotesize\ttfamily void move\+Left (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_object}{Object}} $\ast$}]{obj,  }\item[{uint16\+\_\+t}]{speed }\end{DoxyParamCaption})}
+
+
+
+changes the position of the object, making it go left 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & the object whose position will change \\
+\hline
+{\em speed} & the speed of the object (i.\+e. by how much the position will change) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{object_8h_a2ba8dddeb868b41a9ebd8b765a9a1790}\label{object_8h_a2ba8dddeb868b41a9ebd8b765a9a1790}} 
+\index{object.h@{object.h}!moveRight@{moveRight}}
+\index{moveRight@{moveRight}!object.h@{object.h}}
+\doxysubsubsection{\texorpdfstring{moveRight()}{moveRight()}}
+{\footnotesize\ttfamily void move\+Right (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_object}{Object}} $\ast$}]{obj,  }\item[{uint16\+\_\+t}]{speed }\end{DoxyParamCaption})}
+
+
+
+changes the position of the object, making it go right 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & the object whose position will change \\
+\hline
+{\em speed} & the speed of the object (i.\+e. by how much the position will change) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{object_8h_af98fbe590fedcd34b3abc75bb3afe9ec}\label{object_8h_af98fbe590fedcd34b3abc75bb3afe9ec}} 
+\index{object.h@{object.h}!moveUp@{moveUp}}
+\index{moveUp@{moveUp}!object.h@{object.h}}
+\doxysubsubsection{\texorpdfstring{moveUp()}{moveUp()}}
+{\footnotesize\ttfamily void move\+Up (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_object}{Object}} $\ast$}]{obj,  }\item[{uint16\+\_\+t}]{speed }\end{DoxyParamCaption})}
+
+
+
+changes the position of the object, making it go up 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & the object whose position will change \\
+\hline
+{\em speed} & the speed of the object (i.\+e. by how much the position will change) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{object_8h_a75e4c9d90d2222c4fa4b2cd12b1aa676}\label{object_8h_a75e4c9d90d2222c4fa4b2cd12b1aa676}} 
+\index{object.h@{object.h}!pointInObject@{pointInObject}}
+\index{pointInObject@{pointInObject}!object.h@{object.h}}
+\doxysubsubsection{\texorpdfstring{pointInObject()}{pointInObject()}}
+{\footnotesize\ttfamily bool point\+In\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_object}{Object}} $\ast$}]{obj,  }\item[{uint16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y }\end{DoxyParamCaption})}
+
+
+
+verifies if a point is inside an object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & the object \\
+\hline
+{\em x} & the x-\/coordinate of the point \\
+\hline
+{\em y} & the y-\/coordinate of the point \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the point is inside the object 
+
+false if the point is outside the object 
+\end{DoxyReturn}

@@ -1,3 +1,8 @@
+/**
+ * @file mouse.h
+ * 
+ */
+
 #ifndef _LCOM_MOUSE_H_
 #define _LCOM_MOUSE_H_
 
@@ -35,12 +40,40 @@ typedef struct {
     bool error;
 } mouse_data_t;
 
+/**
+ * @brief subscribes the mouse interrupts
+ * @param bit_no pointer to a number representing the position dedicated to the mouse in the interrupt vector
+ * @return zero on success, non-zero otherwise
+ */
 int (mouse_subscribe_int)(uint8_t* bit_no);
+
+/**
+ * @brief unsubscribes mouse interrupts
+ * @return zero on success, non-zero otherwise
+ */
 int (mouse_unsubscribe_int)();
+
+/**
+ * @brief enables data reporting for the mouse
+ * @return zero on success, non-zero otherwise
+ */
 int (mouse_enable_data_report)(uint32_t wait_ticks);
+
+/**
+ * @brief disables data reporting for the mouse
+ * @return zero on success, non-zero otherwise
+ */
 int (mouse_disable_data_report)(uint32_t wait_ticks);
 
+/**
+ * @brief reads the newest mouse data
+ */
 void (mouse_get_data)(mouse_data_t* data, uint32_t wait_ticks);
+
+/**
+ * @brief parses the mouse data received from the KBC
+ * @param data the data to be parsed
+ */
 void (mouse_parse_packet)(mouse_data_t* data);
 
 #endif // _LCOM_MOUSE_H_

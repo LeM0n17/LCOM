@@ -1,0 +1,7 @@
+<map id="GameState" name="GameState">
+<area shape="rect" id="node1" title="struct that handles the state of the game" alt="" coords="42,240,129,267"/>
+<area shape="rect" id="node2" href="$struct_object.html" title="struct that models a collidable game element, that is, an element with a hitbox" alt="" coords="8,117,67,144"/>
+<area shape="rect" id="node3" href="$struct_image.html" title="struct that models an image" alt="" coords="5,8,62,35"/>
+<area shape="rect" id="node4" href="$struct_list.html" title="struct that represents a list" alt="" coords="107,117,149,144"/>
+<area shape="rect" id="node5" href="$struct_list_element.html" title="struct that represents an element of a list" alt="" coords="86,8,176,35"/>
+</map>

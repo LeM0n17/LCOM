@@ -1,3 +1,8 @@
+/**
+ * @file gamestate.h
+ *
+ */
+
 #ifndef _LCOM_GAME_STATE_H_
 #define _LCOM_GAME_STATE_H_
 

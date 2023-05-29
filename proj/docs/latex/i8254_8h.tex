@@ -1,0 +1,64 @@
+\hypertarget{i8254_8h}{}\doxysection{i8254.\+h File Reference}
+\label{i8254_8h}\index{i8254.h@{i8254.h}}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=128pt]{i8254_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{i8254_8h_acf926951944b6cf370b7229ebd50dd8b}\label{i8254_8h_acf926951944b6cf370b7229ebd50dd8b}} 
+\#define {\bfseries TIMER\+\_\+\+FREQ}~1193181
+\item 
+\mbox{\Hypertarget{i8254_8h_a3a6ff9d7c3c32099fc8552320d95baf0}\label{i8254_8h_a3a6ff9d7c3c32099fc8552320d95baf0}} 
+\#define {\bfseries is\+\_\+valid\+\_\+frequency}(freq)~(freq $>$= (TIMER\+\_\+\+FREQ / 0x\+FFFF) \&\& freq $<$= TIMER\+\_\+\+FREQ)
+\item 
+\mbox{\Hypertarget{i8254_8h_a2c9e596737fc7590ff2da769126bf48b}\label{i8254_8h_a2c9e596737fc7590ff2da769126bf48b}} 
+\#define {\bfseries TIMER}(n)~(0x40 + n)
+\item 
+\mbox{\Hypertarget{i8254_8h_a282832448fb0281ef53d243c1cd48491}\label{i8254_8h_a282832448fb0281ef53d243c1cd48491}} 
+\#define {\bfseries TIMER\+\_\+\+CTRL}~0x43
+\item 
+\mbox{\Hypertarget{i8254_8h_ae8d62a142b0377cbf0dd7bf10b0e3d09}\label{i8254_8h_ae8d62a142b0377cbf0dd7bf10b0e3d09}} 
+\#define {\bfseries TIMER\+\_\+\+SEL}(n)~(n $<$$<$ 6)
+\item 
+\mbox{\Hypertarget{i8254_8h_af2c06fc9b9cae773994717a56edaf054}\label{i8254_8h_af2c06fc9b9cae773994717a56edaf054}} 
+\#define {\bfseries get\+\_\+timer}(st)~(st \& (BIT(7) $\vert$ BIT(6)) $>$$>$ 6)
+\item 
+\mbox{\Hypertarget{i8254_8h_ac18cb814ebd0d67235392c330e0e3504}\label{i8254_8h_ac18cb814ebd0d67235392c330e0e3504}} 
+\#define {\bfseries TIMER\+\_\+\+LSB}~BIT(4)
+\item 
+\mbox{\Hypertarget{i8254_8h_a2a8a6d363c612d756cd8d78480f7cd04}\label{i8254_8h_a2a8a6d363c612d756cd8d78480f7cd04}} 
+\#define {\bfseries TIMER\+\_\+\+MSB}~BIT(5)
+\item 
+\mbox{\Hypertarget{i8254_8h_a8c0f1933323274c765e23837e4fbc8c7}\label{i8254_8h_a8c0f1933323274c765e23837e4fbc8c7}} 
+\#define {\bfseries TIMER\+\_\+\+LSB\+\_\+\+MSB}~(TIMER\+\_\+\+LSB $\vert$ TIMER\+\_\+\+MSB)
+\item 
+\mbox{\Hypertarget{i8254_8h_a0bcf145d7a2d3a391335f4afecfe11d6}\label{i8254_8h_a0bcf145d7a2d3a391335f4afecfe11d6}} 
+\#define {\bfseries get\+\_\+count\+\_\+init}(st)~((st \& TIMER\+\_\+\+LSB\+\_\+\+MSB) $>$$>$ 4)
+\item 
+\mbox{\Hypertarget{i8254_8h_a2ba4d71e81daaa06833cd9016cbbf00c}\label{i8254_8h_a2ba4d71e81daaa06833cd9016cbbf00c}} 
+\#define {\bfseries get\+\_\+count\+\_\+mode}(st)~((st \& 0xF) $>$$>$ 1)
+\item 
+\mbox{\Hypertarget{i8254_8h_a325b992a371d5d981c4eceff42fa5956}\label{i8254_8h_a325b992a371d5d981c4eceff42fa5956}} 
+\#define {\bfseries TIMER\+\_\+\+BCD}~BIT(1)
+\item 
+\mbox{\Hypertarget{i8254_8h_aaeaa8e427ba4a26875d98f94c8c09b63}\label{i8254_8h_aaeaa8e427ba4a26875d98f94c8c09b63}} 
+\#define {\bfseries is\+\_\+\+BCD}(st)~(st \& BIT(0))
+\item 
+\mbox{\Hypertarget{i8254_8h_a192ee74def1946b28ec9dbdf6b677adf}\label{i8254_8h_a192ee74def1946b28ec9dbdf6b677adf}} 
+\#define {\bfseries TIMER\+\_\+\+RB}~(BIT(6) $\vert$ BIT(7))
+\item 
+\mbox{\Hypertarget{i8254_8h_a59aa6e497b921d8e84f2df9905a657dd}\label{i8254_8h_a59aa6e497b921d8e84f2df9905a657dd}} 
+\#define {\bfseries TIMER\+\_\+\+RB\+\_\+\+COUNT}~BIT(5)
+\item 
+\mbox{\Hypertarget{i8254_8h_a664679cfd6d6237ed26f34d9bc5b2ea1}\label{i8254_8h_a664679cfd6d6237ed26f34d9bc5b2ea1}} 
+\#define {\bfseries TIMER\+\_\+\+RB\+\_\+\+STATUS}~BIT(4)
+\item 
+\mbox{\Hypertarget{i8254_8h_af598b17740e07842a0545af512714711}\label{i8254_8h_af598b17740e07842a0545af512714711}} 
+\#define {\bfseries TIMER\+\_\+\+RB\+\_\+\+SEL}(n)~BIT(n + 1)
+\end{DoxyCompactItemize}

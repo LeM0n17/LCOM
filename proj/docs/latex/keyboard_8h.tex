@@ -1,0 +1,124 @@
+\hypertarget{keyboard_8h}{}\doxysection{keyboard.\+h File Reference}
+\label{keyboard_8h}\index{keyboard.h@{keyboard.h}}
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}KBC.\+h\char`\"{}}\newline
+Include dependency graph for keyboard.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{keyboard_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{keyboard_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structkbd__data__t}{kbd\+\_\+data\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em struct representing the keyboard data the KBC provides \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{keyboard_8h_a5c1072213ce8d8cd43628c4319ae0391}\label{keyboard_8h_a5c1072213ce8d8cd43628c4319ae0391}} 
+\#define {\bfseries KBD\+\_\+\+IRQ}~1
+\item 
+\mbox{\Hypertarget{keyboard_8h_a76d2d6623a9c64e50a746ed8498dbdac}\label{keyboard_8h_a76d2d6623a9c64e50a746ed8498dbdac}} 
+\#define {\bfseries KBD\+\_\+\+ESC\+\_\+\+BREAKCODE}~0x81
+\item 
+\mbox{\Hypertarget{keyboard_8h_a2c6ef0f7458ed68c084dd85757e67745}\label{keyboard_8h_a2c6ef0f7458ed68c084dd85757e67745}} 
+\#define {\bfseries KBD\+\_\+2\+B\+\_\+\+SCANCODE}~0x\+E0
+\item 
+\mbox{\Hypertarget{keyboard_8h_ad876ecd29446f74a03385a34d8a978c4}\label{keyboard_8h_ad876ecd29446f74a03385a34d8a978c4}} 
+\#define {\bfseries breakcode}(makecode)~(makecode $\vert$ BIT(7))
+\item 
+\mbox{\Hypertarget{keyboard_8h_a5ef9c9f64d261576f53153080e7674a2}\label{keyboard_8h_a5ef9c9f64d261576f53153080e7674a2}} 
+\#define {\bfseries is\+\_\+makecode}(scancode)~!(scancode \& BIT(7))
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int() \mbox{\hyperlink{keyboard_8h_a9086c5e726850bea2ddbd1ac44714c4b}{kbd\+\_\+enable\+\_\+int}} (uint32\+\_\+t wait\+\_\+ticks)
+\begin{DoxyCompactList}\small\item\em attempts to enables keyboard interrupts \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{keyboard_8h_a4ac9231a99a664d6a9f0b69767e0d707}{kbd\+\_\+subscribe\+\_\+int}} (uint8\+\_\+t $\ast$bit\+\_\+no)
+\begin{DoxyCompactList}\small\item\em subscribes the keyboard interrupts \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{keyboard_8h_aee0a7b54ee426fade9c780418d110fe0}{kbd\+\_\+unsubscribe\+\_\+int}} ()
+\begin{DoxyCompactList}\small\item\em unsubscribes keyboard interrupts \end{DoxyCompactList}\item 
+void() \mbox{\hyperlink{keyboard_8h_a24471c20b6312a2595a6ced1b93664d0}{kbd\+\_\+get\+\_\+scancode}} (\mbox{\hyperlink{structkbd__data__t}{kbd\+\_\+data\+\_\+t}} $\ast$kbd\+\_\+data, uint32\+\_\+t wait\+\_\+ticks)
+\begin{DoxyCompactList}\small\item\em attempts to read a scancode from the KBC \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{keyboard_8h_a9086c5e726850bea2ddbd1ac44714c4b}\label{keyboard_8h_a9086c5e726850bea2ddbd1ac44714c4b}} 
+\index{keyboard.h@{keyboard.h}!kbd\_enable\_int@{kbd\_enable\_int}}
+\index{kbd\_enable\_int@{kbd\_enable\_int}!keyboard.h@{keyboard.h}}
+\doxysubsubsection{\texorpdfstring{kbd\_enable\_int()}{kbd\_enable\_int()}}
+{\footnotesize\ttfamily int() kbd\+\_\+enable\+\_\+int (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{wait\+\_\+ticks }\end{DoxyParamCaption})}
+
+
+
+attempts to enables keyboard interrupts 
+
+
+\begin{DoxyParams}{Parameters}
+{\em wait\+\_\+ticks} & the number of attempts that will be made \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+zero on success, non-\/zero otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{keyboard_8h_a24471c20b6312a2595a6ced1b93664d0}\label{keyboard_8h_a24471c20b6312a2595a6ced1b93664d0}} 
+\index{keyboard.h@{keyboard.h}!kbd\_get\_scancode@{kbd\_get\_scancode}}
+\index{kbd\_get\_scancode@{kbd\_get\_scancode}!keyboard.h@{keyboard.h}}
+\doxysubsubsection{\texorpdfstring{kbd\_get\_scancode()}{kbd\_get\_scancode()}}
+{\footnotesize\ttfamily void() kbd\+\_\+get\+\_\+scancode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structkbd__data__t}{kbd\+\_\+data\+\_\+t}} $\ast$}]{kbd\+\_\+data,  }\item[{uint32\+\_\+t}]{wait\+\_\+ticks }\end{DoxyParamCaption})}
+
+
+
+attempts to read a scancode from the KBC 
+
+
+\begin{DoxyParams}{Parameters}
+{\em kbd\+\_\+data} & the struct where the scancode will be placed \\
+\hline
+{\em wait\+\_\+ticks} & the number of attempts that will be made \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{keyboard_8h_a4ac9231a99a664d6a9f0b69767e0d707}\label{keyboard_8h_a4ac9231a99a664d6a9f0b69767e0d707}} 
+\index{keyboard.h@{keyboard.h}!kbd\_subscribe\_int@{kbd\_subscribe\_int}}
+\index{kbd\_subscribe\_int@{kbd\_subscribe\_int}!keyboard.h@{keyboard.h}}
+\doxysubsubsection{\texorpdfstring{kbd\_subscribe\_int()}{kbd\_subscribe\_int()}}
+{\footnotesize\ttfamily int() kbd\+\_\+subscribe\+\_\+int (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{bit\+\_\+no }\end{DoxyParamCaption})}
+
+
+
+subscribes the keyboard interrupts 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bit\+\_\+no} & pointer to a number representing the position dedicated to the keyboard in the interrupt vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+zero on success, non-\/zero otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{keyboard_8h_aee0a7b54ee426fade9c780418d110fe0}\label{keyboard_8h_aee0a7b54ee426fade9c780418d110fe0}} 
+\index{keyboard.h@{keyboard.h}!kbd\_unsubscribe\_int@{kbd\_unsubscribe\_int}}
+\index{kbd\_unsubscribe\_int@{kbd\_unsubscribe\_int}!keyboard.h@{keyboard.h}}
+\doxysubsubsection{\texorpdfstring{kbd\_unsubscribe\_int()}{kbd\_unsubscribe\_int()}}
+{\footnotesize\ttfamily int() kbd\+\_\+unsubscribe\+\_\+int (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+unsubscribes keyboard interrupts 
+
+\begin{DoxyReturn}{Returns}
+zero on success, non-\/zero otherwise 
+\end{DoxyReturn}

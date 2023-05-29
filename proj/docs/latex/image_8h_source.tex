@@ -1,0 +1,24 @@
+\hypertarget{image_8h_source}{}\doxysection{image.\+h}
+\label{image_8h_source}\index{image.h@{image.h}}
+\mbox{\hyperlink{image_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ \_LCOM\_SPRITE\_H\_}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ \_LCOM\_SPRITE\_H\_}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <lcom/lcf.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{enum}\ \{SPRITE,\ SHAPE\}\ type;}
+\DoxyCodeLine{00018\ \ \ \ \ uint16\_t\ width,\ height;}
+\DoxyCodeLine{00019\ \ \ \ \ uint16\_t\ *colors;}
+\DoxyCodeLine{00020\ \}\ \mbox{\hyperlink{struct_image}{Image}};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \mbox{\hyperlink{struct_image}{Image}}\ *image\_create\_sprite(xpm\_map\_t\ xpm);}
+\DoxyCodeLine{00023\ \mbox{\hyperlink{struct_image}{Image}}\ *image\_create\_shape(uint16\_t\ width,\ uint16\_t\ height,\ uint16\_t\ color);}
+\DoxyCodeLine{00024\ \textcolor{keywordtype}{void}\ image\_switch(\mbox{\hyperlink{struct_image}{Image}}*\ image,\ xpm\_map\_t\ xpm);}
+\DoxyCodeLine{00025\ \textcolor{keywordtype}{void}\ image\_destroy(\mbox{\hyperlink{struct_image}{Image}}*\ image);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_LCOM\_SPRITE\_H\_}}
+
+\end{DoxyCode}

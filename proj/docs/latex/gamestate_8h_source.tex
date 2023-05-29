@@ -1,0 +1,40 @@
+\hypertarget{gamestate_8h_source}{}\doxysection{gamestate.\+h}
+\label{gamestate_8h_source}\index{gamestate.h@{gamestate.h}}
+\mbox{\hyperlink{gamestate_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ \_LCOM\_GAME\_STATE\_H\_}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ \_LCOM\_GAME\_STATE\_H\_}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}../models/list.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}../models/object.h"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}../models/bullet.h"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}../../images/Tank\_1\_Down.xpm"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}../../images/Tank\_2\_Down.xpm"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}../../images/Cross.xpm"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}../../images/Bullet.xpm"{}}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{struct_object}{Object}}\ *player;}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{struct_object}{Object}}\ *player\_2;}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{struct_object}{Object}}\ *mouse;}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{struct_list}{List}}\ *bullets;}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{struct_list}{List}}\ *walls;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{int}\ bullet\_cooldown\_2;}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{int}\ winner;}
+\DoxyCodeLine{00047\ \}\ \mbox{\hyperlink{struct_game_state}{GameState}};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00055\ \mbox{\hyperlink{struct_game_state}{GameState}}*\ \mbox{\hyperlink{gamestate_8h_a52f30f537c7225de3a6e391194ec2855}{createGame}}();}
+\DoxyCodeLine{00066\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gamestate_8h_af112d5ff4e600644dada80f98d627e28}{createBullet}}(\mbox{\hyperlink{struct_game_state}{GameState}}\ *state,\ uint16\_t\ xOrigin,\ uint16\_t\ yOrigin,\ uint16\_t\ xDestination,\ uint16\_t\ yDestination,\ \mbox{\hyperlink{struct_object}{Object}}\ *owner);}
+\DoxyCodeLine{00076\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gamestate_8h_ad128f187eca60adccffd9f5f396c22a1}{insertWall}}(\mbox{\hyperlink{struct_game_state}{GameState}}\ *state,\ uint16\_t\ x,\ uint16\_t\ y,\ uint16\_t\ width,\ uint16\_t\ height);}
+\DoxyCodeLine{00082\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gamestate_8h_ac538e3877b9a074e3dd7d4a9171762d9}{gameStep}}(\mbox{\hyperlink{struct_game_state}{GameState}}\ *state);}
+\DoxyCodeLine{00089\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gamestate_8h_ab870d6973271180c0b71a2e5c1e5ab5c}{process\_scancode}}(\mbox{\hyperlink{struct_game_state}{GameState}}*\ obj,\ \mbox{\hyperlink{structkbd__data__t}{kbd\_data\_t}}*\ data);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_LCOM\_GAME\_STATE\_H\_}}
+
+\end{DoxyCode}

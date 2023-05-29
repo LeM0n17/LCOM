@@ -1,3 +1,8 @@
+/**
+ * @file image.h
+ *
+ */
+
 #ifndef _LCOM_SPRITE_H_
 #define _LCOM_SPRITE_H_
 

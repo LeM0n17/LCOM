@@ -1,0 +1,175 @@
+\hypertarget{timer_8h}{}\doxysection{timer.\+h File Reference}
+\label{timer_8h}\index{timer.h@{timer.h}}
+{\ttfamily \#include $<$lcom/lcf.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}i8254.\+h\char`\"{}}\newline
+Include dependency graph for timer.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{timer_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=128pt]{timer_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structtimer__status}{timer\+\_\+status}}
+\begin{DoxyCompactList}\small\item\em different components of the status of a timer \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{timer_8h_a30bf84c312af248cb81bb224e09f9ba8}\label{timer_8h_a30bf84c312af248cb81bb224e09f9ba8}} 
+\#define {\bfseries TIMER0\+\_\+\+IRQ}~0
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int() \mbox{\hyperlink{timer_8h_a9fa8f35ad781f668458a033f871e7592}{timer\+\_\+write\+\_\+command}} (uint8\+\_\+t command)
+\begin{DoxyCompactList}\small\item\em writes command to timer controller \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{timer_8h_a6dea494a05f7844396d3cc42e3c4f851}{timer\+\_\+make\+\_\+control\+\_\+word}} (uint8\+\_\+t timer, enum timer\+\_\+init init\+\_\+mode, uint8\+\_\+t $\ast$control\+\_\+word)
+\begin{DoxyCompactList}\small\item\em makes control word for given timer \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{timer_8h_a617a1c04bb9f7e6111f152afaecaac74}{timer\+\_\+make\+\_\+read\+\_\+back}} (uint8\+\_\+t timer, uint8\+\_\+t $\ast$read\+\_\+back)
+\begin{DoxyCompactList}\small\item\em makes read\+\_\+back bit for given timer \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{timer_8h_ad80201304c338b21546047db209b041c}{timer\+\_\+get\+\_\+status}} (uint8\+\_\+t timer, uint8\+\_\+t $\ast$st)
+\begin{DoxyCompactList}\small\item\em returns the status of the given timer and returns it on the given address \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtimer__status}{timer\+\_\+status}}() \mbox{\hyperlink{timer_8h_a7501562e1573d54d267c0972914f1ea5}{timer\+\_\+parse\+\_\+status}} (uint8\+\_\+t st)
+\begin{DoxyCompactList}\small\item\em receives a status bit and parse it into its different components \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{timer_8h_af2c04fa8e97ffa748fd3f612886a92a7}{timer\+\_\+set\+\_\+frequency}} (uint8\+\_\+t timer, uint32\+\_\+t freq)
+\begin{DoxyCompactList}\small\item\em sets the frequency of a given timer \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{timer_8h_ac57a7e1140a7e00ad95ac5488d2a671b}{timer\+\_\+subscribe\+\_\+int}} (uint8\+\_\+t $\ast$bit\+\_\+no)
+\begin{DoxyCompactList}\small\item\em subscribes the timers interrupts \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{timer_8h_afabd21de449be154dd65d5fdb2d8045d}{timer\+\_\+unsubscribe\+\_\+int}} ()
+\begin{DoxyCompactList}\small\item\em unsubscribed«s timer interrupts \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{timer_8h_ad80201304c338b21546047db209b041c}\label{timer_8h_ad80201304c338b21546047db209b041c}} 
+\index{timer.h@{timer.h}!timer\_get\_status@{timer\_get\_status}}
+\index{timer\_get\_status@{timer\_get\_status}!timer.h@{timer.h}}
+\doxysubsubsection{\texorpdfstring{timer\_get\_status()}{timer\_get\_status()}}
+{\footnotesize\ttfamily int() timer\+\_\+get\+\_\+status (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{timer,  }\item[{uint8\+\_\+t $\ast$}]{st }\end{DoxyParamCaption})}
+
+
+
+returns the status of the given timer and returns it on the given address 
+
+
+\begin{DoxyParams}{Parameters}
+{\em timer} & timer chosen to get status\\
+\hline
+{\em st} & address on which the status is put \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{timer_8h_a6dea494a05f7844396d3cc42e3c4f851}\label{timer_8h_a6dea494a05f7844396d3cc42e3c4f851}} 
+\index{timer.h@{timer.h}!timer\_make\_control\_word@{timer\_make\_control\_word}}
+\index{timer\_make\_control\_word@{timer\_make\_control\_word}!timer.h@{timer.h}}
+\doxysubsubsection{\texorpdfstring{timer\_make\_control\_word()}{timer\_make\_control\_word()}}
+{\footnotesize\ttfamily int() timer\+\_\+make\+\_\+control\+\_\+word (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{timer,  }\item[{enum timer\+\_\+init}]{init\+\_\+mode,  }\item[{uint8\+\_\+t $\ast$}]{control\+\_\+word }\end{DoxyParamCaption})}
+
+
+
+makes control word for given timer 
+
+
+\begin{DoxyParams}{Parameters}
+{\em timer} & timer chosen\\
+\hline
+{\em init\+\_\+mode} & initialization mode of the time\\
+\hline
+{\em control\+\_\+word} & address on which the control\+\_\+word is returned \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{timer_8h_a617a1c04bb9f7e6111f152afaecaac74}\label{timer_8h_a617a1c04bb9f7e6111f152afaecaac74}} 
+\index{timer.h@{timer.h}!timer\_make\_read\_back@{timer\_make\_read\_back}}
+\index{timer\_make\_read\_back@{timer\_make\_read\_back}!timer.h@{timer.h}}
+\doxysubsubsection{\texorpdfstring{timer\_make\_read\_back()}{timer\_make\_read\_back()}}
+{\footnotesize\ttfamily int() timer\+\_\+make\+\_\+read\+\_\+back (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{timer,  }\item[{uint8\+\_\+t $\ast$}]{read\+\_\+back }\end{DoxyParamCaption})}
+
+
+
+makes read\+\_\+back bit for given timer 
+
+
+\begin{DoxyParams}{Parameters}
+{\em timer} & chosen timer\\
+\hline
+{\em read\+\_\+back} & address on which the read back command is written \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{timer_8h_a7501562e1573d54d267c0972914f1ea5}\label{timer_8h_a7501562e1573d54d267c0972914f1ea5}} 
+\index{timer.h@{timer.h}!timer\_parse\_status@{timer\_parse\_status}}
+\index{timer\_parse\_status@{timer\_parse\_status}!timer.h@{timer.h}}
+\doxysubsubsection{\texorpdfstring{timer\_parse\_status()}{timer\_parse\_status()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtimer__status}{timer\+\_\+status}}() timer\+\_\+parse\+\_\+status (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{st }\end{DoxyParamCaption})}
+
+
+
+receives a status bit and parse it into its different components 
+
+
+\begin{DoxyParams}{Parameters}
+{\em st} & status to be parsed \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{timer_8h_af2c04fa8e97ffa748fd3f612886a92a7}\label{timer_8h_af2c04fa8e97ffa748fd3f612886a92a7}} 
+\index{timer.h@{timer.h}!timer\_set\_frequency@{timer\_set\_frequency}}
+\index{timer\_set\_frequency@{timer\_set\_frequency}!timer.h@{timer.h}}
+\doxysubsubsection{\texorpdfstring{timer\_set\_frequency()}{timer\_set\_frequency()}}
+{\footnotesize\ttfamily int() timer\+\_\+set\+\_\+frequency (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{timer,  }\item[{uint32\+\_\+t}]{freq }\end{DoxyParamCaption})}
+
+
+
+sets the frequency of a given timer 
+
+
+\begin{DoxyParams}{Parameters}
+{\em timer} & timer chosen to have its frequency altered\\
+\hline
+{\em freq} & chosen frequency \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{timer_8h_ac57a7e1140a7e00ad95ac5488d2a671b}\label{timer_8h_ac57a7e1140a7e00ad95ac5488d2a671b}} 
+\index{timer.h@{timer.h}!timer\_subscribe\_int@{timer\_subscribe\_int}}
+\index{timer\_subscribe\_int@{timer\_subscribe\_int}!timer.h@{timer.h}}
+\doxysubsubsection{\texorpdfstring{timer\_subscribe\_int()}{timer\_subscribe\_int()}}
+{\footnotesize\ttfamily int() timer\+\_\+subscribe\+\_\+int (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{bit\+\_\+no }\end{DoxyParamCaption})}
+
+
+
+subscribes the timers interrupts 
+
+\mbox{\Hypertarget{timer_8h_afabd21de449be154dd65d5fdb2d8045d}\label{timer_8h_afabd21de449be154dd65d5fdb2d8045d}} 
+\index{timer.h@{timer.h}!timer\_unsubscribe\_int@{timer\_unsubscribe\_int}}
+\index{timer\_unsubscribe\_int@{timer\_unsubscribe\_int}!timer.h@{timer.h}}
+\doxysubsubsection{\texorpdfstring{timer\_unsubscribe\_int()}{timer\_unsubscribe\_int()}}
+{\footnotesize\ttfamily int() timer\+\_\+unsubscribe\+\_\+int (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+unsubscribed«s timer interrupts 
+
+\mbox{\Hypertarget{timer_8h_a9fa8f35ad781f668458a033f871e7592}\label{timer_8h_a9fa8f35ad781f668458a033f871e7592}} 
+\index{timer.h@{timer.h}!timer\_write\_command@{timer\_write\_command}}
+\index{timer\_write\_command@{timer\_write\_command}!timer.h@{timer.h}}
+\doxysubsubsection{\texorpdfstring{timer\_write\_command()}{timer\_write\_command()}}
+{\footnotesize\ttfamily int() timer\+\_\+write\+\_\+command (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{command }\end{DoxyParamCaption})}
+
+
+
+writes command to timer controller 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & command to be written \\
+\hline
+\end{DoxyParams}
