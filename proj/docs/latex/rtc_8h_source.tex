@@ -1,0 +1,36 @@
+\hypertarget{rtc_8h_source}{}\doxysection{rtc.\+h}
+\label{rtc_8h_source}\index{rtc.h@{rtc.h}}
+\mbox{\hyperlink{rtc_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ \_LCOM\_RTC\_H\_}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ \_LCOM\_RTC\_H\_}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <lcom/lcf.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ MACROS\ //}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ RTC\_REG\_UPDATING\ 10}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ RTC\_REG\_COUNTING\ 11}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ RTC\_REG\_INPUT\ 0x70}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ RTC\_REG\_OUTPUT\ 0x71}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ RTC\_BIN\_MASK\ BIT(2)}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ COMMANDS\ //}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ RTC\_SECONDS\ 0}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ RTC\_MINUTES\ 2}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ RTC\_HOURS\ 4\ \ \ }}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ RTC\_DAY\ 7}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ RTC\_MONTH\ 8}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ RTC\_YEAR\ 9\ }}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{rtc_8h_ac33aecbecb5bb4bde0c0fe4886a82e2a}{getRTCOutput}}(uint8\_t\ cmd,\ uint8\_t\ *output);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00041\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{rtc_8h_a0e62d22688381847db1059881f06cb34}{isBinary}}();}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00049\ uint8\_t\ \mbox{\hyperlink{rtc_8h_a51e107b9d9a7d1a1b395f97735a9bf40}{toBinary}}(uint8\_t\ num);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00058\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{rtc_8h_a3a4e50c67005b26aeadb52942a6fe9ee}{readRTC}}(uint8\_t\ what,\ uint8\_t*\ result);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

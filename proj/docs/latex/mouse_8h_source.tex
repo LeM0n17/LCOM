@@ -1,0 +1,57 @@
+\hypertarget{mouse_8h_source}{}\doxysection{mouse.\+h}
+\label{mouse_8h_source}\index{mouse.h@{mouse.h}}
+\mbox{\hyperlink{mouse_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ \_LCOM\_MOUSE\_H\_}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ \_LCOM\_MOUSE\_H\_}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <lcom/lab4.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_k_b_c_8h}{KBC.h}}"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{/*\ IRQ\ */}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ MOUSE\_IRQ\ 12}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{/*\ ACKNOWLEDGEMENT\ BYTES\ */}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ MOUSE\_SUCCESS\_BYTE\ 0xFA}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ MOUSE\_ERROR\_BYTE\ 0xFE}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ MOUSE\_TWICE\_ERROR\_BYTE\ 0xFC}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ is\_first\_byte(byte)\ (byte\ \&\ BIT(3))}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ sign\_extend(byte)\ (0xFF00\ |\ byte)}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{/*\ MOUSE\ BITS\ */}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ MOUSE\_Y\_OVFL\ BIT(7)}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ MOUSE\_X\_OVFL\ BIT(6)}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ MOUSE\_Y\_MSB\ BIT(5)}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ MOUSE\_X\_MSB\ BIT(4)}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ MOUSE\_MIDDLE\_BUTTON\ BIT(2)}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ MOUSE\_RIGHT\_BUTTON\ BIT(1)}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ MOUSE\_LEFT\_BUTTON\ BIT(0)}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{struct\ }packet\ pp;}
+\DoxyCodeLine{00037\ \ \ \ \ uint8\_t\ packet\_no;}
+\DoxyCodeLine{00038\ \ \ \ \ uint16\_t\ x,\ y;}
+\DoxyCodeLine{00039\ \ \ \ \ uint16\_t\ prev\_x,\ prev\_y;}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{bool}\ error;}
+\DoxyCodeLine{00041\ \}\ \mbox{\hyperlink{structmouse__data__t}{mouse\_data\_t}};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00048\ int\ (\mbox{\hyperlink{mouse_8h_a20285aed4b3ef45812cd967532dd09db}{mouse\_subscribe\_int}})(uint8\_t*\ bit\_no);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00054\ int\ (\mbox{\hyperlink{mouse_8h_a3ecf823d80520009ae5e0d76ae40a3c3}{mouse\_unsubscribe\_int}})();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00060\ int\ (\mbox{\hyperlink{mouse_8h_a7e0b0d9429282501d744353e61967e8c}{mouse\_enable\_data\_report}})(uint32\_t\ wait\_ticks);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00066\ int\ (\mbox{\hyperlink{mouse_8h_adfbac8a057141b5b2b53ef154d35f0a2}{mouse\_disable\_data\_report}})(uint32\_t\ wait\_ticks);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00071\ void\ (\mbox{\hyperlink{mouse_8h_afb6708dab8eb768afef473d3201276b5}{mouse\_get\_data}})(\mbox{\hyperlink{structmouse__data__t}{mouse\_data\_t}}*\ data,\ uint32\_t\ wait\_ticks);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00077\ void\ (\mbox{\hyperlink{mouse_8h_a26db594bad053f7f90bd00a32639c7b0}{mouse\_parse\_packet}})(\mbox{\hyperlink{structmouse__data__t}{mouse\_data\_t}}*\ data);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_LCOM\_MOUSE\_H\_}}
+
+\end{DoxyCode}

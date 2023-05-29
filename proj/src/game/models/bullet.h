@@ -1,3 +1,8 @@
+/**
+ * @file bullet.h
+ *
+ */
+
 #ifndef _LCOM_BULLET_H_
 #define _LCOM_BULLET_H_
 

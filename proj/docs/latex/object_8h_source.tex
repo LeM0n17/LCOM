@@ -1,0 +1,55 @@
+\hypertarget{object_8h_source}{}\doxysection{object.\+h}
+\label{object_8h_source}\index{object.h@{object.h}}
+\mbox{\hyperlink{object_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ \_LCOM\_OBJECT\_H\_}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ \_LCOM\_OBJECT\_H\_}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}../../devices/KBC/keyboard.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}../views/image.h"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ MOVE\_UP(scancodes)\ (scancodes[0]\ ==\ 0x11)}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ MOVE\_DOWN(scancodes)\ (scancodes[0]\ ==\ 0x1f)}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ MOVE\_LEFT(scancodes)\ (scancodes[0]\ ==\ 0x1e)}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ MOVE\_RIGHT(scancodes)\ (scancodes[0]\ ==\ 0x20)}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ MOVE\_UP\_2(scancodes)\ (scancodes[0]\ ==\ KBD\_2B\_SCANCODE\ \&\&\ scancodes[1]\ ==\ 0x48)}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ MOVE\_DOWN\_2(scancodes)\ (scancodes[0]\ ==\ KBD\_2B\_SCANCODE\ \&\&\ scancodes[1]\ ==\ 0x50)}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ MOVE\_LEFT\_2(scancodes)\ (scancodes[0]\ ==\ KBD\_2B\_SCANCODE\ \&\&\ scancodes[1]\ ==\ 0x4b)}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ MOVE\_RIGHT\_2(scancodes)\ (scancodes[0]\ ==\ KBD\_2B\_SCANCODE\ \&\&\ scancodes[1]\ ==\ 0x4d)}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ SHOOT\_RIGHT(scancodes)\ (scancodes[0]\ ==\ 0x4d)}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ SHOOT\_LEFT(scancodes)\ (scancodes[0]\ ==\ 0x4b)}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ SHOOT\_UP(scancodes)\ (scancodes[0]\ ==\ 0x48)}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ SHOOT\_DOWN(scancodes)\ (scancodes[0]\ ==\ 0x50)}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ SHOOT\_DOWN\_RIGHT(scancodes)\ (scancodes[0]\ ==\ 0x51)}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ SHOOT\_UP\_RIGHT(scancodes)\ (scancodes[0]\ ==\ 0x49)}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ SHOOT\_DOWN\_LEFT(scancodes)\ (scancodes[0]\ ==\ 0x4f)}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ SHOOT\_UP\_LEFT(scancodes)\ (scancodes[0]\ ==\ 0x47)}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00044\ \ \ \ \ uint16\_t\ x,\ y;}
+\DoxyCodeLine{00045\ \ \ \ \ uint16\_t\ width,\ height;}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{struct_image}{Image}}*\ image;}
+\DoxyCodeLine{00047\ \}\ \mbox{\hyperlink{struct_object}{Object}};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00054\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{object_8h_af98fbe590fedcd34b3abc75bb3afe9ec}{moveUp}}(\mbox{\hyperlink{struct_object}{Object}}*\ obj,\ uint16\_t\ speed);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00061\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{object_8h_a3142da8573974da6ce633fcb0c319f81}{moveDown}}(\mbox{\hyperlink{struct_object}{Object}}*\ obj,\ uint16\_t\ speed);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00068\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{object_8h_a0f29891b59f7027c81dd0178a0ba2010}{moveLeft}}(\mbox{\hyperlink{struct_object}{Object}}*\ obj,\ uint16\_t\ speed);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00075\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{object_8h_a2ba8dddeb868b41a9ebd8b765a9a1790}{moveRight}}(\mbox{\hyperlink{struct_object}{Object}}*\ obj,\ uint16\_t\ speed);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00081\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{object_8h_abb7d07cf2d08764e7ff2f7f1bf913475}{freeObject}}(\mbox{\hyperlink{struct_object}{Object}}\ *obj);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00091\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{object_8h_a75e4c9d90d2222c4fa4b2cd12b1aa676}{pointInObject}}(\mbox{\hyperlink{struct_object}{Object}}\ *obj,\ uint16\_t\ x,\ uint16\_t\ y);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00100\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{object_8h_a72fc6a1b4f1e5fb68ad42888192b956e}{checkCollisions}}(\mbox{\hyperlink{struct_object}{Object}}\ *obj1,\ \mbox{\hyperlink{struct_object}{Object}}*\ obj2);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_LCOM\_OBJECT\_H\_}}
+
+\end{DoxyCode}

@@ -1,0 +1,67 @@
+\hypertarget{bullet_8h}{}\doxysection{bullet.\+h File Reference}
+\label{bullet_8h}\index{bullet.h@{bullet.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}object.\+h\char`\"{}}\newline
+Include dependency graph for bullet.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bullet_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=197pt]{bullet_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_bullet}{Bullet}}
+\begin{DoxyCompactList}\small\item\em bullet is anextension of type object \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{bullet_8h_a1d7eb0f2b27c73214c9483a39df25fe2}{free\+Bullet}} (\mbox{\hyperlink{struct_bullet}{Bullet}} $\ast$obj)
+\begin{DoxyCompactList}\small\item\em it frees the memory allocated to the bullet passed in the parameter \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bullet_8h_a389a9d22a314060cf3c13e6d3e2ef384}{bullet\+\_\+bounce}} (\mbox{\hyperlink{struct_bullet}{Bullet}} $\ast$bullet, \mbox{\hyperlink{struct_object}{Object}} $\ast$obj)
+\begin{DoxyCompactList}\small\item\em alters the trajectory of the bullet \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{bullet_8h_a389a9d22a314060cf3c13e6d3e2ef384}\label{bullet_8h_a389a9d22a314060cf3c13e6d3e2ef384}} 
+\index{bullet.h@{bullet.h}!bullet\_bounce@{bullet\_bounce}}
+\index{bullet\_bounce@{bullet\_bounce}!bullet.h@{bullet.h}}
+\doxysubsubsection{\texorpdfstring{bullet\_bounce()}{bullet\_bounce()}}
+{\footnotesize\ttfamily void bullet\+\_\+bounce (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_bullet}{Bullet}} $\ast$}]{bullet,  }\item[{\mbox{\hyperlink{struct_object}{Object}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+
+
+alters the trajectory of the bullet 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bullet} & bullet that has gone against a wall and is supposed to bounce \\
+\hline
+{\em obj} & wall against which the bullet has gone against \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{bullet_8h_a1d7eb0f2b27c73214c9483a39df25fe2}\label{bullet_8h_a1d7eb0f2b27c73214c9483a39df25fe2}} 
+\index{bullet.h@{bullet.h}!freeBullet@{freeBullet}}
+\index{freeBullet@{freeBullet}!bullet.h@{bullet.h}}
+\doxysubsubsection{\texorpdfstring{freeBullet()}{freeBullet()}}
+{\footnotesize\ttfamily void free\+Bullet (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_bullet}{Bullet}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+
+
+it frees the memory allocated to the bullet passed in the parameter 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & Pointer to struct type bullet \\
+\hline
+\end{DoxyParams}

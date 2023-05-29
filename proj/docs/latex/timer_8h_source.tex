@@ -1,0 +1,39 @@
+\hypertarget{timer_8h_source}{}\doxysection{timer.\+h}
+\label{timer_8h_source}\index{timer.h@{timer.h}}
+\mbox{\hyperlink{timer_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ \_LCOM\_TIMER\_H\_}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ \_LCOM\_TIMER\_H\_}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <lcom/lcf.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{i8254_8h}{i8254.h}}"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{/*\ IRQ\ */}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ TIMER0\_IRQ\ 0}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00032\ \ \ \ \ uint8\_t\ timer;}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{enum}\ timer\_init\ init\_mode;}
+\DoxyCodeLine{00034\ \ \ \ \ uint8\_t\ count\_mode;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{bool}\ bcd;}
+\DoxyCodeLine{00036\ \}\ \mbox{\hyperlink{structtimer__status}{timer\_status}};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00044\ int\ (\mbox{\hyperlink{timer_8h_a9fa8f35ad781f668458a033f871e7592}{timer\_write\_command}})(uint8\_t\ command);}
+\DoxyCodeLine{00055\ int\ (\mbox{\hyperlink{timer_8h_a6dea494a05f7844396d3cc42e3c4f851}{timer\_make\_control\_word}})(uint8\_t\ timer,\ \textcolor{keyword}{enum}\ timer\_init\ init\_mode,\ uint8\_t\ *control\_word);}
+\DoxyCodeLine{00064\ int\ (\mbox{\hyperlink{timer_8h_a617a1c04bb9f7e6111f152afaecaac74}{timer\_make\_read\_back}})(uint8\_t\ timer,\ uint8\_t\ *read\_back);}
+\DoxyCodeLine{00073\ int\ (\mbox{\hyperlink{timer_8h_ad80201304c338b21546047db209b041c}{timer\_get\_status}})(uint8\_t\ timer,\ uint8\_t\ *st);}
+\DoxyCodeLine{00080\ \mbox{\hyperlink{structtimer__status}{timer\_status}}\ (\mbox{\hyperlink{timer_8h_a7501562e1573d54d267c0972914f1ea5}{timer\_parse\_status}})(uint8\_t\ st);}
+\DoxyCodeLine{00089\ int\ (\mbox{\hyperlink{timer_8h_af2c04fa8e97ffa748fd3f612886a92a7}{timer\_set\_frequency}})(uint8\_t\ timer,\ uint32\_t\ freq);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{comment}{//\ for\ interrupts}}
+\DoxyCodeLine{00096\ \textcolor{comment}{}int\ (\mbox{\hyperlink{timer_8h_ac57a7e1140a7e00ad95ac5488d2a671b}{timer\_subscribe\_int}})(uint8\_t*\ bit\_no);}
+\DoxyCodeLine{00101\ int\ (\mbox{\hyperlink{timer_8h_afabd21de449be154dd65d5fdb2d8045d}{timer\_unsubscribe\_int}})();}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_LCOM\_TIMER\_H\_}}
+
+\end{DoxyCode}

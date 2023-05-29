@@ -1,0 +1,41 @@
+\hypertarget{keyboard_8h_source}{}\doxysection{keyboard.\+h}
+\label{keyboard_8h_source}\index{keyboard.h@{keyboard.h}}
+\mbox{\hyperlink{keyboard_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ \_LCOM\_KEYBOARD\_H\_}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ \_LCOM\_KEYBOARD\_H\_}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_k_b_c_8h}{KBC.h}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{/*\ IRQ\ */}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ KBD\_IRQ\ 1}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{/*\ SCANCODES\ */}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ KBD\_ESC\_BREAKCODE\ 0x81}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ KBD\_2B\_SCANCODE\ 0xE0}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ breakcode(makecode)\ (makecode\ |\ BIT(7))}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ is\_makecode(scancode)\ !(scancode\ \&\ BIT(7))}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00030\ \ \ \ \ uint8\_t\ scancodes[2];}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{bool}\ two\_byte;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{bool}\ valid;}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{bool}\ error;}
+\DoxyCodeLine{00034\ \}\ \mbox{\hyperlink{structkbd__data__t}{kbd\_data\_t}};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ for\ interrupts}}
+\DoxyCodeLine{00042\ \textcolor{comment}{}int\ (\mbox{\hyperlink{keyboard_8h_a9086c5e726850bea2ddbd1ac44714c4b}{kbd\_enable\_int}})(uint32\_t\ wait\_ticks);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00049\ int\ (\mbox{\hyperlink{keyboard_8h_a4ac9231a99a664d6a9f0b69767e0d707}{kbd\_subscribe\_int}})(uint8\_t\ *bit\_no);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00055\ int\ (\mbox{\hyperlink{keyboard_8h_aee0a7b54ee426fade9c780418d110fe0}{kbd\_unsubscribe\_int}})();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00062\ void\ (\mbox{\hyperlink{keyboard_8h_a24471c20b6312a2595a6ced1b93664d0}{kbd\_get\_scancode}})(\mbox{\hyperlink{structkbd__data__t}{kbd\_data\_t}}*\ kbd\_data,\ uint32\_t\ wait\_ticks);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_LCOM\_KEYBOARD\_H\_}}
+
+\end{DoxyCode}

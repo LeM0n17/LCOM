@@ -1,0 +1,45 @@
+\hypertarget{structkbd__data__t}{}\doxysection{kbd\+\_\+data\+\_\+t Struct Reference}
+\label{structkbd__data__t}\index{kbd\_data\_t@{kbd\_data\_t}}
+
+
+struct representing the keyboard data the KBC provides  
+
+
+
+
+{\ttfamily \#include $<$keyboard.\+h$>$}
+
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structkbd__data__t_a4cbc2430b3efdd26ec74f5d43d4fd9a3}\label{structkbd__data__t_a4cbc2430b3efdd26ec74f5d43d4fd9a3}} 
+uint8\+\_\+t {\bfseries scancodes} \mbox{[}2\mbox{]}
+\item 
+\mbox{\Hypertarget{structkbd__data__t_a923796b48e02f0e0c16dfff48ca1cd84}\label{structkbd__data__t_a923796b48e02f0e0c16dfff48ca1cd84}} 
+bool {\bfseries two\+\_\+byte}
+\item 
+\mbox{\Hypertarget{structkbd__data__t_a28e3c179a86f337095088b3ca02a2b2a}\label{structkbd__data__t_a28e3c179a86f337095088b3ca02a2b2a}} 
+bool {\bfseries valid}
+\item 
+\mbox{\Hypertarget{structkbd__data__t_a7a3172cc98e93d8eadfb9ab30373799e}\label{structkbd__data__t_a7a3172cc98e93d8eadfb9ab30373799e}} 
+bool {\bfseries error}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+struct representing the keyboard data the KBC provides 
+
+
+\begin{DoxyParams}{Parameters}
+{\em two\+\_\+byte} & indicates if the current scancode is part of a two-\/byte scancode or not \\
+\hline
+{\em valid} & indicates if the data is valid \\
+\hline
+{\em error} & indicates if there was an error retrieving the data \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{keyboard_8h}{keyboard.\+h}}\end{DoxyCompactItemize}

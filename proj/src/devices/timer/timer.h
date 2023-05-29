@@ -1,3 +1,8 @@
+/**
+ * @file timer.h
+ *
+ */
+
 #ifndef _LCOM_TIMER_H_
 #define _LCOM_TIMER_H_
 

@@ -1,0 +1,72 @@
+\hypertarget{struct_game_state}{}\doxysection{Game\+State Struct Reference}
+\label{struct_game_state}\index{GameState@{GameState}}
+
+
+struct that handles the state of the game  
+
+
+
+
+{\ttfamily \#include $<$gamestate.\+h$>$}
+
+
+
+Collaboration diagram for Game\+State\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=248pt]{struct_game_state__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_game_state_a9008b185f6aa706f455b9af7e68f6ced}\label{struct_game_state_a9008b185f6aa706f455b9af7e68f6ced}} 
+\mbox{\hyperlink{struct_object}{Object}} $\ast$ {\bfseries player}
+\item 
+\mbox{\Hypertarget{struct_game_state_a50db3ee4b333db6a6533c6f22346ed4a}\label{struct_game_state_a50db3ee4b333db6a6533c6f22346ed4a}} 
+\mbox{\hyperlink{struct_object}{Object}} $\ast$ {\bfseries player\+\_\+2}
+\item 
+\mbox{\Hypertarget{struct_game_state_a8f3377a45a78735d166445b7974f9687}\label{struct_game_state_a8f3377a45a78735d166445b7974f9687}} 
+\mbox{\hyperlink{struct_object}{Object}} $\ast$ {\bfseries mouse}
+\item 
+\mbox{\Hypertarget{struct_game_state_ad269cdf52e505ca9fe5b9ab4939ed645}\label{struct_game_state_ad269cdf52e505ca9fe5b9ab4939ed645}} 
+\mbox{\hyperlink{struct_list}{List}} $\ast$ {\bfseries bullets}
+\item 
+\mbox{\Hypertarget{struct_game_state_a56201895725fa782f34c9a4e04bf63c1}\label{struct_game_state_a56201895725fa782f34c9a4e04bf63c1}} 
+\mbox{\hyperlink{struct_list}{List}} $\ast$ {\bfseries walls}
+\item 
+\mbox{\Hypertarget{struct_game_state_af045ab2ee179f4a852296eaf23d0e4bf}\label{struct_game_state_af045ab2ee179f4a852296eaf23d0e4bf}} 
+int {\bfseries bullet\+\_\+cooldown\+\_\+2}
+\item 
+\mbox{\Hypertarget{struct_game_state_ac3897a350075920efc6bab8d04cc1215}\label{struct_game_state_ac3897a350075920efc6bab8d04cc1215}} 
+int {\bfseries winner}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+struct that handles the state of the game 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & object that stores the player postion and sprites\\
+\hline
+{\em player\+\_\+2} & object that stores the 2nd player postion and sprites\\
+\hline
+{\em mouse} & object with information ragarding the mouses position, buttons clicked and sprite\\
+\hline
+{\em bullets} & list of all the bullets\\
+\hline
+{\em walls} & list of all the walls\\
+\hline
+{\em bullet\+\_\+cooldown\+\_\+2} & bullet cooldown for the 2nd player\\
+\hline
+{\em winner} & tells who is the winner, is 0 while the game is going on \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{gamestate_8h}{gamestate.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,44 @@
+\hypertarget{canvas_8h_source}{}\doxysection{canvas.\+h}
+\label{canvas_8h_source}\index{canvas.h@{canvas.h}}
+\mbox{\hyperlink{canvas_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ \_LCOM\_CANVAS\_H\_}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ \_LCOM\_CANVAS\_H\_}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{/*\ DEVICES\ */}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}../../devices/KBC/mouse.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}../../devices/RTC/rtc.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}../../devices/video\_card/video.h"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{/*\ MODELS\ */}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}../models/list.h"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}../models/object.h"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{/*\ STATES\ */}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}../states/gamestate.h"{}}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{/*\ VIEWS\ */}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{image_8h}{image.h}}"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}../../images/P1Win.xpm"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}../../images/P2Win.xpm"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ uint32\_t\ walls\_color;}
+\DoxyCodeLine{00028\ uint32\_t\ arena\_color;}
+\DoxyCodeLine{00029\ uint32\_t\ final\_color;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00035\ void\ (\mbox{\hyperlink{canvas_8h_a19853efb04c011afbde27ec2ee2b130c}{\_\_canvas\_\_}})(uint32\_t\ new\_arena\_color,\ uint32\_t\ new\_walls\_color,\ uint32\_t\ new\_final\_color);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00041\ int\ (\mbox{\hyperlink{canvas_8h_a4fdb44c4ba80a43d2717495082354b66}{canvas\_draw\_arena}})();}
+\DoxyCodeLine{00046\ int\ (\mbox{\hyperlink{canvas_8h_ac3b76348b614a72fdc1fbc093ac7b34e}{canvas\_draw\_final}})(\mbox{\hyperlink{struct_game_state}{GameState}}*\ state);}
+\DoxyCodeLine{00053\ int\ (\mbox{\hyperlink{canvas_8h_a3ace310587fe1b150f546a8682ee3dcf}{canvas\_draw\_object}})(\mbox{\hyperlink{struct_object}{Object}}*\ obj);}
+\DoxyCodeLine{00058\ int\ (\mbox{\hyperlink{canvas_8h_af0364f7a40edfaad4cc78afc5783f541}{canvas\_draw\_crosshair}})(\mbox{\hyperlink{struct_object}{Object}}*\ crosshair);}
+\DoxyCodeLine{00065\ int\ (\mbox{\hyperlink{canvas_8h_af1d0db6192c996e6cd355b00e710e553}{canvas\_draw\_walls}})(\mbox{\hyperlink{struct_list}{List}}*\ list);}
+\DoxyCodeLine{00072\ int\ (\mbox{\hyperlink{canvas_8h_a377c0fdfe4c9ab90afce78d3b39f06ed}{canvas\_draw\_bullets}})(\mbox{\hyperlink{struct_list}{List}}*\ list);}
+\DoxyCodeLine{00079\ int\ (\mbox{\hyperlink{canvas_8h_ac4d875c143b36bf914ac4fe999ddbcef}{canvas\_refresh\_game}})(\mbox{\hyperlink{struct_game_state}{GameState}}*\ game);}
+\DoxyCodeLine{00087\ int\ (\mbox{\hyperlink{canvas_8h_ab31344118351df91889692edf3dab66f}{nightTransform}})(uint32\_t*\ color);}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_LCOM\_CANVAS\_H\_}}
+
+\end{DoxyCode}

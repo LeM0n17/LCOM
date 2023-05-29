@@ -1,0 +1,261 @@
+\hypertarget{_k_b_c_8h}{}\doxysection{KBC.\+h File Reference}
+\label{_k_b_c_8h}\index{KBC.h@{KBC.h}}
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}i8042.\+h\char`\"{}}\newline
+Include dependency graph for KBC.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{_k_b_c_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_k_b_c_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structkbc__status}{kbc\+\_\+status}}
+\begin{DoxyCompactList}\small\item\em struct representing the status of the KBC \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_k_b_c_8h_a1a522aa19bcb695a9df30032a893bee3}\label{_k_b_c_8h_a1a522aa19bcb695a9df30032a893bee3}} 
+\#define {\bfseries DELAY\+\_\+\+US}~20000
+\item 
+\mbox{\Hypertarget{_k_b_c_8h_a4908cfead456d1755c0f765b769907df}\label{_k_b_c_8h_a4908cfead456d1755c0f765b769907df}} 
+\#define {\bfseries KBC\+\_\+\+GET\+\_\+\+COMMAND}~0x20
+\item 
+\mbox{\Hypertarget{_k_b_c_8h_a9b64af24e75dd8537ea5bdf7e0b2b8ad}\label{_k_b_c_8h_a9b64af24e75dd8537ea5bdf7e0b2b8ad}} 
+\#define {\bfseries KBC\+\_\+\+SET\+\_\+\+COMMAND}~0x60
+\item 
+\mbox{\Hypertarget{_k_b_c_8h_a0979368e4096ea46282779f5fa7e8272}\label{_k_b_c_8h_a0979368e4096ea46282779f5fa7e8272}} 
+\#define {\bfseries KBC\+\_\+\+FORWARD\+\_\+\+TO\+\_\+\+MOUSE}~0x\+D4
+\item 
+\mbox{\Hypertarget{_k_b_c_8h_abeafeb775d204aefcb550d2577c52593}\label{_k_b_c_8h_abeafeb775d204aefcb550d2577c52593}} 
+\#define {\bfseries KBC\+\_\+\+ENABLE\+\_\+\+DATA\+\_\+\+REPORT}~0x\+F4
+\item 
+\mbox{\Hypertarget{_k_b_c_8h_a63e69a72eeaaeb2642b92af0af52fe41}\label{_k_b_c_8h_a63e69a72eeaaeb2642b92af0af52fe41}} 
+\#define {\bfseries KBC\+\_\+\+DISABLE\+\_\+\+DATA\+\_\+\+REPORT}~0x\+F5
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int() \mbox{\hyperlink{_k_b_c_8h_a13cfd33558643790080ba97a4729560f}{kbc\+\_\+get\+\_\+status}} ()
+\begin{DoxyCompactList}\small\item\em reads the KBC status register \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structkbc__status}{kbc\+\_\+status}}() \mbox{\hyperlink{_k_b_c_8h_a705477e324e2b79edcb695041998700f}{kbc\+\_\+parse\+\_\+status}} ()
+\begin{DoxyCompactList}\small\item\em parses the information regarding the status of the KBC \end{DoxyCompactList}\item 
+bool() \mbox{\hyperlink{_k_b_c_8h_aa9ed47cd314163dd3a4612079bc965ad}{kbc\+\_\+can\+\_\+write}} ()
+\begin{DoxyCompactList}\small\item\em ascertains if the KBC can receive input, on a given moment \end{DoxyCompactList}\item 
+bool() \mbox{\hyperlink{_k_b_c_8h_a3cda70b1c4c463a4ec9e650cc7df9fcf}{kbc\+\_\+can\+\_\+read}} ()
+\begin{DoxyCompactList}\small\item\em ascertains if the KBC has output ready to be read, on a given moment \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{_k_b_c_8h_a1dc25eebe0c2eac4f1f01c52c13077a0}{kbc\+\_\+delay\+\_\+write}} (uint32\+\_\+t wait\+\_\+ticks)
+\begin{DoxyCompactList}\small\item\em delays writing to the KBC, until it is ready to receive input \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{_k_b_c_8h_a1a7e51c69059888862e8a0f6f38aad55}{kbc\+\_\+delay\+\_\+read}} (uint32\+\_\+t wait\+\_\+ticks)
+\begin{DoxyCompactList}\small\item\em delays reading the KBC, until it is ready to receive input \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{_k_b_c_8h_a25fe16cf4df6709d8b83625fbd6fc8aa}{kbc\+\_\+write\+\_\+command}} (uint8\+\_\+t command, uint32\+\_\+t wait\+\_\+ticks)
+\begin{DoxyCompactList}\small\item\em writes a command to the KBC \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{_k_b_c_8h_a487ec5239960c1996fd6551a781e6fc4}{kbc\+\_\+get\+\_\+command\+\_\+byte}} (uint8\+\_\+t $\ast$command, uint32\+\_\+t wait\+\_\+ticks)
+\begin{DoxyCompactList}\small\item\em reads the command register of the KBC \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{_k_b_c_8h_a137d1ba2bdd1326eb136341e23f5a568}{kbc\+\_\+set\+\_\+command\+\_\+byte}} (uint8\+\_\+t command, uint32\+\_\+t wait\+\_\+ticks)
+\begin{DoxyCompactList}\small\item\em writes to the command register of the KBC \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{_k_b_c_8h_aece5b12d15658338bc90cb4b66df2ff5}{kbc\+\_\+read\+\_\+out\+\_\+buf}} (uint8\+\_\+t $\ast$data, uint32\+\_\+t wait\+\_\+ticks)
+\begin{DoxyCompactList}\small\item\em reads the output buffer of the KBC \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{_k_b_c_8h_a6eda39c7d5e4c843a778bcd96931f17b}{kbc\+\_\+write\+\_\+in\+\_\+buf}} (uint8\+\_\+t data, uint32\+\_\+t wait\+\_\+ticks)
+\begin{DoxyCompactList}\small\item\em writes to the output buffer of the KBC \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_k_b_c_8h_a3cda70b1c4c463a4ec9e650cc7df9fcf}\label{_k_b_c_8h_a3cda70b1c4c463a4ec9e650cc7df9fcf}} 
+\index{KBC.h@{KBC.h}!kbc\_can\_read@{kbc\_can\_read}}
+\index{kbc\_can\_read@{kbc\_can\_read}!KBC.h@{KBC.h}}
+\doxysubsubsection{\texorpdfstring{kbc\_can\_read()}{kbc\_can\_read()}}
+{\footnotesize\ttfamily bool() kbc\+\_\+can\+\_\+read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+ascertains if the KBC has output ready to be read, on a given moment 
+
+\begin{DoxyReturn}{Returns}
+true if the KBC has output 
+
+false if the KBC does not have output 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_k_b_c_8h_aa9ed47cd314163dd3a4612079bc965ad}\label{_k_b_c_8h_aa9ed47cd314163dd3a4612079bc965ad}} 
+\index{KBC.h@{KBC.h}!kbc\_can\_write@{kbc\_can\_write}}
+\index{kbc\_can\_write@{kbc\_can\_write}!KBC.h@{KBC.h}}
+\doxysubsubsection{\texorpdfstring{kbc\_can\_write()}{kbc\_can\_write()}}
+{\footnotesize\ttfamily bool() kbc\+\_\+can\+\_\+write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+ascertains if the KBC can receive input, on a given moment 
+
+\begin{DoxyReturn}{Returns}
+true if the KBC can receive input 
+
+false if the KBC cannot receive input 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_k_b_c_8h_a1a7e51c69059888862e8a0f6f38aad55}\label{_k_b_c_8h_a1a7e51c69059888862e8a0f6f38aad55}} 
+\index{KBC.h@{KBC.h}!kbc\_delay\_read@{kbc\_delay\_read}}
+\index{kbc\_delay\_read@{kbc\_delay\_read}!KBC.h@{KBC.h}}
+\doxysubsubsection{\texorpdfstring{kbc\_delay\_read()}{kbc\_delay\_read()}}
+{\footnotesize\ttfamily int() kbc\+\_\+delay\+\_\+read (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{wait\+\_\+ticks }\end{DoxyParamCaption})}
+
+
+
+delays reading the KBC, until it is ready to receive input 
+
+
+\begin{DoxyParams}{Parameters}
+{\em wait\+\_\+ticks} & number of attempts that will be made to reading the KBC \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+zero if the wait was successful and the number of attempts was not exceeded, non-\/zero otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_k_b_c_8h_a1dc25eebe0c2eac4f1f01c52c13077a0}\label{_k_b_c_8h_a1dc25eebe0c2eac4f1f01c52c13077a0}} 
+\index{KBC.h@{KBC.h}!kbc\_delay\_write@{kbc\_delay\_write}}
+\index{kbc\_delay\_write@{kbc\_delay\_write}!KBC.h@{KBC.h}}
+\doxysubsubsection{\texorpdfstring{kbc\_delay\_write()}{kbc\_delay\_write()}}
+{\footnotesize\ttfamily int() kbc\+\_\+delay\+\_\+write (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{wait\+\_\+ticks }\end{DoxyParamCaption})}
+
+
+
+delays writing to the KBC, until it is ready to receive input 
+
+
+\begin{DoxyParams}{Parameters}
+{\em wait\+\_\+ticks} & number of attempts that will be made to write to the KBC \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+zero if the wait was successful and the number of attempts was not exceeded, non-\/zero otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_k_b_c_8h_a487ec5239960c1996fd6551a781e6fc4}\label{_k_b_c_8h_a487ec5239960c1996fd6551a781e6fc4}} 
+\index{KBC.h@{KBC.h}!kbc\_get\_command\_byte@{kbc\_get\_command\_byte}}
+\index{kbc\_get\_command\_byte@{kbc\_get\_command\_byte}!KBC.h@{KBC.h}}
+\doxysubsubsection{\texorpdfstring{kbc\_get\_command\_byte()}{kbc\_get\_command\_byte()}}
+{\footnotesize\ttfamily int() kbc\+\_\+get\+\_\+command\+\_\+byte (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{command,  }\item[{uint32\+\_\+t}]{wait\+\_\+ticks }\end{DoxyParamCaption})}
+
+
+
+reads the command register of the KBC 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & pointer which will contain the command byte read \\
+\hline
+{\em wait\+\_\+ticks} & the number of attempts that will be made \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+zero on success, non-\/zero otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_k_b_c_8h_a13cfd33558643790080ba97a4729560f}\label{_k_b_c_8h_a13cfd33558643790080ba97a4729560f}} 
+\index{KBC.h@{KBC.h}!kbc\_get\_status@{kbc\_get\_status}}
+\index{kbc\_get\_status@{kbc\_get\_status}!KBC.h@{KBC.h}}
+\doxysubsubsection{\texorpdfstring{kbc\_get\_status()}{kbc\_get\_status()}}
+{\footnotesize\ttfamily int() kbc\+\_\+get\+\_\+status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+reads the KBC status register 
+
+\begin{DoxyReturn}{Returns}
+zero on success, non-\/zero otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_k_b_c_8h_a705477e324e2b79edcb695041998700f}\label{_k_b_c_8h_a705477e324e2b79edcb695041998700f}} 
+\index{KBC.h@{KBC.h}!kbc\_parse\_status@{kbc\_parse\_status}}
+\index{kbc\_parse\_status@{kbc\_parse\_status}!KBC.h@{KBC.h}}
+\doxysubsubsection{\texorpdfstring{kbc\_parse\_status()}{kbc\_parse\_status()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structkbc__status}{kbc\+\_\+status}}() kbc\+\_\+parse\+\_\+status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+parses the information regarding the status of the KBC 
+
+\begin{DoxyReturn}{Returns}
+struct representing the status of the KBC 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_k_b_c_8h_aece5b12d15658338bc90cb4b66df2ff5}\label{_k_b_c_8h_aece5b12d15658338bc90cb4b66df2ff5}} 
+\index{KBC.h@{KBC.h}!kbc\_read\_out\_buf@{kbc\_read\_out\_buf}}
+\index{kbc\_read\_out\_buf@{kbc\_read\_out\_buf}!KBC.h@{KBC.h}}
+\doxysubsubsection{\texorpdfstring{kbc\_read\_out\_buf()}{kbc\_read\_out\_buf()}}
+{\footnotesize\ttfamily int() kbc\+\_\+read\+\_\+out\+\_\+buf (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{data,  }\item[{uint32\+\_\+t}]{wait\+\_\+ticks }\end{DoxyParamCaption})}
+
+
+
+reads the output buffer of the KBC 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & pointer that will contain the content of the output buffer of the KBC \\
+\hline
+{\em wait\+\_\+ticks} & the number of attempts that will be made \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_k_b_c_8h_a137d1ba2bdd1326eb136341e23f5a568}\label{_k_b_c_8h_a137d1ba2bdd1326eb136341e23f5a568}} 
+\index{KBC.h@{KBC.h}!kbc\_set\_command\_byte@{kbc\_set\_command\_byte}}
+\index{kbc\_set\_command\_byte@{kbc\_set\_command\_byte}!KBC.h@{KBC.h}}
+\doxysubsubsection{\texorpdfstring{kbc\_set\_command\_byte()}{kbc\_set\_command\_byte()}}
+{\footnotesize\ttfamily int() kbc\+\_\+set\+\_\+command\+\_\+byte (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{command,  }\item[{uint32\+\_\+t}]{wait\+\_\+ticks }\end{DoxyParamCaption})}
+
+
+
+writes to the command register of the KBC 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & byte that will be written to the command register \\
+\hline
+{\em wait\+\_\+ticks} & the number of attempts that will be made \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+zero on success, non-\/zero otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_k_b_c_8h_a25fe16cf4df6709d8b83625fbd6fc8aa}\label{_k_b_c_8h_a25fe16cf4df6709d8b83625fbd6fc8aa}} 
+\index{KBC.h@{KBC.h}!kbc\_write\_command@{kbc\_write\_command}}
+\index{kbc\_write\_command@{kbc\_write\_command}!KBC.h@{KBC.h}}
+\doxysubsubsection{\texorpdfstring{kbc\_write\_command()}{kbc\_write\_command()}}
+{\footnotesize\ttfamily int() kbc\+\_\+write\+\_\+command (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{command,  }\item[{uint32\+\_\+t}]{wait\+\_\+ticks }\end{DoxyParamCaption})}
+
+
+
+writes a command to the KBC 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & the command byte that will be written to the KBC \\
+\hline
+{\em wait\+\_\+ticks} & the number of attempts that will be made \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+zero on success, non-\/zero otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_k_b_c_8h_a6eda39c7d5e4c843a778bcd96931f17b}\label{_k_b_c_8h_a6eda39c7d5e4c843a778bcd96931f17b}} 
+\index{KBC.h@{KBC.h}!kbc\_write\_in\_buf@{kbc\_write\_in\_buf}}
+\index{kbc\_write\_in\_buf@{kbc\_write\_in\_buf}!KBC.h@{KBC.h}}
+\doxysubsubsection{\texorpdfstring{kbc\_write\_in\_buf()}{kbc\_write\_in\_buf()}}
+{\footnotesize\ttfamily int() kbc\+\_\+write\+\_\+in\+\_\+buf (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{data,  }\item[{uint32\+\_\+t}]{wait\+\_\+ticks }\end{DoxyParamCaption})}
+
+
+
+writes to the output buffer of the KBC 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & data that will be written to the output buffer of the KBC \\
+\hline
+{\em wait\+\_\+ticks} & the number of attempts that will be made \\
+\hline
+\end{DoxyParams}

@@ -1,3 +1,8 @@
+/**
+ * @file game.h
+ *
+ */
+
 #ifndef _LCOM_GAME_H_
 #define _LCOM_GAME_H_
 

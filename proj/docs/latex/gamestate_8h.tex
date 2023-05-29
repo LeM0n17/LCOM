@@ -1,0 +1,141 @@
+\hypertarget{gamestate_8h}{}\doxysection{gamestate.\+h File Reference}
+\label{gamestate_8h}\index{gamestate.h@{gamestate.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../models/list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../models/object.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../models/bullet.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../../images/\+Tank\+\_\+1\+\_\+\+Down.\+xpm\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../../images/\+Tank\+\_\+2\+\_\+\+Down.\+xpm\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../../images/\+Cross.\+xpm\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../../images/\+Bullet.\+xpm\char`\"{}}\newline
+Include dependency graph for gamestate.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gamestate_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{gamestate_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_game_state}{Game\+State}}
+\begin{DoxyCompactList}\small\item\em struct that handles the state of the game \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$ \mbox{\hyperlink{gamestate_8h_a52f30f537c7225de3a6e391194ec2855}{create\+Game}} ()
+\begin{DoxyCompactList}\small\item\em Create a Game object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gamestate_8h_af112d5ff4e600644dada80f98d627e28}{create\+Bullet}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$state, uint16\+\_\+t x\+Origin, uint16\+\_\+t y\+Origin, uint16\+\_\+t x\+Destination, uint16\+\_\+t y\+Destination, \mbox{\hyperlink{struct_object}{Object}} $\ast$owner)
+\begin{DoxyCompactList}\small\item\em Create a \mbox{\hyperlink{struct_bullet}{Bullet}} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gamestate_8h_ad128f187eca60adccffd9f5f396c22a1}{insert\+Wall}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$state, uint16\+\_\+t x, uint16\+\_\+t y, uint16\+\_\+t width, uint16\+\_\+t height)
+\begin{DoxyCompactList}\small\item\em creates and displays the walls of the arena \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gamestate_8h_ac538e3877b9a074e3dd7d4a9171762d9}{game\+Step}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$state)
+\begin{DoxyCompactList}\small\item\em handles the bullet movement and collisions between them the walls and the players \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gamestate_8h_ab870d6973271180c0b71a2e5c1e5ab5c}{process\+\_\+scancode}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$obj, \mbox{\hyperlink{structkbd__data__t}{kbd\+\_\+data\+\_\+t}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em handles data sent from the KBC \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{gamestate_8h_af112d5ff4e600644dada80f98d627e28}\label{gamestate_8h_af112d5ff4e600644dada80f98d627e28}} 
+\index{gamestate.h@{gamestate.h}!createBullet@{createBullet}}
+\index{createBullet@{createBullet}!gamestate.h@{gamestate.h}}
+\doxysubsubsection{\texorpdfstring{createBullet()}{createBullet()}}
+{\footnotesize\ttfamily void create\+Bullet (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{state,  }\item[{uint16\+\_\+t}]{x\+Origin,  }\item[{uint16\+\_\+t}]{y\+Origin,  }\item[{uint16\+\_\+t}]{x\+Destination,  }\item[{uint16\+\_\+t}]{y\+Destination,  }\item[{\mbox{\hyperlink{struct_object}{Object}} $\ast$}]{owner }\end{DoxyParamCaption})}
+
+
+
+Create a \mbox{\hyperlink{struct_bullet}{Bullet}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & gamestate \\
+\hline
+{\em x\+Origin} & x position of the firing player \\
+\hline
+{\em y\+Origin} & y position of the firing player \\
+\hline
+{\em x\+Destination} & x position of the mouse \\
+\hline
+{\em y\+Destination} & y position of the mouse \\
+\hline
+{\em owner} & player whos firing the bullet \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gamestate_8h_a52f30f537c7225de3a6e391194ec2855}\label{gamestate_8h_a52f30f537c7225de3a6e391194ec2855}} 
+\index{gamestate.h@{gamestate.h}!createGame@{createGame}}
+\index{createGame@{createGame}!gamestate.h@{gamestate.h}}
+\doxysubsubsection{\texorpdfstring{createGame()}{createGame()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$ create\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Create a Game object. 
+
+\begin{DoxyReturn}{Returns}
+Game\+State$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{gamestate_8h_ac538e3877b9a074e3dd7d4a9171762d9}\label{gamestate_8h_ac538e3877b9a074e3dd7d4a9171762d9}} 
+\index{gamestate.h@{gamestate.h}!gameStep@{gameStep}}
+\index{gameStep@{gameStep}!gamestate.h@{gamestate.h}}
+\doxysubsubsection{\texorpdfstring{gameStep()}{gameStep()}}
+{\footnotesize\ttfamily void game\+Step (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{state }\end{DoxyParamCaption})}
+
+
+
+handles the bullet movement and collisions between them the walls and the players 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & gamestate \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gamestate_8h_ad128f187eca60adccffd9f5f396c22a1}\label{gamestate_8h_ad128f187eca60adccffd9f5f396c22a1}} 
+\index{gamestate.h@{gamestate.h}!insertWall@{insertWall}}
+\index{insertWall@{insertWall}!gamestate.h@{gamestate.h}}
+\doxysubsubsection{\texorpdfstring{insertWall()}{insertWall()}}
+{\footnotesize\ttfamily void insert\+Wall (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{state,  }\item[{uint16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y,  }\item[{uint16\+\_\+t}]{width,  }\item[{uint16\+\_\+t}]{height }\end{DoxyParamCaption})}
+
+
+
+creates and displays the walls of the arena 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & gamestate \\
+\hline
+{\em x} & starting x for the display \\
+\hline
+{\em y} & starting y for the display \\
+\hline
+{\em width} & width of the wall \\
+\hline
+{\em height} & height of the wall \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gamestate_8h_ab870d6973271180c0b71a2e5c1e5ab5c}\label{gamestate_8h_ab870d6973271180c0b71a2e5c1e5ab5c}} 
+\index{gamestate.h@{gamestate.h}!process\_scancode@{process\_scancode}}
+\index{process\_scancode@{process\_scancode}!gamestate.h@{gamestate.h}}
+\doxysubsubsection{\texorpdfstring{process\_scancode()}{process\_scancode()}}
+{\footnotesize\ttfamily void process\+\_\+scancode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{obj,  }\item[{\mbox{\hyperlink{structkbd__data__t}{kbd\+\_\+data\+\_\+t}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+handles data sent from the KBC 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & gamestate \\
+\hline
+{\em data} & data sent from the keyboard \\
+\hline
+\end{DoxyParams}

@@ -1,3 +1,8 @@
+/**
+ * @file keyboard.h
+ * 
+ */
+
 #ifndef _LCOM_KEYBOARD_H_
 #define _LCOM_KEYBOARD_H_
 

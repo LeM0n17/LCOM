@@ -1,0 +1,178 @@
+\hypertarget{canvas_8h}{}\doxysection{canvas.\+h File Reference}
+\label{canvas_8h}\index{canvas.h@{canvas.h}}
+{\ttfamily \#include \char`\"{}../../devices/\+KBC/mouse.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../../devices/\+RTC/rtc.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../../devices/video\+\_\+card/video.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../models/list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../models/object.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../states/gamestate.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}image.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../../images/\+P1\+Win.\+xpm\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../../images/\+P2\+Win.\+xpm\char`\"{}}\newline
+Include dependency graph for canvas.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{canvas_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=134pt]{canvas_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void() \mbox{\hyperlink{canvas_8h_a19853efb04c011afbde27ec2ee2b130c}{\+\_\+\+\_\+canvas\+\_\+\+\_\+}} (uint32\+\_\+t new\+\_\+arena\+\_\+color, uint32\+\_\+t new\+\_\+walls\+\_\+color, uint32\+\_\+t new\+\_\+final\+\_\+color)
+\begin{DoxyCompactList}\small\item\em unitialies global variables to values given to the function \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{canvas_8h_a4fdb44c4ba80a43d2717495082354b66}{canvas\+\_\+draw\+\_\+arena}} ()
+\begin{DoxyCompactList}\small\item\em draws the arena \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{canvas_8h_ac3b76348b614a72fdc1fbc093ac7b34e}{canvas\+\_\+draw\+\_\+final}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$state)
+\begin{DoxyCompactList}\small\item\em draws the final screen telling who the winner is \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{canvas_8h_a3ace310587fe1b150f546a8682ee3dcf}{canvas\+\_\+draw\+\_\+object}} (\mbox{\hyperlink{struct_object}{Object}} $\ast$obj)
+\begin{DoxyCompactList}\small\item\em draws given object \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{canvas_8h_af0364f7a40edfaad4cc78afc5783f541}{canvas\+\_\+draw\+\_\+crosshair}} (\mbox{\hyperlink{struct_object}{Object}} $\ast$crosshair)
+\begin{DoxyCompactList}\small\item\em draws the crosshair \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{canvas_8h_af1d0db6192c996e6cd355b00e710e553}{canvas\+\_\+draw\+\_\+walls}} (\mbox{\hyperlink{struct_list}{List}} $\ast$list)
+\begin{DoxyCompactList}\small\item\em draws all the walls \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{canvas_8h_a377c0fdfe4c9ab90afce78d3b39f06ed}{canvas\+\_\+draw\+\_\+bullets}} (\mbox{\hyperlink{struct_list}{List}} $\ast$list)
+\begin{DoxyCompactList}\small\item\em draws the bullets \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{canvas_8h_ac4d875c143b36bf914ac4fe999ddbcef}{canvas\+\_\+refresh\+\_\+game}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game)
+\begin{DoxyCompactList}\small\item\em draws all the components of the game \end{DoxyCompactList}\item 
+int() \mbox{\hyperlink{canvas_8h_ab31344118351df91889692edf3dab66f}{night\+Transform}} (uint32\+\_\+t $\ast$color)
+\begin{DoxyCompactList}\small\item\em starting at a given hour changes the colors of the game \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{canvas_8h_ae0d27d1310eed5e8eb9e867cb88e3bfd}\label{canvas_8h_ae0d27d1310eed5e8eb9e867cb88e3bfd}} 
+uint32\+\_\+t {\bfseries walls\+\_\+color}
+\item 
+\mbox{\Hypertarget{canvas_8h_a252a4b2af51056b4aeb3f7d249bb954d}\label{canvas_8h_a252a4b2af51056b4aeb3f7d249bb954d}} 
+uint32\+\_\+t {\bfseries arena\+\_\+color}
+\item 
+\mbox{\Hypertarget{canvas_8h_a2b91a5e989e3f56be4c2d6940aef9f4e}\label{canvas_8h_a2b91a5e989e3f56be4c2d6940aef9f4e}} 
+uint32\+\_\+t {\bfseries final\+\_\+color}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{canvas_8h_a19853efb04c011afbde27ec2ee2b130c}\label{canvas_8h_a19853efb04c011afbde27ec2ee2b130c}} 
+\index{canvas.h@{canvas.h}!\_\_canvas\_\_@{\_\_canvas\_\_}}
+\index{\_\_canvas\_\_@{\_\_canvas\_\_}!canvas.h@{canvas.h}}
+\doxysubsubsection{\texorpdfstring{\_\_canvas\_\_()}{\_\_canvas\_\_()}}
+{\footnotesize\ttfamily void() \+\_\+\+\_\+canvas\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{new\+\_\+arena\+\_\+color,  }\item[{uint32\+\_\+t}]{new\+\_\+walls\+\_\+color,  }\item[{uint32\+\_\+t}]{new\+\_\+final\+\_\+color }\end{DoxyParamCaption})}
+
+
+
+unitialies global variables to values given to the function 
+
+\mbox{\Hypertarget{canvas_8h_a4fdb44c4ba80a43d2717495082354b66}\label{canvas_8h_a4fdb44c4ba80a43d2717495082354b66}} 
+\index{canvas.h@{canvas.h}!canvas\_draw\_arena@{canvas\_draw\_arena}}
+\index{canvas\_draw\_arena@{canvas\_draw\_arena}!canvas.h@{canvas.h}}
+\doxysubsubsection{\texorpdfstring{canvas\_draw\_arena()}{canvas\_draw\_arena()}}
+{\footnotesize\ttfamily int() canvas\+\_\+draw\+\_\+arena (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+draws the arena 
+
+\mbox{\Hypertarget{canvas_8h_a377c0fdfe4c9ab90afce78d3b39f06ed}\label{canvas_8h_a377c0fdfe4c9ab90afce78d3b39f06ed}} 
+\index{canvas.h@{canvas.h}!canvas\_draw\_bullets@{canvas\_draw\_bullets}}
+\index{canvas\_draw\_bullets@{canvas\_draw\_bullets}!canvas.h@{canvas.h}}
+\doxysubsubsection{\texorpdfstring{canvas\_draw\_bullets()}{canvas\_draw\_bullets()}}
+{\footnotesize\ttfamily int() canvas\+\_\+draw\+\_\+bullets (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_list}{List}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+draws the bullets 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & list of bullets to be drawn \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{canvas_8h_af0364f7a40edfaad4cc78afc5783f541}\label{canvas_8h_af0364f7a40edfaad4cc78afc5783f541}} 
+\index{canvas.h@{canvas.h}!canvas\_draw\_crosshair@{canvas\_draw\_crosshair}}
+\index{canvas\_draw\_crosshair@{canvas\_draw\_crosshair}!canvas.h@{canvas.h}}
+\doxysubsubsection{\texorpdfstring{canvas\_draw\_crosshair()}{canvas\_draw\_crosshair()}}
+{\footnotesize\ttfamily int() canvas\+\_\+draw\+\_\+crosshair (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_object}{Object}} $\ast$}]{crosshair }\end{DoxyParamCaption})}
+
+
+
+draws the crosshair 
+
+\mbox{\Hypertarget{canvas_8h_ac3b76348b614a72fdc1fbc093ac7b34e}\label{canvas_8h_ac3b76348b614a72fdc1fbc093ac7b34e}} 
+\index{canvas.h@{canvas.h}!canvas\_draw\_final@{canvas\_draw\_final}}
+\index{canvas\_draw\_final@{canvas\_draw\_final}!canvas.h@{canvas.h}}
+\doxysubsubsection{\texorpdfstring{canvas\_draw\_final()}{canvas\_draw\_final()}}
+{\footnotesize\ttfamily int() canvas\+\_\+draw\+\_\+final (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{state }\end{DoxyParamCaption})}
+
+
+
+draws the final screen telling who the winner is 
+
+\mbox{\Hypertarget{canvas_8h_a3ace310587fe1b150f546a8682ee3dcf}\label{canvas_8h_a3ace310587fe1b150f546a8682ee3dcf}} 
+\index{canvas.h@{canvas.h}!canvas\_draw\_object@{canvas\_draw\_object}}
+\index{canvas\_draw\_object@{canvas\_draw\_object}!canvas.h@{canvas.h}}
+\doxysubsubsection{\texorpdfstring{canvas\_draw\_object()}{canvas\_draw\_object()}}
+{\footnotesize\ttfamily int() canvas\+\_\+draw\+\_\+object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_object}{Object}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+
+
+draws given object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & object to be drawn \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{canvas_8h_af1d0db6192c996e6cd355b00e710e553}\label{canvas_8h_af1d0db6192c996e6cd355b00e710e553}} 
+\index{canvas.h@{canvas.h}!canvas\_draw\_walls@{canvas\_draw\_walls}}
+\index{canvas\_draw\_walls@{canvas\_draw\_walls}!canvas.h@{canvas.h}}
+\doxysubsubsection{\texorpdfstring{canvas\_draw\_walls()}{canvas\_draw\_walls()}}
+{\footnotesize\ttfamily int() canvas\+\_\+draw\+\_\+walls (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_list}{List}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+draws all the walls 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & list of walls to be drawn \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{canvas_8h_ac4d875c143b36bf914ac4fe999ddbcef}\label{canvas_8h_ac4d875c143b36bf914ac4fe999ddbcef}} 
+\index{canvas.h@{canvas.h}!canvas\_refresh\_game@{canvas\_refresh\_game}}
+\index{canvas\_refresh\_game@{canvas\_refresh\_game}!canvas.h@{canvas.h}}
+\doxysubsubsection{\texorpdfstring{canvas\_refresh\_game()}{canvas\_refresh\_game()}}
+{\footnotesize\ttfamily int() canvas\+\_\+refresh\+\_\+game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+draws all the components of the game 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game} & gamestate \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{canvas_8h_ab31344118351df91889692edf3dab66f}\label{canvas_8h_ab31344118351df91889692edf3dab66f}} 
+\index{canvas.h@{canvas.h}!nightTransform@{nightTransform}}
+\index{nightTransform@{nightTransform}!canvas.h@{canvas.h}}
+\doxysubsubsection{\texorpdfstring{nightTransform()}{nightTransform()}}
+{\footnotesize\ttfamily int() night\+Transform (\begin{DoxyParamCaption}\item[{uint32\+\_\+t $\ast$}]{color }\end{DoxyParamCaption})}
+
+
+
+starting at a given hour changes the colors of the game 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & reference to the color to be changed \\
+\hline
+\end{DoxyParams}

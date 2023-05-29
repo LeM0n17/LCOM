@@ -1,3 +1,8 @@
+/**
+ * @file video.h
+ *
+ */
+
 #ifndef _LCOM_VIDEO_H_
 #define _LCOM_VIDEO_H_
 

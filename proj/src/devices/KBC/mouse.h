@@ -1,3 +1,8 @@
+/**
+ * @file mouse.h
+ * 
+ */
+
 #ifndef _LCOM_MOUSE_H_
 #define _LCOM_MOUSE_H_
 

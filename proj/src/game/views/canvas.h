@@ -1,3 +1,8 @@
+/**
+ * @file canvas.h
+ *
+ */
+
 #ifndef _LCOM_CANVAS_H_
 #define _LCOM_CANVAS_H_
 
